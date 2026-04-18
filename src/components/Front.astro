@@ -1,0 +1,86 @@
+---
+import frontImg from "../assets/front-image.jpg";
+---
+
+<div id="container">
+  <img id="background" src={frontImg.src} alt="" fetchpriority="high" />
+  <main>
+    <section id="hero">
+      <div id="hero-content">
+        <h1>
+          Prevention of <span class="highlight">Emotional</span> and Psychological
+          Abuse
+        </h1>
+        <p>
+          A professional organization dedicated to the safety and psychological
+          well-being of every child through stabiility and strength
+        </p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<style>
+  #container {
+    position: relative;
+  }
+  #background {
+    width: 100%;
+    height: 100vh;
+    object-fit: contain;
+    object-position: right top;
+    object-view-box: inset(20%);
+    z-index: -1;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 40%,
+      black 60%
+    );
+    mask-repeat: no-repeat;
+  }
+  .highlight {
+    color: var(--button-primary);
+  }
+
+  h1 {
+    font-weight: 900;
+    line-height: 4rem;
+    font-size: 56px;
+    color: var(--black);
+    margin: 0;
+    font-family: var(--font-manrope);
+  }
+
+  @media (max-width: 1024px) {
+    h1 {
+      font-size: 48px;
+      line-height: 3rem;
+    }
+  }
+  p {
+    font-size: 24px;
+    margin: 0;
+    font-weight: 300;
+    font-family: var(--font-manrope);
+    color: var(--button-primary);
+  }
+  main {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    top: 0;
+    color: "black";
+  }
+  #hero-content {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    padding-left: 24px;
+  }
+</style>

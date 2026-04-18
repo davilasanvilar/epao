@@ -1,0 +1,147 @@
+---
+import AccreditedIcon from "./icons/AccreditedIcon.astro";
+import orgInfoImg from "../assets/org-image.jpg";
+import PillarCard from "./PillarCard.astro";
+import EducationIcon from "./icons/EducationIcon.astro";
+import EyeIcon from "./icons/EyeIcon.astro";
+import ScaleIcon from "./icons/ScaleIcon.astro";
+---
+
+<section id="org-info" class="section">
+  <div id="org-info-content-left">
+    <h2>Our Organization</h2>
+    <p>
+      The Emotional and Psychological Abuse Prevention Organization (EPAO) is a
+      non-profit organization committed to protecting children from emotional
+      and psychological abuse.
+    </p>
+    <p>
+      We provide education, support, and resources to parents, caregivers, and
+      communities to create safe environments where children can thrive.
+    </p>
+    <div class="accredited">
+      <AccreditedIcon width="32" height="32" />
+      <div class="accredited-content">
+        <strong>Professional support</strong>
+        <p>Certified psychological counselors and social workers</p>
+      </div>
+    </div>
+  </div>
+  <div id="org-info-content-right">
+    <img id="org-info-img" src={orgInfoImg.src} alt="" />
+    <div class="pillars">
+      <PillarCard
+        title="Awareness"
+        description="Raising public consciousness about the hidden signs of psychological abuse to ensure every child is seen and heard."
+        isDark={true}
+      >
+        <EyeIcon width="32" height="32" slot="icon" />
+      </PillarCard>
+      <div class="pillars-bottom">
+        <PillarCard
+          title="Education"
+          description="Providing specialized training for professionals and caregivers to effectively identify and intervene in coercive environments."
+        >
+          <EducationIcon width="32" height="32" slot="icon" />
+        </PillarCard>
+        <PillarCard
+          title="Legislative"
+          description="Championing policy reform and legal advocacy to strengthen protections and secure justice for children in the legal system."
+        >
+          <ScaleIcon width="32" height="32" slot="icon" />
+        </PillarCard>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section {
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh);
+    display: flex;
+    flex-direction: column);
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  #org-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    gap: 8rem;
+  }
+
+  #org-info-content-left {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: var(--font-manrope);
+    gap: 2rem;
+    padding-left: 24px;
+  }
+
+  h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0;
+    color: var(--black);
+  }
+
+  p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 2;
+    font-weight: 300;
+    color: var(--black);
+  }
+
+  .accredited {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    color: var(--primary-500);
+    background-color: var(--smooth-overlay);
+    padding: 24px;
+    border-radius: 8px;
+  }
+
+  .accredited-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  #org-info-content-right {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  #org-info-img {
+    width: 100%;
+    object-fit: cover;
+    height: 30vh;
+    min-height: 400px;
+    border-radius: 16px;
+  }
+
+  .pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .pillars-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  }
+</style>

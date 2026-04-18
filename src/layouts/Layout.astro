@@ -1,23 +1,42 @@
+---
+import Font from "astro/components/Font.astro";
+import Header from "../components/Header.astro";
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <Font cssVariable="--font-manrope" preload />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>EPAO</title>
+  </head>
+  <body>
+    <Header />
+    <slot />
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  :global(:root) {
+    --black: hsl(0, 0%, 15%);
+    --primary-500: #455a64;
+    --white: #fafafa;
+    --button-primary: #4a6982;
+    --smooth-overlay: hsl(146 24% 90% / 1);
+    * {
+      box-sizing: border-box;
+    }
+  }
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--white);
+  }
 </style>

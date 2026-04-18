@@ -1,0 +1,49 @@
+---
+const { title, description, isDark } = Astro.props;
+const color = isDark ? "var(--white)" : "var(--primary-500)";
+const backgroundColor = isDark ? "var(--primary-500)" : "var(--white)";
+---
+
+<div class="pillar-card">
+  <div class="pillar-card-icon"><slot name="icon" /></div>
+  <div class="pillar-card-content">
+    <h3>{title}</h3>
+    <p>{description}</p>
+  </div>
+</div>
+
+<style define:vars={{ color, backgroundColor }}>
+  .pillar-card {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 16px;
+    color: var(--color);
+    background-color: var(--backgroundColor);
+    font-family: var(--font-manrope);
+  }
+  .pillar-card-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+  }
+  .pillar-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .pillar-card-content h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  .pillar-card-content p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 300;
+  }
+</style>

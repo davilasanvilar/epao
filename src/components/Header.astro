@@ -1,0 +1,73 @@
+---
+import Button from "./Button.astro";
+import logo from "../assets/favicon2.svg";
+---
+
+<header>
+  <div id="logo-container">
+    <img src={logo.src} alt="" width="50" height="50" />
+    <span class="logo">EPAO</span>
+  </div>
+  <nav>
+    <ul>
+      <li class="nav-item active"><a href="/">Home</a></li>
+      <li class="nav-item"><a href="/about">About us</a></li>
+      <li class="nav-item"><a href="/services">Services</a></li>
+      <li class="nav-item"><a href="/events">Events</a></li>
+      <li class="nav-item"><a href="/library">Library</a></li>
+    </ul>
+  </nav>
+  <Button text="Contact us" />
+</header>
+
+<style>
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    padding: 16px;
+    position: fixed;
+    top: 0;
+    background-color: #fafafa80;
+
+    z-index: 1000;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  #logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary-500);
+    font-family: var(--font-manrope);
+  }
+  nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .active {
+    color: var(--button-primary);
+    border-bottom: 2px solid var(--button-primary);
+    padding-bottom: 4px;
+    font-weight: bold;
+  }
+
+  .nav-item {
+    margin-right: 16px;
+    list-style: none;
+  }
+  .nav-item a {
+    text-decoration: none;
+    font-family: var(--font-manrope);
+    color: var(--primary-500);
+  }
+</style>
