@@ -1,7 +1,8 @@
 ---
 const { title, description, isDark } = Astro.props;
 const color = isDark ? "var(--white)" : "var(--primary-500)";
-const backgroundColor = isDark ? "var(--primary-500)" : "var(--white)";
+const backgroundColor = isDark ? "var(--primary-500)" : "var(--light-color-bg)";
+const boxShadow = isDark ? "var(--box-shadow-dk)" : "var(--box-shadow-lg)";
 ---
 
 <div class="pillar-card">
@@ -12,28 +13,30 @@ const backgroundColor = isDark ? "var(--primary-500)" : "var(--white)";
   </div>
 </div>
 
-<style define:vars={{ color, backgroundColor }}>
+<style define:vars={{ color, backgroundColor, boxShadow }}>
   .pillar-card {
     display: flex;
     width: 100%;
     gap: 1rem;
-    padding: 1rem;
-    border-radius: 16px;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
     color: var(--color);
     background-color: var(--backgroundColor);
     font-family: var(--font-manrope);
+    box-shadow: var(--boxShadow);
   }
   .pillar-card-icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 8px;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--border-radius);
   }
   .pillar-card-content {
     display: flex;
     flex-direction: column;
+    line-height: var(--small-text-lh);
     gap: 0.5rem;
   }
   .pillar-card-content h3 {
