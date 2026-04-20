@@ -1,0 +1,72 @@
+---
+import LatestCard from "./LatestCard.astro";
+---
+
+<section id="latest-activities" class="section">
+  <div id="latest-activities-header">
+    <div id="latest-activities-title">
+      <h2>Latest Activities</h2>
+      <p>Our impact in the community</p>
+    </div>
+    <span id="view-all-activities">View all activities</span>
+  </div>
+
+  <div id="latest-activities-list">
+    <LatestCard
+      title="Lecture at St. Joseph's College"
+      description="We had a great time at St. Joseph's College, where we gave a lecture about the importance of preventing child abuse. We talked about the different types of abuse, how to recognize them, and what to do if you suspect that a child is being abused."
+      date="March 15, 2026"
+    />
+    <LatestCard
+      title="Meeting with the Ministry of Education"
+      description="Very insightful meeting with the Ministry of Education"
+      date="March 10, 2026"
+    />
+    <LatestCard
+      title="We participated in the Child Protection Week"
+      description="We participated in the Child Protection Week, where we gave a lecture about the importance of preventing child abuse. We talked about the different types of abuse, how to recognize them, and what to do if you suspect that a child is being abused."
+      date="March 5, 2026"
+    />
+  </div>
+</section>
+
+<style>
+  #latest-activities {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+  }
+  #latest-activities-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  #latest-activities-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  #latest-activities-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  #view-all-activities {
+    color: var(--primary-500);
+    font-size: 1rem;
+    border-bottom: 2px solid var(--primary-500);
+    padding-bottom: 0.25rem;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: auto;
+  }
+  #latest-activities-list {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    justify-content: center;
+    gap: 2rem;
+  }
+</style>

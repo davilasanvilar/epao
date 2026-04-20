@@ -35,37 +35,27 @@ import ScaleIcon from "./icons/ScaleIcon.astro";
         description="Raising public consciousness about the hidden signs of psychological abuse to ensure every child is seen and heard."
         isDark={true}
       >
-        <EyeIcon width="32" height="32" slot="icon" />
+        <EyeIcon slot="icon" />
       </PillarCard>
       <div class="pillars-bottom">
         <PillarCard
           title="Education"
           description="Providing specialized training for professionals and caregivers to effectively identify and intervene in coercive environments."
-          >
-          <EducationIcon width="32" height="32" slot="icon" />
+        >
+          <EducationIcon slot="icon" />
         </PillarCard>
         <PillarCard
           title="Legislative"
           description="Championing policy reform and legal advocacy to strengthen protections and secure justice for children in the legal system."
-          >
-          <ScaleIcon width="32" height="32" slot="icon" />
+        >
+          <ScaleIcon slot="icon" />
         </PillarCard>
+      </div>
     </div>
-  </div>
   </div>
 </section>
 
 <style>
-  .section {
-    position: relative;
-    width: 100%;
-    min-height: calc(100vh);
-    display: flex;
-    flex-direction: column);
-    max-width: 1440px;
-    margin: 0 auto;
-  }
-
   #org-info {
     display: flex;
     justify-content: space-between;
@@ -80,23 +70,8 @@ import ScaleIcon from "./icons/ScaleIcon.astro";
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-family: var(--font-manrope);
     gap: 2rem; /* Already in rem */
     padding-left: 1.5rem;
-  }
-
-  h2 {
-    font-size: 2.25rem;
-    font-weight: bold;
-    margin: 0;
-    color: var(--black);
-  }
-
-  p {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 300;
-    color: var(--black);
   }
 
   .accredited {

@@ -1,8 +1,9 @@
 ---
 const { title, description, isDark } = Astro.props;
-const color = isDark ? "var(--white)" : "var(--primary-500)";
+const color = isDark ? "var(--white)" : "var(--black)";
 const backgroundColor = isDark ? "var(--primary-500)" : "var(--light-color-bg)";
 const boxShadow = isDark ? "var(--box-shadow-dk)" : "var(--box-shadow-lg)";
+const colorIcon = isDark ? "var(--white)" : "var(--primary-500)";
 ---
 
 <div class="pillar-card">
@@ -13,7 +14,7 @@ const boxShadow = isDark ? "var(--box-shadow-dk)" : "var(--box-shadow-lg)";
   </div>
 </div>
 
-<style define:vars={{ color, backgroundColor, boxShadow }}>
+<style define:vars={{ color, backgroundColor, boxShadow, colorIcon }}>
   .pillar-card {
     display: flex;
     width: 100%;
@@ -22,17 +23,22 @@ const boxShadow = isDark ? "var(--box-shadow-dk)" : "var(--box-shadow-lg)";
     border-radius: var(--border-radius);
     color: var(--color);
     background-color: var(--backgroundColor);
-    font-family: var(--font-manrope);
     box-shadow: var(--boxShadow);
+    align-items: flex-start;
   }
   .pillar-card-icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 3rem;
-    height: 3rem;
     border-radius: var(--border-radius);
   }
+
+  .pillar-card-icon :global(svg) {
+    width: 2rem;
+    height: 2rem;
+    color: var(--colorIcon);
+  }
+
   .pillar-card-content {
     display: flex;
     flex-direction: column;
@@ -43,10 +49,12 @@ const boxShadow = isDark ? "var(--box-shadow-dk)" : "var(--box-shadow-lg)";
     margin: 0;
     font-size: 1.25rem;
     font-weight: bold;
+    color: var(--color);
   }
   .pillar-card-content p {
     margin: 0;
     font-size: 1rem;
     font-weight: 300;
+    color: var(--color);
   }
 </style>

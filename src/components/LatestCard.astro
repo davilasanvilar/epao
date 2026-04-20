@@ -1,0 +1,50 @@
+---
+const { title, description, date } = Astro.props;
+import lecture from "../assets/lecture.jpg";
+---
+
+<div class="latest-card">
+  <img src={lecture.src} alt="" />
+  <span class="date">{date}</span>
+  <h3>{title}</h3>
+  <p>{description}</p>
+</div>
+
+<style>
+  .latest-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 18rem;
+  }
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+  }
+
+  .date {
+    margin-top: 1rem;
+    color: var(--primary-500);
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  h3 {
+    margin: 0;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--black);
+  }
+
+  p {
+    margin: 0;
+    margin-top: 1rem;
+    color: var(--black);
+    font-size: 1rem;
+    font-weight: 300;
+    max-width: 30rem;
+    line-height: 1.5;
+  }
+</style>
