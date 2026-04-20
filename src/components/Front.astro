@@ -7,10 +7,7 @@ import frontImg from "../assets/front-image.jpg";
   <main>
     <section id="hero">
       <div id="hero-content">
-        <h1>
-          Prevention of <span class="highlight">Emotional</span> and Psychological
-          Abuse
-        </h1>
+        <h1>Prevention of Emotional and Psychological Abuse</h1>
         <p>
           A professional organization dedicated to the safety and psychological
           well-being of every child through stabiility and strength
@@ -23,6 +20,7 @@ import frontImg from "../assets/front-image.jpg";
 <style>
   #container {
     position: relative;
+    min-height: calc(100vh);
   }
   #background {
     width: 100%;
@@ -39,9 +37,6 @@ import frontImg from "../assets/front-image.jpg";
     );
     mask-repeat: no-repeat;
   }
-  .highlight {
-    color: var(--button-primary);
-  }
 
   h1 {
     font-weight: 900;
@@ -57,12 +52,7 @@ import frontImg from "../assets/front-image.jpg";
       line-height: 3rem;
     }
   }
-  p {
-    font-size: 1.5rem;
-    margin: 0;
-    font-weight: 300;
-    color: var(--button-primary);
-  }
+
   main {
     position: absolute;
     width: 100%;
@@ -80,5 +70,10 @@ import frontImg from "../assets/front-image.jpg";
     justify-content: center;
     gap: 2rem;
     padding-left: 1.5rem;
+  }
+  #hero-content p {
+    font-size: 1.25rem;
+    margin: 0;
+    font-weight: 300;
   }
 </style>
