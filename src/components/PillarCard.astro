@@ -7,7 +7,6 @@ const colorIcon = isDark ? "var(--white)" : "var(--primary-500)";
 ---
 
 <div class="pillar-card">
-  <div class="pillar-card-icon"><slot name="icon" /></div>
   <div class="pillar-card-content">
     <h3>{title}</h3>
     <p>{description}</p>
@@ -25,18 +24,6 @@ const colorIcon = isDark ? "var(--white)" : "var(--primary-500)";
     background-color: var(--backgroundColor);
     box-shadow: var(--boxShadow);
     align-items: flex-start;
-  }
-  .pillar-card-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: var(--border-radius);
-  }
-
-  .pillar-card-icon :global(svg) {
-    width: 2rem;
-    height: 2rem;
-    color: var(--colorIcon);
   }
 
   .pillar-card-content {
