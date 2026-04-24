@@ -1,5 +1,8 @@
 ---
 import LatestCard from "./LatestCard.astro";
+import lecture from "../assets/lecture.webp";
+import lecture2 from "../assets/lecture2.webp";
+import lecture3 from "../assets/lecture3.jfif";
 ---
 
 <section id="latest-activities" class="section">
@@ -13,19 +16,22 @@ import LatestCard from "./LatestCard.astro";
 
   <div id="latest-activities-list">
     <LatestCard
-      title="Lecture at St. Joseph's College"
-      description="We had a great time at St. Joseph's College, where we gave a lecture about the importance of preventing child abuse. We talked about the different types of abuse, how to recognize them, and what to do if you suspect that a child is being abused."
+      title="Lecture at Comenius University"
+      description="Shared insights on child abuse prevention at Comenius University in Bratislava."
       date="March 15, 2026"
+      img={lecture.src}
     />
     <LatestCard
       title="Meeting with the Ministry of Education"
       description="Very insightful meeting with the Ministry of Education"
       date="March 10, 2026"
+      img={lecture2.src}
     />
     <LatestCard
       title="We participated in the Child Protection Week"
-      description="We participated in the Child Protection Week, where we gave a lecture about the importance of preventing child abuse. We talked about the different types of abuse, how to recognize them, and what to do if you suspect that a child is being abused."
+      description="Joined Child Protection Week in Bratislava, advocating for child safety."
       date="March 5, 2026"
+      img={lecture3}
     />
   </div>
 </section>
@@ -66,6 +72,7 @@ import LatestCard from "./LatestCard.astro";
     margin-top: 1rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    grid-gap: 2rem;
     justify-content: center;
     gap: 2rem;
   }
