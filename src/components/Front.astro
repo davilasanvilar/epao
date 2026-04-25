@@ -1,9 +1,9 @@
 ---
-import frontImg from "../assets/front-image.jpg";
+import toys from "../assets/toys.jpg";
 ---
 
 <div id="container">
-  <img id="background" src={frontImg.src} alt="" fetchpriority="high" />
+  <img id="background" src={toys.src} alt="" fetchpriority="high" />
   <main>
     <section id="hero">
       <div id="hero-content">
@@ -25,23 +25,35 @@ import frontImg from "../assets/front-image.jpg";
   #background {
     width: 100%;
     height: 100vh;
-    object-fit: contain;
-    object-position: right top;
-    object-view-box: inset(20%);
+    object-fit: cover;
     z-index: -1;
     mask-image: linear-gradient(
       to right,
       transparent 0%,
       transparent 40%,
-      black 60%
+      black 100%
     );
     mask-repeat: no-repeat;
+    object-position: 20rem;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 40%,
+      black 100%
+    );
+    mask-repeat: no-repeat;
+    object-position: 15rem;
+    filter: brightness(0.85);
   }
 
   h1 {
     font-weight: 900;
     line-height: 4rem;
-    font-size: 3.5rem;
+    font-size: 3rem;
     color: var(--black);
     margin: 0;
   }
