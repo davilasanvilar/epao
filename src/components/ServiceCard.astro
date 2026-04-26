@@ -8,6 +8,7 @@ const colorIcon = isDark ? "var(--white)" : "var(--primary-500)";
 
 <div class="service-card">
   <div class="service-card-header">
+    <div class="service-card-icon"><slot name="icon" /></div>
     <h3>{title}</h3>
   </div>
   <p>{description}</p>
@@ -16,11 +17,15 @@ const colorIcon = isDark ? "var(--white)" : "var(--primary-500)";
 <style define:vars={{ color, backgroundColor, boxShadow, width, colorIcon }}>
   .service-card {
     display: flex;
-    width: 40%;
+    width: 100%;
     padding: 2rem;
     border-radius: var(--border-radius);
     color: var(--color);
-    background-color: var(--backgroundColor);
+    background: radial-gradient(
+      ellipse at center,
+      transparent,
+      hsl(213 22% 83% / 1)
+    );
     box-shadow: var(--boxShadow);
     flex-direction: column;
   }
@@ -28,6 +33,20 @@ const colorIcon = isDark ? "var(--white)" : "var(--primary-500)";
     display: flex;
     align-items: center;
     gap: 1rem;
+  }
+  .service-card-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--border-radius);
+  }
+
+  .service-card-icon :global(svg) {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--colorIcon);
   }
 
   h3 {

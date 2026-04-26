@@ -1,104 +1,94 @@
 ---
 import AccreditedIcon from "./icons/AccreditedIcon.astro";
-import orgInfoImg from "../assets/org-image.jpg";
-import PillarCard from "./PillarCard.astro";
-import EducationIcon from "./icons/EducationIcon.astro";
-import EyeIcon from "./icons/EyeIcon.astro";
-import ScaleIcon from "./icons/ScaleIcon.astro";
+import orgInfoImg from "../assets/lecture.webp";
 ---
 
 <section id="org-info" class="section">
-  <div id="org-info-content-left">
-    <h2>Our Organization</h2>
-    <p>
-      The Emotional and Psychological Abuse Prevention Organization (EPAO) is a
-      non-profit organization committed to protecting children from emotional
-      and psychological abuse.
-    </p>
-    <p>
-      We provide education, support, and resources to parents, caregivers, and
-      communities to create safe environments where children can thrive.
-    </p>
-    <div class="accredited">
-      <AccreditedIcon width="32" height="32" />
-      <div class="accredited-content">
-        <strong>Professional support</strong>
-        <p>Certified psychological counselors and social workers</p>
+  <div id="org-info-content" class="section-content">
+    <div id="org-info-content-left">
+      <h2>Our Organization</h2>
+      <p>
+        The Emotional and Psychological Abuse Prevention Organization (EPAO) is
+        a non-profit organization committed to protecting children from
+        emotional and psychological abuse.
+      </p>
+      <p>
+        We provide education, support, and resources to parents, caregivers, and
+        communities to create safe environments where children can thrive.
+      </p>
+      <div class="accredited">
+        <AccreditedIcon width="32" height="32" />
+        <div class="accredited-content">
+          <strong>Professional support</strong>
+          <p>Certified psychological counselors and social workers</p>
+        </div>
       </div>
     </div>
+    <img src={orgInfoImg.src} alt="" id="org-info-image" />
   </div>
-  <div id="org-info-content-right">
-    <div class="pillars">
-      <PillarCard
-        title="Awareness"
-        description="Raising public consciousness about the hidden signs of psychological abuse to ensure every child is seen and heard."
-      />
-      <PillarCard
-        title="Education"
-        description="Providing specialized training for professionals and caregivers to effectively identify and intervene in coercive environments."
-      />
-      <PillarCard
-        title="Legislative"
-        description="Championing policy reform and legal advocacy to strengthen protections and secure justice for children in the legal system."
-      />
-    </div>
-  </div>
+
+  <style>
+    #org-info {
+      background: linear-gradient(
+        180deg,
+        hsl(213 22% 86% / 1) 10%,
+        transparent 100%
+      );
+    }
+
+    #org-info-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8rem;
+    }
+
+    #org-info-content-left {
+      flex: 0 0 40%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem; /* Already in rem */
+    }
+
+    .accredited {
+      display: flex;
+      align-items: center;
+      margin-top: 1rem;
+      gap: 1.25rem;
+      color: hsl(147 19% 43% / 1);
+      background-color: hsl(146 39% 87% / 1);
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow-lg);
+    }
+
+    .accredited-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      line-height: var(--small-text-ln);
+    }
+
+    #org-info-image {
+      flex: 1;
+      min-width: 0;
+      width: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    .pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .pillars-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+  </style>
 </section>
-
-<style>
-  #org-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8rem;
-  }
-
-  #org-info-content-left {
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2rem; /* Already in rem */
-    padding-left: 1.5rem;
-  }
-
-  .accredited {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    color: var(--primary-500);
-    background-color: var(--smooth-overlay);
-    padding: 1.5rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow-lg);
-  }
-
-  .accredited-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    line-height: var(--small-text-ln);
-  }
-
-  #org-info-content-right {
-    width: 60%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .pillars {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .pillars-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
-  }
-</style>

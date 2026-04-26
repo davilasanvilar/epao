@@ -7,42 +7,55 @@ const colorIcon = isDark ? "var(--white)" : "var(--primary-500)";
 ---
 
 <div class="pillar-card">
-  <div class="pillar-card-content">
+  <div class="pillar-card-header">
+    <span class="pillar-card-icon">
+      <slot name="icon" />
+    </span>
     <h3>{title}</h3>
-    <p>{description}</p>
   </div>
+  <p>{description}</p>
 </div>
 
 <style define:vars={{ color, backgroundColor, boxShadow, colorIcon }}>
   .pillar-card {
     display: flex;
+    flex-direction: column;
     width: 100%;
     gap: 1rem;
     padding: 1.5rem;
     border-radius: var(--border-radius);
     color: var(--color);
-    background-color: var(--backgroundColor);
     box-shadow: var(--boxShadow);
     align-items: flex-start;
+    background: radial-gradient(
+      ellipse at center,
+      transparent,
+      hsl(213 22% 83% / 1)
+    );
   }
-
-  .pillar-card-content {
+  .pillar-card-header {
     display: flex;
-    flex-direction: column;
-    line-height: var(--small-text-lh);
-    gap: 0.5rem;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
   }
 
-  .pillar-card-content h3 {
+  .pillar-card-icon :global(svg) {
+    width: 3rem;
+    height: 3rem;
+    color: var(--colorIcon);
+  }
+
+  h3 {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: 1.75rem;
     font-weight: bold;
     color: var(--color);
   }
-  .pillar-card-content p {
+  p {
     margin: 0;
     font-size: 1rem;
     font-weight: 300;
-    color: var(--color);
+    color: var(--black);
   }
 </style>

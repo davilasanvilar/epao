@@ -6,32 +6,33 @@ import lecture3 from "../assets/lecture3.jfif";
 ---
 
 <section id="latest-activities" class="section">
-  <div id="latest-activities-header">
-    <div id="latest-activities-title">
-      <h2>Latest Activities</h2>
+  <div id="latest-activities-content" class="section-content">
+    <div id="latest-activities-header">
+      <div id="latest-activities-title">
+        <h2>Latest Activities</h2>
+      </div>
+      <span id="view-all-activities">View all activities</span>
     </div>
-    <span id="view-all-activities">View all activities</span>
-  </div>
-
-  <div id="latest-activities-list">
-    <LatestCard
-      title="Lecture at Comenius University"
-      description="Shared insights on child abuse prevention at Comenius University in Bratislava."
-      date="March 15, 2026"
-      img={lecture.src}
-    />
-    <LatestCard
-      title="Meeting with the Ministry of Education"
-      description="Very insightful meeting with the Ministry of Education"
-      date="March 10, 2026"
-      img={lecture2.src}
-    />
-    <LatestCard
-      title="We participated in the Child Protection Week"
-      description="Joined Child Protection Week in Bratislava, advocating for child safety."
-      date="March 5, 2026"
-      img={lecture3}
-    />
+    <div id="latest-activities-list">
+      <LatestCard
+        title="Lecture at Comenius University"
+        description="Shared insights on child abuse prevention at Comenius University in Bratislava."
+        date="March 15, 2026"
+        img={lecture.src}
+      />
+      <LatestCard
+        title="Meeting with the Ministry of Education"
+        description="Very insightful meeting with the Ministry of Education"
+        date="March 10, 2026"
+        img={lecture2.src}
+      />
+      <LatestCard
+        title="We participated in the Child Protection Week"
+        description="Joined Child Protection Week in Bratislava, advocating for child safety."
+        date="March 5, 2026"
+        img={lecture3}
+      />
+    </div>
   </div>
 </section>
 
@@ -41,11 +42,17 @@ import lecture3 from "../assets/lecture3.jfif";
     flex-direction: column;
     justify-content: center;
     gap: 2rem;
+    background: linear-gradient(
+      180deg,
+      hsl(213 22% 86% / 1) 10%,
+      transparent 100%
+    );
   }
   #latest-activities-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    width: 100%;
   }
 
   #latest-activities-title {

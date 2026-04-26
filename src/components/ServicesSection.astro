@@ -4,58 +4,100 @@ import MegaphoneIcon from "./icons/MegaphoneIcon.astro";
 import PencilRulerIcon from "./icons/PencilRulerIcon.astro";
 import CompassIcon from "./icons/CompassIcon.astro";
 import HandHeartIcon from "./icons/HandHeart.astro";
+import Button from "./Button.astro";
 ---
 
 <section id="services" class="section">
-  <div id="services-header">
-    <h2>Our Services</h2>
+  <div id="services-content" class="section-content">
+    <div id="services-content-left">
+      <h2>Our Services</h2>
+      <p>
+        We provide education, support, and resources to parents, caregivers, and
+        communities to create safe environments where children can thrive.
+      </p>
+      <Button variant="outline" text="More info" />
+    </div>
+    <div class="services-cards">
+      <ServiceCard
+        title="Open Lectures"
+        description="Everybody is welcome to learn about the significance of EPA. We include talks about healthy parenting, recognizing damaging patterns that may impact children."
+      >
+        <MegaphoneIcon slot="icon" />
+      </ServiceCard>
+      <ServiceCard
+        title="Workshops"
+        description="Targeted to social, educational and health sectors professionals, to learn how to detect abuse symptoms and the right measures to take."
+      >
+        <PencilRulerIcon slot="icon" />
+      </ServiceCard>
+      <ServiceCard
+        title="Support groups"
+        description="We offer help to parents suffering from abusive relationships, providing a safe space to share their experiences and receive emotional support."
+      >
+        <HandHeartIcon slot="icon" />
+      </ServiceCard>
+      <ServiceCard
+        title="Counseling"
+        description="Parents and professionals who require personalized attention when dealing with a child abusive situation can book a private session with us."
+      >
+        <CompassIcon slot="icon" />
+      </ServiceCard>
+    </div>
   </div>
 
-  <div id="services-content">
-    <ServiceCard
-      title="Open Lectures"
-      description="Everybody is welcome to learn about the significance of EPA. We include talks about healthy parenting, recognizing damaging patterns that may impact children."
-      width="calc(70% - 2rem)"
-    />
-    <ServiceCard
-      title="Workshops"
-      description="Targeted to social, educational and health sectors professionals, to learn how to detect abuse symptoms and the right measures to take."
-      width="calc(30% - 2rem)"
-    />
-    <ServiceCard
-      title="Support groups"
-      description="We offer help to parents suffering from abusive relationships, providing a safe space to share their experiences and receive emotional support."
-      width="calc(30% - 2rem)"
-    />
-    <ServiceCard
-      title="Counseling"
-      description="Parents and professionals who require personalized attention when dealing with a child abusive situation can book a private session with us."
-      width="calc(70% - 2rem)"
-    />
-  </div>
+  <style>
+    #services {
+      background: linear-gradient(
+        0deg,
+        hsl(213 22% 86% / 1) 10%,
+        transparent 100%
+      );
+    }
+
+    #services-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8rem;
+    }
+
+    #services-content-left {
+      flex: 0 0 40%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem; /* Already in rem */
+    }
+
+    /* smaller */
+    .more-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      padding: 1.25rem;
+      border-radius: var(--border-radius);
+      border: 1px solid var(--primary-500);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.25rem;
+    }
+
+    .services-cards {
+      display: grid;
+      width: 100%;
+      grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+      gap: 2rem;
+      justify-content: center;
+      grid-auto-rows: 1fr;
+    }
+
+    .services-cards-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+  </style>
 </section>
-
-<style>
-  #services {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-  }
-  #services-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  #services-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-  }
-  h2 {
-  }
-</style>

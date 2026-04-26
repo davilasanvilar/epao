@@ -1,10 +1,13 @@
 ---
 import toys from "../assets/toys2.jpg";
+import EducationIcon from "./icons/EducationIcon.astro";
+import EyeIcon from "./icons/EyeIcon.astro";
+import ScaleIcon from "./icons/ScaleIcon.astro";
+import PillarCard from "./PillarCard.astro";
 ---
 
 <div id="container">
-  <img id="background" src={toys.src} alt="" fetchpriority="high" />
-  <main>
+  <main class="hero-section">
     <section id="hero">
       <div id="hero-content">
         <h1>Prevention of Emotional and Psychological Abuse</h1>
@@ -12,6 +15,26 @@ import toys from "../assets/toys2.jpg";
           A professional organization dedicated to the safety and psychological
           well-being of every child through stabiility and strength
         </p>
+      </div>
+      <div class="pillars">
+        <PillarCard
+          title="Awareness"
+          description="Raising public consciousness about the hidden signs of psychological abuse to ensure every child is seen and heard."
+        >
+          <EyeIcon slot="icon" />
+        </PillarCard>
+        <PillarCard
+          title="Education"
+          description="Providing specialized training for professionals and caregivers to effectively identify and intervene in coercive environments."
+        >
+          <EducationIcon slot="icon" />
+        </PillarCard>
+        <PillarCard
+          title="Legislative"
+          description="Championing policy reform and legal advocacy to strengthen protections and secure justice for children in the legal system."
+        >
+          <ScaleIcon slot="icon" />
+        </PillarCard>
       </div>
     </section>
   </main>
@@ -61,18 +84,43 @@ import toys from "../assets/toys2.jpg";
     height: 100vh;
     top: 0;
     color: "black";
+    background: linear-gradient(
+      0deg,
+      hsl(213 22% 86% / 1) 10%,
+      transparent 100%
+    );
+  }
+
+  #hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10vh;
+    padding: 0 3.5rem;
   }
   #hero-content {
-    width: 40%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 2rem;
-    padding-left: 3.5rem;
   }
   #hero-content p {
     font-size: 1.25rem;
     margin: 0;
     font-weight: 300;
+  }
+  .pillars {
+    display: flex;
+    gap: 2rem;
+    margin: auto;
+    max-width: 90rem;
+  }
+
+  .pillars-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
   }
 </style>
