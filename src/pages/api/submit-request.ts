@@ -24,7 +24,7 @@ export const POST: APIRoute = async ({ request }) => {
     const verify = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `secret=${"0x4AAAAAADMOOSpqvuX7mfcbaYspui_-JoY"}&response=${token}`,
+      body: `secret=${encodeURIComponent("0x4AAAAAADMOOSpqvuX7mfcbaYspui_-JoY")}&response=${encodeURIComponent(token as string)}`,
     });
 
     const outcome = await verify.json() as TurnstileResponse;
