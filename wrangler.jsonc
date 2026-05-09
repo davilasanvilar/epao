@@ -4,9 +4,7 @@
 		"global_fetch_strictly_public"
 	],
 	"name": "epao",
-	"assets": {
-		"directory": "./dist"
-	},
+	"pages_build_output_dir": "dist",
 	"observability": {
 		"enabled": true
 	},
