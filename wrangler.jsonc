@@ -4,11 +4,7 @@
 		"global_fetch_strictly_public"
 	],
 	"name": "epao",
-	"main": "@astrojs/cloudflare/entrypoints/server",
-	"assets": {
-		"directory": "./public",
-		"binding": "ASSETS"
-	},
+	"pages_build_output_dir": "dist",
 	"observability": {
 		"enabled": true
 	},
