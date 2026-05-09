@@ -30,7 +30,7 @@ export const POST: APIRoute = async ({ request }) => {
     const outcome = await verify.json() as TurnstileResponse;
 
     if (!outcome.success) {
-      return new Response(JSON.stringify({ error: "Verification failed" }), { status: 403 });
+      return new Response(JSON.stringify({ error: outcome.error }), { status: 403 });
     }
 
     // Insert into D1
