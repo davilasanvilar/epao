@@ -6,6 +6,7 @@ import {
 } from "../../types/contact";
 import { showSnackbar } from "../../utils/snackbar";
 import styles from "./ContactForm.module.css";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 interface ContactFormProps {
   onSubmit: (formData: FormData) => Promise<void>;
@@ -118,6 +119,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         >
           Cancel
         </button>
+        <Turnstile siteKey="0x4AAAAAADMOOW5NVkZ5sokj" />
         <button
           type="submit"
           className={`${styles.button} ${styles.buttonPrimary}`}
