@@ -1,0 +1,50 @@
+---
+const { id, placeholder, label, textarea } = Astro.props;
+---
+
+<div class="input-group">
+  {label && <label for={id}>{label}</label>}
+  {
+    textarea ? (
+      <textarea placeholder={placeholder} id={id} />
+    ) : (
+      <input type="text" placeholder={placeholder} id={id} />
+    )
+  }
+</div>
+
+<style>
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  input,
+  textarea {
+    padding: 0.75rem 0.75rem;
+    border-radius: var(--border-radius);
+    border: none;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--black);
+    background-color: var(--lighter-color-bg);
+  }
+
+  textarea {
+    height: 6.25rem;
+    resize: none;
+  }
+
+  input:focus,
+  textarea:focus {
+    resize: none;
+    outline: none;
+  }
+
+  label {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--primary-500);
+  }
+</style>

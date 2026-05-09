@@ -1,0 +1,24 @@
+---
+const { text, variant, command, commandFor } = Astro.props;
+const bg = variant == "primary" ? "var(--button-primary)" : "transparent";
+const col = variant == "primary" ? "var(--white)" : "var(--button-primary)";
+const brd = variant == "primary" ? "none" : "1px solid var(--button-primary)";
+---
+
+<button commandfor={commandFor} command={command}>
+  <slot />
+</button>
+
+<style define:vars={{ bg, col, brd }}>
+  button {
+    background-color: var(--bg);
+    color: var(--col);
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+  button svg {
+    width: 2rem;
+    height: 2rem;
+  }
+</style>

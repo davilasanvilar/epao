@@ -1,6 +1,8 @@
 ---
 import Button from "./Button.astro";
 import logo from "../assets/logo.svg";
+import Modal from "./Modal.astro";
+import { GeneralRequestForm } from "./react/GeneralRequestForm";
 ---
 
 <header>
@@ -17,10 +19,25 @@ import logo from "../assets/logo.svg";
       <li class="nav-item"><a href="/library">Library</a></li>
     </ul>
   </nav>
-  <Button variant="primary" text="Contact us" />
+  <Button
+    variant="primary"
+    text="Contact us"
+    command="show-modal"
+    commandFor="contact-modal"
+  />
+
+  <Modal id="contact-modal" title="Contact us">
+    <GeneralRequestForm client:load />
+  </Modal>
 </header>
 
 <style>
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
   header {
     display: flex;
     justify-content: space-between;

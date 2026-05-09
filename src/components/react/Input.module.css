@@ -1,0 +1,45 @@
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input,
+.textarea {
+  padding: 0.75rem 0.75rem;
+  border-radius: var(--border-radius);
+  border: none;
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--black);
+  background-color: var(--lighter-color-bg);
+  transition: background-color 0.2s, border 0.2s;
+}
+
+.input.error,
+.textarea.error {
+  background-color: #fee2e2; /* light red bg */
+}
+
+.textarea {
+  height: 6.25rem;
+  resize: none;
+}
+
+.input:focus,
+.textarea:focus {
+  resize: none;
+  outline: none;
+}
+
+.label {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--primary-500);
+}
+
+.errorMessage {
+  color: #ef4444; /* red text */
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
