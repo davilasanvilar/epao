@@ -21,10 +21,14 @@ export const POST: APIRoute = async ({ request }) => {
 
     const token = formData.get('cf-turnstile-response');
 
+    const params = new URLSearchParams();
+    params.append('secret', '0x4AAAAAADMOOSpqvuX7mfcbaYspui_-JoY');
+    params.append('response', token as string);
+
     const verify = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `secret=${encodeURIComponent("0x4AAAAAADMOOSpqvuX7mfcbaYspui_-JoY")}&response=${encodeURIComponent(token as string)}`,
+      body: params,
     });
 
     const outcome = await verify.json() as TurnstileResponse;
