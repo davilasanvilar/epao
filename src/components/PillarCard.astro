@@ -8,6 +8,9 @@ const colorIcon = isDark ? "var(--white)" : "var(--primary-500)";
 
 <div class="pillar-card">
   <div class="pillar-card-header">
+    <span class="pillar-card-icon">
+      <slot name="icon" />
+    </span>
     <h3>{title}</h3>
   </div>
   <p>{description}</p>
@@ -24,11 +27,8 @@ const colorIcon = isDark ? "var(--white)" : "var(--primary-500)";
     color: var(--color);
     box-shadow: var(--boxShadow);
     align-items: flex-start;
-    background: radial-gradient(
-      ellipse at center,
-      transparent,
-      hsl(213 22% 83% / 1)
-    );
+    background-color: rgba(255, 255, 255, 0.1); /* Slight white tint */
+    backdrop-filter: blur(10px); /* Blurs the image behind it */
   }
   .pillar-card-header {
     display: flex;
