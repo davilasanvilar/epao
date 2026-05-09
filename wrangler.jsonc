@@ -1,0 +1,23 @@
+{
+	"compatibility_date": "2026-05-09",
+	"compatibility_flags": [
+		"global_fetch_strictly_public"
+	],
+	"name": "epao",
+	"main": "@astrojs/cloudflare/entrypoints/server",
+	"assets": {
+		"directory": "./public",
+		"binding": "ASSETS"
+	},
+	"observability": {
+		"enabled": true
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "epao",
+			"database_id": "fa7c002e-e748-4783-bb8c-6c0758b020ca",
+			"preview_database_id": "DB"
+		}
+	]
+}

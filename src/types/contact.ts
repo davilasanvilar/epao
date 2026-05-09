@@ -15,10 +15,10 @@ export interface IRequest {
   message: string;
 }
 
-export const mapIRequestFormToIRequest = (form: IRequestForm): IRequest => {
-  return {
-    name: form.name.value,
-    email: form.email.value,
-    message: form.message.value,
-  };
+export const mapIRequestFormToFormData = (form: IRequestForm): FormData => {
+  const formData = new FormData();
+  formData.append("name", form.name.value);
+  formData.append("email", form.email.value);
+  formData.append("message", form.message.value);
+  return formData;
 };

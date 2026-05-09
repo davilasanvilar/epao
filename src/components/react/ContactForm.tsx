@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import { Input } from "./Input";
 import {
   type IRequestForm,
-  type IRequest,
-  mapIRequestFormToIRequest,
+  mapIRequestFormToFormData,
 } from "../../types/contact";
 import { showSnackbar } from "../../utils/snackbar";
 import styles from "./ContactForm.module.css";
 
 interface ContactFormProps {
-  onSubmit: (request: IRequest) => Promise<void>;
-  onCancel: () => void;
+  onSubmit: (formData: FormData) => Promise<void>;
+  onClose: () => void;
 }
 
 const initialFormState: IRequestForm = {
@@ -21,7 +20,7 @@ const initialFormState: IRequestForm = {
 
 export const ContactForm: React.FC<ContactFormProps> = ({
   onSubmit,
-  onCancel,
+  onClose,
 }: ContactFormProps) => {
   const [form, setForm] = useState<IRequestForm>(initialFormState);
   const [loading, setLoading] = useState(false);
@@ -38,7 +37,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     let isValid = true;
     const newForm = { ...form };
@@ -69,7 +68,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     if (!isValid) return;
 
     setLoading(true);
-    const requestData = mapIRequestFormToIRequest(newForm);
+    const requestData = mapIRequestFormToFormData(newForm);
 
     try {
       await onSubmit(requestData);
@@ -114,7 +113,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         <button
           type="button"
           className={`${styles.button} ${styles.buttonOutline}`}
-          onClick={onCancel}
+          onClick={onClose}
           disabled={loading}
         >
           Cancel

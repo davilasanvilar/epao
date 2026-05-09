@@ -1,23 +1,23 @@
 import React from "react";
 import { ContactForm } from "./ContactForm";
-import type { IRequest } from "../../types/contact";
 
 export const GeneralRequestForm: React.FC = () => {
-  const handleSubmit = async (data: IRequest) => {
-    // Simulate API call
-    await new Promise((resolve, reject) => setTimeout(resolve, 2000));
-    console.log("Submitted!", data);
+  const handleSubmit = async (formData: FormData) => {
+    const response = await fetch("/api/submit-request", {
+      method: "POST",
+      body: formData,
+    });
 
-    // Close the modal after successful submission
-    const modal = document.getElementById(
-      "contact-modal",
-    ) as HTMLDialogElement | null;
-    if (modal) {
-      modal.close();
+    await response.json();
+
+    if (!response.ok) {
+      throw new Error("Submission failed");
     }
+
+    handleClose();
   };
 
-  const handleCancel = () => {
+  const handleClose = () => {
     // Close the modal when cancelled
     const modal = document.getElementById(
       "contact-modal",
@@ -27,5 +27,5 @@ export const GeneralRequestForm: React.FC = () => {
     }
   };
 
-  return <ContactForm onSubmit={handleSubmit} onCancel={handleCancel} />;
+  return <ContactForm onSubmit={handleSubmit} onClose={handleClose} />;
 };
