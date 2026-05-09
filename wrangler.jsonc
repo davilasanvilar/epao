@@ -8,12 +8,25 @@
 	"observability": {
 		"enabled": true
 	},
+	// We pass an empty crons array to override the {} that caused the previous crash
+	"triggers": {
+		"crons": []
+	},
 	"d1_databases": [
 		{
 			"binding": "DB",
 			"database_name": "epao",
 			"database_id": "fa7c002e-e748-4783-bb8c-6c0758b020ca",
 			"preview_database_id": "DB"
+		}
+	],
+	// Add this to your wrangler.jsonc
+	"kv_namespaces": [
+		{
+			"binding": "KV",
+			"id": "8bfd9bdfdcd549019fbcab7442fc6ccd",
+			// Optional: preview_id used when running `wrangler dev` for local dev
+			"preview_id": "b91f5e0c3f41448895d111d1607c5c65"
 		}
 	]
 }
