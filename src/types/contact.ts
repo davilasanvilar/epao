@@ -7,13 +7,7 @@ export interface IRequestForm {
   name: formFields;
   email: formFields;
   message: formFields;
-  token: string;
-}
-
-export interface IRequest {
-  name: string;
-  email: string;
-  message: string;
+  url: formFields;
 }
 
 export const mapIRequestFormToFormData = (form: IRequestForm): FormData => {
@@ -21,6 +15,7 @@ export const mapIRequestFormToFormData = (form: IRequestForm): FormData => {
   formData.append("name", form.name.value);
   formData.append("email", form.email.value);
   formData.append("message", form.message.value);
-  formData.append("cf-turnstile-response", form.token);
+  formData.append("url", form.url.value);
+
   return formData;
 };
