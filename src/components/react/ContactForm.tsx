@@ -17,6 +17,7 @@ const initialFormState: IRequestForm = {
   name: { value: "", error: "" },
   email: { value: "", error: "" },
   message: { value: "", error: "" },
+  token: "",
 };
 
 export const ContactForm: React.FC<ContactFormProps> = ({
@@ -119,7 +120,10 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         >
           Cancel
         </button>
-        <Turnstile siteKey="0x4AAAAAADMOOW5NVkZ5sokj" />
+        <Turnstile
+          siteKey="0x4AAAAAADMOOW5NVkZ5sokj"
+          onSuccess={(token) => setForm((prev) => ({ ...prev, token }))}
+        />
         <button
           type="submit"
           className={`${styles.button} ${styles.buttonPrimary}`}
