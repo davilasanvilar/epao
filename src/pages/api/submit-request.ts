@@ -1,22 +1,17 @@
 import type { APIRoute } from 'astro';
-import { env } from 'cloudflare:workers';
+import { turso } from '../../lib/tursoclient';
 
 interface TurnstileResponse {
   success: boolean;
   error: string;
 }
 
-
 export const POST: APIRoute = async ({ request }) => {
-
-  const db = env.DB
-
   try {
     const formData = await request.formData();
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const message = formData.get('message');
-
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const message = formData.get('message') as string;
 
     if (!name || !email || !message) {
       return new Response(JSON.stringify({ error: "Missing fields" }), { status: 400 });
@@ -40,14 +35,11 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response(JSON.stringify({ error: outcome.error }), { status: 403 });
     }
 
-
-
-    // Insert into D1
-    await db.prepare(
-      "INSERT INTO requests (name, email, message) VALUES (?, ?, ?)"
-    )
-      .bind(name, email, message)
-      .run();
+    // Insert into Turso
+    await turso.execute({
+      sql: "INSERT INTO requests (name, email, message) VALUES (?, ?, ?)",
+      args: [name, email, message]
+    });
 
     return new Response(JSON.stringify({ success: true }), { status: 200 });
 

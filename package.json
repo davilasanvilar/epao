@@ -15,6 +15,7 @@
   "dependencies": {
     "@astrojs/cloudflare": "^13.5.0",
     "@astrojs/react": "^5.0.3",
+    "@libsql/client": "^0.17.3",
     "@marsidev/react-turnstile": "^1.5.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
@@ -25,8 +26,5 @@
   },
   "overrides": {
     "vite": "^7"
-  },
-  "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260509.1"
   }
 }
