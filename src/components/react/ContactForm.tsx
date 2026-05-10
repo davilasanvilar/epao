@@ -6,6 +6,7 @@ import {
 } from "../../types/contact";
 import { showSnackbar } from "../../utils/snackbar";
 import styles from "./ContactForm.module.css";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 interface ContactFormProps {
   onSubmit: (formData: FormData) => Promise<void>;
@@ -16,7 +17,7 @@ const initialFormState: IRequestForm = {
   name: { value: "", error: "" },
   email: { value: "", error: "" },
   message: { value: "", error: "" },
-  url: { value: "", error: "" },
+  token: "",
 };
 
 export const ContactForm: React.FC<ContactFormProps> = ({
@@ -109,15 +110,6 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         error={form.message.error}
         onChange={(e) => handleChange("message", e.target.value)}
       />
-      <input
-        type="text"
-        name="phone_ext"
-        style={{ display: "none" }}
-        tabIndex={-1}
-        autoComplete="off"
-        value={form.url.value}
-        onChange={(e) => handleChange("url", e.target.value)}
-      />
 
       <div className={styles.buttonContainer}>
         <button
@@ -128,6 +120,10 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         >
           Cancel
         </button>
+        <Turnstile
+          siteKey="0x4AAAAAADMOOW5NVkZ5sokj"
+          onSuccess={(token) => setForm((prev) => ({ ...prev, token }))}
+        />
         <button
           type="submit"
           className={`${styles.button} ${styles.buttonPrimary}`}

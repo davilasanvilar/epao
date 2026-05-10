@@ -1,6 +1,11 @@
 import type { APIRoute } from 'astro';
 import { env } from 'cloudflare:workers';
 
+interface TurnstileResponse {
+  success: boolean;
+  error: string;
+}
+
 
 export const POST: APIRoute = async ({ request }) => {
 
@@ -12,13 +17,30 @@ export const POST: APIRoute = async ({ request }) => {
     const email = formData.get('email');
     const message = formData.get('message');
 
-    if (formData.get('url')) {
-      return new Response(JSON.stringify({ success: true }), { status: 200 });
-    }
 
     if (!name || !email || !message) {
       return new Response(JSON.stringify({ error: "Missing fields" }), { status: 400 });
     }
+
+    const token = formData.get('cf-turnstile-response');
+
+    const params = new URLSearchParams();
+    params.append('secret', '0x4AAAAAADMOOSpqvuX7mfcbaYspui_-JoY');
+    params.append('response', token as string);
+
+    const verify = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params,
+    });
+
+    const outcome = await verify.json() as TurnstileResponse;
+
+    if (!outcome.success) {
+      return new Response(JSON.stringify({ error: outcome.error }), { status: 403 });
+    }
+
+
 
     // Insert into D1
     await db.prepare(
