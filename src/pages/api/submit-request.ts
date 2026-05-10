@@ -6,9 +6,9 @@ interface TurnstileResponse {
   error: string;
 }
 
-export const POST: APIRoute = async ({ request }) => {
-  const db = env.DB;
-
+export const POST: APIRoute = async ({ request, locals }) => {
+  const cloudflareRuntime = (locals as any).runtime;
+  const db = cloudflareRuntime.env.DB;
   try {
     const formData = await request.formData();
     const name = formData.get('name');
