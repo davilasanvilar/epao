@@ -1,0 +1,35 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { EventsSection } from "../components/react/EventsSection";
+---
+
+<Layout>
+  <main class="events-page-container">
+    <section class="section">
+      <div class="section-content">
+        <EventsSection client:load />
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .events-page-container {
+    padding-top: 6rem; /* To avoid overlapping with the navbar */
+    min-height: calc(100vh - 200px);
+  }
+  
+  .section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 0;
+  }
+  
+  .section-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%;
+  }
+</style>
