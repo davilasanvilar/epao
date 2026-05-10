@@ -9,9 +9,8 @@ interface TurnstileResponse {
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    // Retrieve connection details from Cloudflare env bindings or local import.meta.env
-    const url = (env.TURSO_CONNECTION_URL as string) || import.meta.env.TURSO_CONNECTION_URL;
-    const token = (env.TURSO_AUTH_TOKEN as string) || import.meta.env.TURSO_AUTH_TOKEN;
+    const url = env.TURSO_CONNECTION_URL || import.meta.env.TURSO_CONNECTION_URL;
+    const token = env.TURSO_AUTH_TOKEN || import.meta.env.TURSO_AUTH_TOKEN;
 
     if (!url || !token) {
       console.error("Missing Turso configuration");
