@@ -1,6 +1,8 @@
-import { createClient } from "@libsql/client";
+import { createClient } from "@libsql/client/web";
 
-export const turso = createClient({
-    url: import.meta.env.TURSO_CONNECTION_URL,
-    authToken: import.meta.env.TURSO_AUTH_TOKEN,
-});
+export function getTursoClient(url: string, authToken: string) {
+    return createClient({
+        url,
+        authToken,
+    });
+}

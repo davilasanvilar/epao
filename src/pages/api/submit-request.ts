@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
-import { turso } from '../../lib/tursoclient';
+import { getTursoClient } from '../../lib/tursoclient';
+import { env } from 'cloudflare:workers';
 
 interface TurnstileResponse {
   success: boolean;
@@ -8,6 +9,17 @@ interface TurnstileResponse {
 
 export const POST: APIRoute = async ({ request }) => {
   try {
+    // Retrieve connection details from Cloudflare env bindings or local import.meta.env
+    const url = (env.TURSO_CONNECTION_URL as string) || import.meta.env.TURSO_CONNECTION_URL;
+    const token = (env.TURSO_AUTH_TOKEN as string) || import.meta.env.TURSO_AUTH_TOKEN;
+
+    if (!url || !token) {
+      console.error("Missing Turso configuration");
+      return new Response(JSON.stringify({ error: "Server Configuration Error" }), { status: 500 });
+    }
+
+    const turso = getTursoClient(url, token);
+
     const formData = await request.formData();
     const name = formData.get('name') as string;
     const email = formData.get('email') as string;
@@ -17,11 +29,11 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response(JSON.stringify({ error: "Missing fields" }), { status: 400 });
     }
 
-    const token = formData.get('cf-turnstile-response');
+    const turnstileToken = formData.get('cf-turnstile-response');
 
     const params = new URLSearchParams();
     params.append('secret', '0x4AAAAAADMOOSpqvuX7mfcbaYspui_-JoY');
-    params.append('response', token as string);
+    params.append('response', turnstileToken as string);
 
     const verify = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
       method: 'POST',
@@ -44,6 +56,7 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify({ success: true }), { status: 200 });
 
   } catch (error: unknown) {
+    console.error("Submission error:", error);
     const errorMessage = error instanceof Error
       ? error.message
       : "An unexpected error occurred";
