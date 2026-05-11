@@ -3,20 +3,32 @@ import Button from "./Button.astro";
 import logo from "../assets/logo.svg";
 import Modal from "./Modal.astro";
 import { GeneralRequestForm } from "./react/GeneralRequestForm";
+const { path } = Astro.params;
 ---
 
 <header>
   <div id="logo-container">
     <img src={logo.src} alt="" width="40" height="40" />
     <span class="logo">EPAO</span>
+    <span class="logo">{path}</span>
   </div>
   <nav>
     <ul>
-      <li class="nav-item active"><a href="/">Home</a></li>
-      <li class="nav-item"><a href="/about">About us</a></li>
-      <li class="nav-item"><a href="/services">Services</a></li>
-      <li class="nav-item"><a href="/events">Events</a></li>
-      <li class="nav-item"><a href="/library">Library</a></li>
+      <li class={`nav-item ${path === "/" ? "active" : ""}`}>
+        <a href="/">Home</a>
+      </li>
+      <li class={`nav-item ${path === "/about" ? "active" : ""}`}>
+        <a href="/about">About us</a>
+      </li>
+      <li class={`nav-item ${path === "/services" ? "active" : ""}`}>
+        <a href="/services">Services</a>
+      </li>
+      <li class={`nav-item ${path === "/events" ? "active" : ""}`}>
+        <a href="/events">Events</a>
+      </li>
+      <li class={`nav-item ${path === "/library" ? "active" : ""}`}>
+        <a href="/library">Library</a>
+      </li>
     </ul>
   </nav>
   <Button
