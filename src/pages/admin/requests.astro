@@ -1,0 +1,8 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import { RequestsTable } from "../../components/react/admin/RequestsTable";
+---
+
+<AdminLayout>
+  <RequestsTable client:load />
+</AdminLayout>

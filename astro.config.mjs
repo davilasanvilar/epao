@@ -18,4 +18,9 @@ export default defineConfig({
       weights: ["200", "300", "400", "500", "600", "700", "800", "900"],
     },
   ],
+  vite: {
+    ssr: {
+      external: ["@aws-sdk/client-s3"],
+    },
+  },
 });

@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { getTursoClient } from '../../lib/tursoclient';
+import { getB2Client, getPresignedB2Url } from '../../lib/b2client';
 import { env } from 'cloudflare:workers';
 
 export const GET: APIRoute = async ({ request }) => {
@@ -42,14 +43,17 @@ export const GET: APIRoute = async ({ request }) => {
       args: [limit, offset]
     });
 
-    const events = dataResult.rows.map(row => ({
+    const b2Client = getB2Client(env.B2_ENDPOINT, env.B2_REGION, env.B2_KEY_ID, env.B2_APPLICATION_KEY);
+
+    const events = await Promise.all(dataResult.rows.map(async row => ({
       id: row.id,
       name: row.name,
       description: row.description,
       price: row.price,
       date: row.date,
-      img: row.img
-    }));
+      img: row.img,
+      imgUrl: row.img ? await getPresignedB2Url(b2Client, env.B2_BUCKET_NAME, row.img as string) : ""
+    })));
 
     return new Response(JSON.stringify({
       events,

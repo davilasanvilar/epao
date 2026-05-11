@@ -1,0 +1,197 @@
+.admin-table-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.admin-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-table-header h2 {
+  margin: 0;
+  font-size: 1.875rem;
+}
+
+.admin-action-btn {
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-500);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.admin-action-btn:hover {
+  background-color: var(--primary-600);
+}
+
+.admin-action-btn.delete {
+  background-color: #ef4444;
+}
+
+.admin-action-btn.delete:hover {
+  background-color: #dc2626;
+}
+
+.admin-action-btn.outline {
+  background-color: transparent;
+  border: 1px solid var(--gray-300);
+  color: var(--black);
+}
+
+.admin-action-btn.outline:hover {
+  background-color: var(--gray-100);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--gray-300);
+  border-radius: 8px;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--gray-300);
+}
+
+.admin-table th {
+  background-color: var(--gray-100);
+  font-weight: 600;
+  color: var(--black);
+}
+
+.admin-table tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.admin-error {
+  color: red;
+  padding: 1rem;
+  background: rgba(255, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+
+.truncate-text {
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.actions-cell {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.admin-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+.pagination-btn {
+  padding: 0.5rem 1rem;
+  background-color: white;
+  border: 1px solid var(--gray-300);
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: var(--gray-100);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  font-weight: 500;
+  color: var(--black);
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-500);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.icon-btn:hover {
+  background-color: var(--gray-100);
+  color: var(--primary-600);
+}
+
+.delete-icon-btn {
+  color: #ef4444;
+}
+
+.delete-icon-btn:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+}
+
+.admin-table-thumbnail {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.admin-table-thumbnail-placeholder {
+  width: 40px;
+  height: 40px;
+  background-color: var(--gray-200);
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  border-radius: 4px;
+  text-align: center;
+}

@@ -1,0 +1,8 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import { EventsTable } from "../../components/react/admin/EventsTable";
+---
+
+<AdminLayout>
+  <EventsTable client:load />
+</AdminLayout>

@@ -9,6 +9,7 @@ export interface IEvent {
   price: number;
   date: string;
   img: string;
+  imgUrl?: string;
 }
 
 export const EventCard: React.FC<{ event: IEvent }> = ({ event }) => {
@@ -21,7 +22,11 @@ export const EventCard: React.FC<{ event: IEvent }> = ({ event }) => {
       role="button"
       tabIndex={0}
     >
-      <img src={event.img} alt={event.name} className="event-img" />
+      <img 
+        src={event.imgUrl ? event.imgUrl : "https://placehold.co/400x300?text=No+Image"} 
+        alt={event.name} 
+        className="event-img" 
+      />
 
       <div className="event-content">
         <span className="event-date">{event.date}</span>

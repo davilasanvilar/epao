@@ -5,6 +5,11 @@ declare namespace Cloudflare {
 	interface Env {
 		TURSO_CONNECTION_URL: string;
 		TURSO_AUTH_TOKEN: string;
+		B2_ENDPOINT: string;
+		B2_REGION: string;
+		B2_BUCKET_NAME: string;
+		B2_KEY_ID: string;
+		B2_APPLICATION_KEY: string;
 	}
 }
 interface Env extends Cloudflare.Env {}
