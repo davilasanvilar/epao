@@ -82,7 +82,7 @@ const formattedDate = formatDate(event.date);
 <style>
   .event-card {
     display: flex;
-    min-height: 12rem;
+    min-height: 15rem;
     flex-direction: column;
     background: white;
     border-radius: var(--border-radius);
@@ -102,6 +102,8 @@ const formattedDate = formatDate(event.date);
   .event-card__image-wrapper {
     flex-shrink: 0;
     overflow: hidden;
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
   }
 
   @media (max-width: 639px) {
@@ -125,7 +127,7 @@ const formattedDate = formatDate(event.date);
 
   .event-card__image {
     width: 100%;
-    max-height: 12rem;
+    max-height: 15rem;
     object-fit: cover;
     display: block;
   }
@@ -183,7 +185,7 @@ const formattedDate = formatDate(event.date);
     line-height: 1.6;
     white-space: pre-line;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }

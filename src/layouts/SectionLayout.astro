@@ -1,0 +1,65 @@
+---
+import Layout from "./Layout.astro";
+
+const { title } = Astro.props;
+---
+
+<Layout>
+  <main class="section-page-container">
+    <section class="section">
+      <div class="header">
+        <h2 class="title">{title}</h2>
+        <slot name="topComponent" />
+      </div>
+      <div class="section-content">
+        <slot />
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .section-page-container {
+    padding-top: 6rem;
+    min-height: calc(100vh - 200px);
+  }
+
+  .section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 0;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  .section-content {
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+  }
+
+  .title {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--black);
+  }
+</style>

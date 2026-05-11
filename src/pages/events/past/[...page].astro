@@ -1,17 +1,32 @@
 ---
 export const prerender = true;
 
-import Layout from "../../../layouts/Layout.astro";
 import EventsList from "../../../components/EventsList.astro";
 import { getTursoClient } from "../../../lib/tursoclient";
+import SectionLayout from "../../../layouts/SectionLayout.astro";
+import EventTabs from "../../../components/EventTabs.astro";
 
 export async function getStaticPaths({ paginate }) {
-  const url = import.meta.env.TURSO_CONNECTION_URL || process.env.TURSO_CONNECTION_URL;
-  const token = import.meta.env.TURSO_AUTH_TOKEN || process.env.TURSO_AUTH_TOKEN;
+  const url =
+    import.meta.env.TURSO_CONNECTION_URL || process.env.TURSO_CONNECTION_URL;
+  const token =
+    import.meta.env.TURSO_AUTH_TOKEN || process.env.TURSO_AUTH_TOKEN;
 
   if (!url || !token) {
     console.error("Missing Turso configuration for SSG build.");
-    return paginate([], { pageSize: 6 });
+    return [
+      {
+        params: { page: undefined },
+        props: {
+          page: {
+            data: [],
+            currentPage: 1,
+            lastPage: 1,
+            url: { prev: undefined, next: undefined },
+          },
+        },
+      },
+    ];
   }
 
   const turso = getTursoClient(url, token);
@@ -19,7 +34,7 @@ export async function getStaticPaths({ paginate }) {
   const sqlData = `SELECT * FROM events WHERE substr(date, 1, 10) < date('now', 'localtime') ORDER BY date DESC`;
   const dataResult = await turso.execute(sqlData);
 
-  const events = dataResult.rows.map(row => ({
+  const events = dataResult.rows.map((row) => ({
     id: row.id,
     name: row.name,
     description: row.description,
@@ -28,39 +43,29 @@ export async function getStaticPaths({ paginate }) {
     img: row.img,
   }));
 
-  return paginate(events, { pageSize: 6 });
+  const paths = paginate(events, { pageSize: 6 });
+  if (paths.length === 0) {
+    return [
+      {
+        params: { page: undefined },
+        props: {
+          page: {
+            data: [],
+            currentPage: 1,
+            lastPage: 1,
+            url: { prev: undefined, next: undefined },
+          },
+        },
+      },
+    ];
+  }
+  return paths;
 }
 
 const { page } = Astro.props;
 ---
 
-<Layout>
-  <main class="events-page-container">
-    <section class="section">
-      <div class="section-content">
-        <EventsList page={page} eventType="past" />
-      </div>
-    </section>
-  </main>
-</Layout>
-
-<style>
-  .events-page-container {
-    padding-top: 6rem;
-    min-height: calc(100vh - 200px);
-  }
-  
-  .section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 4rem 0;
-  }
-  
-  .section-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    width: 100%;
-  }
-</style>
+<SectionLayout title="Our Events">
+  <EventTabs slot="topComponent" />
+  <EventsList page={page} eventType="past" />
+</SectionLayout>

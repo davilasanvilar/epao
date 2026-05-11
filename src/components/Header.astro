@@ -22,14 +22,11 @@ const path = Astro.url.pathname;
       <li class={`nav-item ${path === "/services" ? "active" : ""}`}>
         <a href="/services">Services</a>
       </li>
-      <li class={`nav-item ${path === "/events" ? "active" : ""}`}>
+      <li class={`nav-item ${path.startsWith("/events") ? "active" : ""}`}>
         <a href="/events">Events</a>
       </li>
       <li class={`nav-item ${path === "/resources" ? "active" : ""}`}>
         <a href="/resources">Resources</a>
-      </li>
-      <li class={`nav-item ${path === "/library" ? "active" : ""}`}>
-        <a href="/library">Library</a>
       </li>
     </ul>
   </nav>

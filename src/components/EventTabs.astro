@@ -1,0 +1,51 @@
+---
+const path = Astro.url.pathname;
+---
+
+<div class="events-tabs">
+  <a href="/events" class={`events-tab ${path === "/events" ? "active" : ""}`}>
+    Upcoming Events
+  </a>
+  <a
+    href="/events/past"
+    class={`events-tab ${path === "/events/past" ? "active" : ""}`}
+  >
+    Past Events
+  </a>
+</div>
+
+<style>
+  .events-tabs {
+    display: flex;
+    background-color: hsl(213 22% 92%);
+    border-radius: 9999px;
+    padding: 0.25rem;
+    gap: 0.25rem;
+  }
+
+  .events-tab {
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    border: none;
+    background: transparent;
+    color: var(--black);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .events-tab:hover {
+    background-color: hsl(213 22% 86%);
+  }
+
+  .events-tab.active {
+    background-color: white;
+    color: var(--primary-500);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+    font-weight: 600;
+  }
+</style>

@@ -17,158 +17,76 @@ export interface Props {
 const { page, eventType } = Astro.props;
 ---
 
-<div class="events-section">
-  <div class="events-header">
-    <h2 class="events-title">Our Events</h2>
-    <div class="events-tabs">
-      <a
-        href="/events"
-        class={`events-tab ${eventType === "future" ? "active" : ""}`}
-      >
-        Future Events
-      </a>
-      <a
-        href="/events/past"
-        class={`events-tab ${eventType === "past" ? "active" : ""}`}
-      >
-        Past Events
-      </a>
-    </div>
-  </div>
-
-  <div class="events-grid-wrapper">
-    {
-      page.data.length === 0 ? (
-        <div class="events-empty">No {eventType} events found.</div>
-      ) : (
-        <div class="events-grid">
-          {page.data.map((event) => (
-            <EventCard event={event} />
-          ))}
-        </div>
-      )
-    }
-
-    <!-- Skeleton loading placeholders -->
-    <div class="skeleton-container">
-      {
-        [1, 2, 3].map(() => (
-          <div class="skeleton-card">
-            <div class="skeleton-pulse skeleton-image" />
-            <div class="skeleton-body">
-              <div class="skeleton-meta">
-                <div class="skeleton-pulse skeleton-title" />
-                <div class="skeleton-pulse skeleton-date" />
-              </div>
-              <div class="skeleton-pulse skeleton-price" />
-              <div class="skeleton-pulse skeleton-line skeleton-line--full" />
-              <div class="skeleton-pulse skeleton-line skeleton-line--long" />
-              <div class="skeleton-pulse skeleton-line skeleton-line--medium" />
-              <div class="skeleton-pulse skeleton-line skeleton-line--short" />
-            </div>
-          </div>
-        ))
-      }
-    </div>
-  </div>
-
+<div class="events-grid-wrapper">
   {
-    page.lastPage > 1 && (
-      <div class="events-pagination">
-        {page.url.prev ? (
-          <a href={page.url.prev} class="pagination-btn">
-            Previous
-          </a>
-        ) : (
-          <button disabled class="pagination-btn">
-            Previous
-          </button>
-        )}
-
-        <span class="pagination-info">
-          Page {page.currentPage} of {page.lastPage}
-        </span>
-
-        {page.url.next ? (
-          <a href={page.url.next} class="pagination-btn">
-            Next
-          </a>
-        ) : (
-          <button disabled class="pagination-btn">
-            Next
-          </button>
-        )}
+    page.data.length === 0 ? (
+      <div class="events-empty">No {eventType} events found.</div>
+    ) : (
+      <div class="events-grid">
+        {page.data.map((event) => (
+          <EventCard event={event} />
+        ))}
       </div>
     )
   }
+
+  <!-- Skeleton loading placeholders -->
+  <div class="skeleton-container">
+    {
+      [1, 2, 3].map(() => (
+        <div class="skeleton-card">
+          <div class="skeleton-pulse skeleton-image" />
+          <div class="skeleton-body">
+            <div class="skeleton-meta">
+              <div class="skeleton-pulse skeleton-title" />
+              <div class="skeleton-pulse skeleton-date" />
+            </div>
+            <div class="skeleton-pulse skeleton-price" />
+            <div class="skeleton-pulse skeleton-line skeleton-line--full" />
+            <div class="skeleton-pulse skeleton-line skeleton-line--long" />
+            <div class="skeleton-pulse skeleton-line skeleton-line--medium" />
+            <div class="skeleton-pulse skeleton-line skeleton-line--short" />
+          </div>
+        </div>
+      ))
+    }
+  </div>
 </div>
 
+{
+  page.lastPage > 1 && (
+    <div class="events-pagination">
+      {page.url.prev ? (
+        <a href={page.url.prev} class="pagination-btn">
+          Previous
+        </a>
+      ) : (
+        <button disabled class="pagination-btn">
+          Previous
+        </button>
+      )}
+
+      <span class="pagination-info">
+        Page {page.currentPage} of {page.lastPage}
+      </span>
+
+      {page.url.next ? (
+        <a href={page.url.next} class="pagination-btn">
+          Next
+        </a>
+      ) : (
+        <button disabled class="pagination-btn">
+          Next
+        </button>
+      )}
+    </div>
+  )
+}
+
 <style>
-  .events-section {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    width: 100%;
-  }
-
-  .events-header {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    align-items: center;
-  }
-
-  @media (min-width: 768px) {
-    .events-header {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-  }
-
-  .events-title {
-    margin: 0;
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--black);
-  }
-
-  .events-tabs {
-    display: flex;
-    background-color: hsl(213 22% 92%);
-    border-radius: 9999px;
-    padding: 0.25rem;
-    gap: 0.25rem;
-  }
-
-  .events-tab {
-    padding: 0.5rem 1.25rem;
-    border-radius: 9999px;
-    border: none;
-    background: transparent;
-    color: var(--black);
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    text-decoration: none;
-    transition:
-      background-color 0.2s ease,
-      color 0.2s ease;
-  }
-
-  .events-tab:hover {
-    background-color: hsl(213 22% 86%);
-  }
-
-  .events-tab.active {
-    background-color: white;
-    color: var(--primary-500);
-    box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
-    font-weight: 600;
-  }
-
   .events-grid-wrapper {
     min-height: 400px;
+    width: 100%;
     position: relative;
   }
 
@@ -199,7 +117,7 @@ const { page, eventType } = Astro.props;
       0 1px 2px rgb(0 0 0 / 0.06);
     width: 100%;
     overflow: hidden;
-    height: 12rem;
+    height: 15rem;
   }
 
   @media (min-width: 640px) {
@@ -231,7 +149,7 @@ const { page, eventType } = Astro.props;
 
   .skeleton-image {
     flex-shrink: 0;
-    height: 12rem;
+    height: 15rem;
     border-radius: 0;
   }
 
@@ -256,6 +174,7 @@ const { page, eventType } = Astro.props;
 
   .skeleton-body {
     flex: 1;
+    width: 100%;
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
@@ -358,9 +277,13 @@ const { page, eventType } = Astro.props;
     const destination = e.to?.pathname || "";
     if (!destination.startsWith("/events")) return;
 
-    const grid = document.querySelector(".events-grid");
-    const skeletons = document.querySelector(".skeleton-container");
-    const pagination = document.querySelector(".events-pagination");
+    const grid = document.querySelector(".events-grid") as HTMLElement;
+    const skeletons = document.querySelector(
+      ".skeleton-container",
+    ) as HTMLElement;
+    const pagination = document.querySelector(
+      ".events-pagination",
+    ) as HTMLElement;
 
     if (grid) grid.style.display = "none";
     if (skeletons) skeletons.classList.add("visible");
@@ -368,9 +291,13 @@ const { page, eventType } = Astro.props;
   });
 
   document.addEventListener("astro:page-load", () => {
-    const grid = document.querySelector(".events-grid");
-    const skeletons = document.querySelector(".skeleton-container");
-    const pagination = document.querySelector(".events-pagination");
+    const grid = document.querySelector(".events-grid") as HTMLElement;
+    const skeletons = document.querySelector(
+      ".skeleton-container",
+    ) as HTMLElement;
+    const pagination = document.querySelector(
+      ".events-pagination",
+    ) as HTMLElement;
 
     if (grid) grid.style.display = "";
     if (skeletons) skeletons.classList.remove("visible");

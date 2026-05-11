@@ -1,7 +1,7 @@
 ---
 export const prerender = true;
 
-import Layout from "../../layouts/Layout.astro";
+import SectionLayout from "../../layouts/SectionLayout.astro";
 import ResourcesList from "../../components/ResourcesList.astro";
 import { getTursoClient } from "../../lib/tursoclient";
 
@@ -13,7 +13,19 @@ export async function getStaticPaths({ paginate }) {
 
   if (!url || !token) {
     console.error("Missing Turso configuration for SSG build.");
-    return paginate([], { pageSize: 6 });
+    return [
+      {
+        params: { page: undefined },
+        props: {
+          page: {
+            data: [],
+            currentPage: 1,
+            lastPage: 1,
+            url: { prev: undefined, next: undefined },
+          },
+        },
+      },
+    ];
   }
 
   const turso = getTursoClient(url, token);
@@ -31,39 +43,28 @@ export async function getStaticPaths({ paginate }) {
     created_at: row.created_at,
   }));
 
-  return paginate(resources, { pageSize: 6 });
+  const paths = paginate(resources, { pageSize: 6 });
+  if (paths.length === 0) {
+    return [
+      {
+        params: { page: undefined },
+        props: {
+          page: {
+            data: [],
+            currentPage: 1,
+            lastPage: 1,
+            url: { prev: undefined, next: undefined },
+          },
+        },
+      },
+    ];
+  }
+  return paths;
 }
 
 const { page } = Astro.props;
 ---
 
-<Layout>
-  <main class="resources-page-container">
-    <section class="section">
-      <div class="section-content">
-        <ResourcesList page={page} />
-      </div>
-    </section>
-  </main>
-</Layout>
-
-<style>
-  .resources-page-container {
-    padding-top: 6rem;
-    min-height: calc(100vh - 200px);
-  }
-
-  .section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 4rem 0;
-  }
-
-  .section-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    width: 100%;
-  }
-</style>
+<SectionLayout title="Our Resources">
+  <ResourcesList page={page} />
+</SectionLayout>
