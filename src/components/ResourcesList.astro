@@ -178,8 +178,11 @@ const { page } = Astro.props;
 </style>
 
 <script>
-  // Show loading indicator during Astro ViewTransitions
-  document.addEventListener('astro:before-preparation', () => {
+  // Show loading indicator during Astro ViewTransitions (only for resources pages)
+  document.addEventListener('astro:before-preparation', (e) => {
+    const destination = e.to?.pathname || "";
+    if (!destination.startsWith("/resources")) return;
+
     const gridWrapper = document.querySelector('.resources-grid-wrapper');
     if (gridWrapper) {
       gridWrapper.classList.add('loading');

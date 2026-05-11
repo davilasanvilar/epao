@@ -9,9 +9,9 @@ import lecture3 from "../assets/lecture3.jfif";
   <div id="latest-activities-content" class="section-content">
     <div id="latest-activities-header">
       <div id="latest-activities-title">
-        <h2>Latest Activities</h2>
+        <h2>Latest Events</h2>
       </div>
-      <span id="view-all-activities">View all activities</span>
+      <a href="/events" id="view-all-activities">View all events</a>
     </div>
     <div id="latest-activities-list">
       <LatestCard
@@ -53,6 +53,10 @@ import lecture3 from "../assets/lecture3.jfif";
     justify-content: space-between;
     align-items: flex-end;
     width: 100%;
+  }
+
+  #latest-activities-header a {
+    text-decoration: none;
   }
 
   #latest-activities-title {

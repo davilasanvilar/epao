@@ -353,8 +353,11 @@ const { page, eventType } = Astro.props;
 </style>
 
 <script>
-  // Show skeleton cards during Astro ViewTransitions
-  document.addEventListener("astro:before-preparation", () => {
+  // Show skeleton cards during Astro ViewTransitions (only for events pages)
+  document.addEventListener("astro:before-preparation", (e) => {
+    const destination = e.to?.pathname || "";
+    if (!destination.startsWith("/events")) return;
+
     const grid = document.querySelector(".events-grid");
     const skeletons = document.querySelector(".skeleton-container");
     const pagination = document.querySelector(".events-pagination");
