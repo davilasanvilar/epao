@@ -1,0 +1,67 @@
+---
+export const prerender = true;
+
+import Layout from "../../layouts/Layout.astro";
+import ResourcesList from "../../components/ResourcesList.astro";
+import { getTursoClient } from "../../lib/tursoclient";
+
+export async function getStaticPaths({ paginate }) {
+  const url = import.meta.env.TURSO_CONNECTION_URL || process.env.TURSO_CONNECTION_URL;
+  const token = import.meta.env.TURSO_AUTH_TOKEN || process.env.TURSO_AUTH_TOKEN;
+
+  if (!url || !token) {
+    console.error("Missing Turso configuration for SSG build.");
+    return paginate([], { pageSize: 6 });
+  }
+
+  const turso = getTursoClient(url, token);
+
+  const sqlData = `SELECT * FROM resources ORDER BY created_at DESC`;
+  const dataResult = await turso.execute(sqlData);
+
+  const resources = dataResult.rows.map(row => ({
+    id: row.id,
+    name: row.name,
+    isVideo: row.isVideo,
+    url: row.url,
+    description: row.description,
+    img: row.img,
+    created_at: row.created_at,
+  }));
+
+  return paginate(resources, { pageSize: 6 });
+}
+
+const { page } = Astro.props;
+---
+
+<Layout>
+  <main class="resources-page-container">
+    <section class="section">
+      <div class="section-content">
+        <ResourcesList page={page} />
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .resources-page-container {
+    padding-top: 6rem;
+    min-height: calc(100vh - 200px);
+  }
+  
+  .section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 0;
+  }
+  
+  .section-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%;
+  }
+</style>

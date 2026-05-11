@@ -1,5 +1,5 @@
 ---
-import EventCard from "./EventCard.astro";
+import ResourceCard from "./ResourceCard.astro";
 
 export interface Props {
   page: {
@@ -11,45 +11,30 @@ export interface Props {
       next: string | undefined;
     };
   };
-  eventType: "future" | "past";
 }
 
-const { page, eventType } = Astro.props;
+const { page } = Astro.props;
 ---
 
-<div class="events-section">
-  <div class="events-header">
-    <h2 class="events-title">Our Events</h2>
-    <div class="events-tabs">
-      <a
-        href="/events"
-        class={`events-tab ${eventType === "future" ? "active" : ""}`}
-      >
-        Future Events
-      </a>
-      <a
-        href="/events/past"
-        class={`events-tab ${eventType === "past" ? "active" : ""}`}
-      >
-        Past Events
-      </a>
-    </div>
+<div class="resources-section">
+  <div class="resources-header">
+    <h2 class="resources-title">Resources</h2>
   </div>
 
-  <div class="events-grid-wrapper">
+  <div class="resources-grid-wrapper">
     {page.data.length === 0 ? (
-      <div class="events-empty">No {eventType} events found.</div>
+      <div class="resources-empty">No resources found.</div>
     ) : (
-      <div class="events-grid">
-        {page.data.map((event) => (
-          <EventCard event={event} />
+      <div class="resources-grid">
+        {page.data.map((resource) => (
+          <ResourceCard resource={resource} />
         ))}
       </div>
     )}
   </div>
 
   {page.lastPage > 1 && (
-    <div class="events-pagination">
+    <div class="resources-pagination">
       {page.url.prev ? (
         <a href={page.url.prev} class="pagination-btn">
           Previous
@@ -78,14 +63,14 @@ const { page, eventType } = Astro.props;
 </div>
 
 <style>
-  .events-section {
+  .resources-section {
     display: flex;
     flex-direction: column;
     gap: 2rem;
     width: 100%;
   }
 
-  .events-header {
+  .resources-header {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -93,64 +78,32 @@ const { page, eventType } = Astro.props;
   }
 
   @media (min-width: 768px) {
-    .events-header {
+    .resources-header {
       flex-direction: row;
       justify-content: space-between;
       align-items: flex-end;
     }
   }
 
-  .events-title {
+  .resources-title {
     margin: 0;
     font-size: 2.5rem;
     font-weight: bold;
     color: var(--black);
   }
 
-  .events-tabs {
-    display: flex;
-    background-color: hsl(213 22% 92%);
-    border-radius: 9999px;
-    padding: 0.25rem;
-    gap: 0.25rem;
-  }
-
-  .events-tab {
-    padding: 0.5rem 1.25rem;
-    border-radius: 9999px;
-    border: none;
-    background: transparent;
-    color: var(--black);
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.2s ease, color 0.2s ease;
-  }
-
-  .events-tab:hover {
-    background-color: hsl(213 22% 86%);
-  }
-
-  .events-tab.active {
-    background-color: white;
-    color: var(--primary-500);
-    box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
-    font-weight: 600;
-  }
-
-  .events-grid-wrapper {
+  .resources-grid-wrapper {
     min-height: 400px;
     position: relative;
     transition: opacity 0.2s ease;
   }
 
-  .events-grid-wrapper.loading {
+  .resources-grid-wrapper.loading {
     opacity: 0.5;
     pointer-events: none;
   }
 
-  .events-grid-wrapper.loading::after {
+  .resources-grid-wrapper.loading::after {
     content: "";
     position: absolute;
     top: 50px;
@@ -168,14 +121,14 @@ const { page, eventType } = Astro.props;
     to { transform: rotate(360deg); }
   }
 
-  .events-grid {
+  .resources-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
     gap: 2rem;
     justify-content: center;
   }
 
-  .events-empty {
+  .resources-empty {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -186,7 +139,7 @@ const { page, eventType } = Astro.props;
     opacity: 0.7;
   }
 
-  .events-pagination {
+  .resources-pagination {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -227,14 +180,14 @@ const { page, eventType } = Astro.props;
 <script>
   // Show loading indicator during Astro ViewTransitions
   document.addEventListener('astro:before-preparation', () => {
-    const gridWrapper = document.querySelector('.events-grid-wrapper');
+    const gridWrapper = document.querySelector('.resources-grid-wrapper');
     if (gridWrapper) {
       gridWrapper.classList.add('loading');
     }
   });
 
   document.addEventListener('astro:page-load', () => {
-    const gridWrapper = document.querySelector('.events-grid-wrapper');
+    const gridWrapper = document.querySelector('.resources-grid-wrapper');
     if (gridWrapper) {
       gridWrapper.classList.remove('loading');
     }

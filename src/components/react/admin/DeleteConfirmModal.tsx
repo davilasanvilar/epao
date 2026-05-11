@@ -3,7 +3,7 @@ import "./AdminModal.css";
 import { showSnackbar } from "../../../utils/snackbar";
 
 interface Props {
-  type: "event" | "request";
+  type: "event" | "request" | "resource";
   id: number;
   onClose: () => void;
   onSuccess: () => void;

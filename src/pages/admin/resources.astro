@@ -1,33 +1,8 @@
 ---
 import AdminLayout from "../../layouts/AdminLayout.astro";
+import { ResourcesTable } from "../../components/react/admin/ResourcesTable";
 ---
 
 <AdminLayout>
-  <div class="coming-soon">
-    <h2>Resources Dashboard</h2>
-    <p>This module is currently under development.</p>
-  </div>
+  <ResourcesTable client:load />
 </AdminLayout>
-
-<style>
-  .coming-soon {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 60vh;
-    background: white;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-  }
-
-  h2 {
-    color: var(--black);
-    margin-bottom: 1rem;
-  }
-
-  p {
-    color: var(--primary-500);
-    font-size: 1.125rem;
-  }
-</style>
