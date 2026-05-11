@@ -3,14 +3,13 @@ import Button from "./Button.astro";
 import logo from "../assets/logo.svg";
 import Modal from "./Modal.astro";
 import { GeneralRequestForm } from "./react/GeneralRequestForm";
-const { path } = Astro.params;
+const path = Astro.url.pathname;
 ---
 
 <header>
   <div id="logo-container">
     <img src={logo.src} alt="" width="40" height="40" />
     <span class="logo">EPAO</span>
-    <span class="logo">{path}</span>
   </div>
   <nav>
     <ul>

@@ -1,6 +1,4 @@
 ---
-import Modal from "./Modal.astro";
-
 export interface Props {
   event: {
     id: number;
@@ -9,7 +7,7 @@ export interface Props {
     price: number;
     date: string;
     img: string;
-    imgUrl?: string; // We'll keep this if passed directly, otherwise build the dynamic endpoint
+    imgUrl?: string;
   };
 }
 
@@ -20,200 +18,241 @@ const imageUrl = event.img
   ? `/api/b2-image?key=${encodeURIComponent(event.img)}`
   : event.imgUrl || "https://placehold.co/400x300?text=No+Image";
 
-const modalId = `event-modal-${event.id}`;
+// Format date as dd/MM/YY hh:mm
+function formatDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  const day = String(d.getDate()).padStart(2, "0");
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const year = String(d.getFullYear()).slice(-2);
+  const hours = String(d.getHours()).padStart(2, "0");
+  const minutes = String(d.getMinutes()).padStart(2, "0");
+  return `${day}/${month}/${year} ${hours}:${minutes}`;
+}
+
+const formattedDate = formatDate(event.date);
 ---
 
-<!-- The Card -->
-<div class="event-card" role="button" tabindex="0" data-modal-target={modalId}>
-  <img src={imageUrl} alt={event.name} class="event-img" loading="lazy" />
-
-  <div class="event-content">
-    <span class="event-date">{event.date}</span>
-    <h3 class="event-title">{event.name}</h3>
+<article class="event-card" data-event-id={event.id}>
+  <div class="event-card__image-wrapper">
+    <img
+      src={imageUrl}
+      alt={event.name}
+      class="event-card__image"
+      loading="lazy"
+    />
   </div>
-</div>
 
-<!-- The Modal -->
-<Modal id={modalId} title="">
-  <div class="modal-layout">
-    <div class="modal-left">
-      <img src={imageUrl} alt={event.name} class="modal-img" loading="lazy" />
-      <h3 class="modal-title">{event.name}</h3>
+  <div class="event-card__body">
+    <div class="event-card__meta">
+      <h3 class="event-card__title">{event.name}</h3>
+      <span class="event-card__date">{formattedDate}</span>
     </div>
-    <div class="modal-right">
-      <span class="modal-date">{event.date}</span>
-      <div class="modal-price">
-        {event.price === 0 ? "Free" : `${event.price} EUR `}
-      </div>
-      <p class="modal-description">{event.description}</p>
+
+    <div class="event-card__price">
+      {event.price === 0 ? "Free" : `${event.price} €`}
     </div>
+
+    <div class="event-card__description-wrapper">
+      <p class="event-card__description">{event.description}</p>
+    </div>
+
+    {
+      event.description && event.description.length > 0 && (
+        <button class="event-card__toggle" data-expanded="false">
+          Show more
+          <svg
+            class="event-card__toggle-icon"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+      )
+    }
   </div>
-</Modal>
+</article>
 
 <style>
-  /* Override default modal width for event modals */
-  :global(dialog[id^="event-modal-"]) {
-    width: 55rem !important;
-    max-width: 95vw !important;
-  }
-
-  /* Remove extra margin from empty title in modal header */
-  :global(dialog[id^="event-modal-"] .header .title:empty) {
-    display: none;
-  }
-
-  /* Card Styles */
   .event-card {
     display: flex;
+    min-height: 12rem;
     flex-direction: column;
     background: white;
     border-radius: var(--border-radius);
-    overflow: hidden;
     box-shadow:
-      0 4px 6px -1px rgb(0 0 0 / 0.1),
-      0 2px 4px -2px rgb(0 0 0 / 0.1);
-    cursor: pointer;
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
-    user-select: none;
-  }
-
-  .event-card:focus-visible {
-    outline: 2px solid var(--primary-500);
-    outline-offset: 2px;
-  }
-
-  .event-img {
+      0 1px 3px rgb(0 0 0 / 0.08),
+      0 1px 2px rgb(0 0 0 / 0.06);
     width: 100%;
-    aspect-ratio: 16 / 9;
+  }
+
+  @media (min-width: 640px) {
+    .event-card {
+      flex-direction: row;
+    }
+  }
+
+  /* Image */
+  .event-card__image-wrapper {
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  @media (max-width: 639px) {
+    .event-card__image-wrapper {
+      width: 100%;
+      max-height: 220px;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .event-card__image-wrapper {
+      width: 280px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .event-card__image-wrapper {
+      width: 340px;
+    }
+  }
+
+  .event-card__image {
+    width: 100%;
+    max-height: 12rem;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    display: block;
   }
 
-  .event-card:hover .event-img {
-    transform: scale(1.05);
-  }
-
-  .event-content {
-    padding: 1.5rem;
+  /* Body */
+  .event-card__body {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    background: white;
-    z-index: 1;
+    padding: 1.5rem;
+    gap: 0.5rem;
+    min-width: 0;
   }
 
-  .event-date {
+  /* Meta: date + title */
+  .event-card__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .event-card__date {
     color: var(--primary-500);
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.5rem;
+    letter-spacing: 0.03em;
   }
 
-  .event-title {
+  .event-card__title {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     font-weight: 700;
     color: var(--black);
     line-height: 1.3;
   }
 
-  /* Modal Layout Styles */
-  .modal-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+  /* Price */
+  .event-card__price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-600, var(--primary-500));
   }
 
-  @media (min-width: 768px) {
-    .modal-layout {
-      flex-direction: row;
-      align-items: flex-start;
-    }
+  /* Description */
+  .event-card__description-wrapper {
+    overflow: hidden;
   }
 
-  .modal-left {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .modal-img {
-    width: 100%;
-    border-radius: var(--border-radius);
-    object-fit: cover;
-    aspect-ratio: 16 / 9;
-  }
-
-  .modal-title {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--black);
-  }
-
-  .modal-right {
-    flex: 1.2;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .modal-date {
-    color: var(--primary-500);
-    font-size: 1.125rem;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-
-  .modal-price {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--black);
-  }
-
-  .modal-description {
+  .event-card__description {
     margin: 0;
     color: var(--black);
-    opacity: 0.9;
-    font-size: 1rem;
+    opacity: 0.75;
+    font-size: 0.95rem;
     line-height: 1.6;
     white-space: pre-line;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .event-card__description.expanded {
+    -webkit-line-clamp: unset;
+    display: block;
+  }
+
+  /* Toggle button */
+  .event-card__toggle {
+    all: unset;
+    display: none;
+    align-items: center;
+    gap: 0.35rem;
+    cursor: pointer;
+    color: var(--primary-500);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 0.25rem;
+    transition: color 0.2s ease;
+    align-self: flex-start;
+  }
+
+  .event-card__toggle:hover {
+    color: var(--primary-600, var(--primary-500));
+  }
+
+  .event-card__toggle-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .event-card__toggle[data-expanded="true"] .event-card__toggle-icon {
+    transform: rotate(180deg);
   }
 </style>
 
 <script>
   function initializeEventCards() {
-    const cards = document.querySelectorAll(".event-card");
-    cards.forEach((card) => {
-      if (card.hasAttribute("data-initialized")) return;
+    const toggleButtons = document.querySelectorAll(".event-card__toggle");
 
-      const targetId = card.getAttribute("data-modal-target");
-      if (!targetId) return;
+    toggleButtons.forEach((btn) => {
+      if (btn.hasAttribute("data-initialized")) return;
 
-      const modal = document.getElementById(
-        targetId,
-      ) as HTMLDialogElement | null;
+      const card = btn.closest(".event-card");
+      const description = card?.querySelector(".event-card__description");
 
-      if (modal) {
-        const openModal = () => {
-          modal.showModal();
-        };
-
-        card.addEventListener("click", openModal);
-        card.addEventListener("keydown", (e: Event) => {
-          const keyboardEvent = e as KeyboardEvent;
-          if (keyboardEvent.key === "Enter" || keyboardEvent.key === " ") {
-            e.preventDefault();
-            openModal();
-          }
-        });
+      // Check if text is overflowing the 2-line clamp
+      if (description && description.scrollHeight > description.clientHeight) {
+        btn.style.display = "inline-flex";
       }
 
-      card.setAttribute("data-initialized", "true");
+      btn.addEventListener("click", () => {
+        if (!description) return;
+
+        const isExpanded = btn.getAttribute("data-expanded") === "true";
+
+        if (isExpanded) {
+          description.classList.remove("expanded");
+          btn.setAttribute("data-expanded", "false");
+          btn.childNodes[0].textContent = "Show more";
+        } else {
+          description.classList.add("expanded");
+          btn.setAttribute("data-expanded", "true");
+          btn.childNodes[0].textContent = "Show less";
+        }
+      });
+
+      btn.setAttribute("data-initialized", "true");
     });
   }
 
