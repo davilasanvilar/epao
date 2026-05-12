@@ -1,29 +1,18 @@
 ---
-import Layout from "./Layout.astro";
-
 const { title } = Astro.props;
 ---
 
-<Layout>
-  <main class="section-page-container">
-    <section class="section">
-      <div class="header">
-        <h2 class="title">{title}</h2>
-        <slot name="topComponent" />
-      </div>
-      <div class="section-content">
-        <slot />
-      </div>
-    </section>
-  </main>
-</Layout>
+<section class="section">
+  <div class="header">
+    <h2 class="title">{title}</h2>
+    <slot name="topComponent" />
+  </div>
+  <div class="section-content">
+    <slot />
+  </div>
+</section>
 
 <style>
-  .section-page-container {
-    padding-top: 6rem;
-    min-height: calc(100vh - 200px);
-  }
-
   .section {
     display: flex;
     flex-direction: column;
@@ -35,7 +24,6 @@ const { title } = Astro.props;
 
   .section-content {
     margin: 0 auto;
-    padding: 0 1rem;
     width: 100%;
   }
 

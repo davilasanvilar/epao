@@ -225,7 +225,9 @@ const formattedDate = formatDate(event.date);
 
 <script>
   function initializeEventCards() {
-    const toggleButtons = document.querySelectorAll(".event-card__toggle");
+    const toggleButtons = document.querySelectorAll(
+      ".event-card__toggle",
+    ) as NodeListOf<HTMLElement>;
 
     toggleButtons.forEach((btn) => {
       if (btn.hasAttribute("data-initialized")) return;

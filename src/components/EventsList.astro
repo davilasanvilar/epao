@@ -1,16 +1,9 @@
 ---
+import type { Page } from "astro";
 import EventCard from "./EventCard.astro";
 
 export interface Props {
-  page: {
-    data: any[];
-    currentPage: number;
-    lastPage: number;
-    url: {
-      prev: string | undefined;
-      next: string | undefined;
-    };
-  };
+  page: Page;
   eventType: "future" | "past";
 }
 

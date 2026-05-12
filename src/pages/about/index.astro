@@ -1,0 +1,130 @@
+---
+import aboutOrgImg from "../../assets/lecture.webp";
+import TeamCards from "../../components/TeamCards.astro";
+import Layout from "../../layouts/Layout.astro";
+import SectionLayout from "../../layouts/SectionLayout.astro";
+---
+
+<Layout>
+  <SectionLayout title="About us">
+    <div class="about-mission-content">
+      <div class="about-top-wrapper">
+        <div class="about-mission-text">
+          <p>
+            The Emotional and Psychological Abuse Prevention Organization (EPAO)
+            was founded on the belief that every child deserves to grow up in an
+            environment free from emotional violence. We work at the
+            intersection of psychology, law, and public awareness to create
+            lasting change.
+          </p>
+          <p>
+            Our work is built on three pillars: <strong>awareness</strong> — educating
+            communities to recognize the hidden signs of psychological abuse; <strong
+              >education</strong
+            > — equipping professionals and caregivers with the tools to intervene
+            effectively; and
+            <strong>legislative advocacy</strong> — driving policy reform to strengthen
+            protections for children in the legal system.
+          </p>
+          <p>
+            We believe that emotional scars, though invisible, are just as
+            damaging as physical ones. By bringing together experts from diverse
+            fields, we aim to break the cycle of generational harm and build a
+            safer future for every child.
+          </p>
+        </div>
+        <div class="about-mission-image-wrapper">
+          <img
+            src={aboutOrgImg.src}
+            alt="EPAO team collaborating on child protection initiatives"
+            class="about-mission-image"
+          />
+        </div>
+      </div>
+      <SectionLayout title="Meet our team">
+        <TeamCards />
+      </SectionLayout>
+    </div>
+  </SectionLayout>
+</Layout>
+
+<!-- Team Section -->
+
+<style>
+  /* ===== Mission Section ===== */
+  .about-mission {
+    background: var(--white);
+    padding: 6rem 2rem;
+  }
+
+  .about-mission-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;
+  }
+
+  .about-top-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5rem;
+  }
+
+  .about-mission-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .about-mission-text h2 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--black);
+    margin-bottom: 0.5rem;
+  }
+
+  .about-mission-image-wrapper {
+    position: relative;
+    flex: 0 0 45%;
+  }
+
+  .about-mission-image {
+    width: 100%;
+    border-radius: 16px;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 20px 60px hsl(207 30% 30% / 0.15);
+  }
+
+  /* ===== Team Section ===== */
+  .about-team {
+    background: linear-gradient(180deg, var(--white) 0%, hsl(213 22% 92%) 100%);
+    padding: 6rem 2rem 8rem;
+  }
+
+  .about-team-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .about-team-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .about-team-header h2 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin: 0.75rem 0 1rem;
+  }
+
+  .about-team-subtitle {
+    max-width: 32rem;
+    margin: 0 auto !important;
+    color: hsl(0 0% 45%) !important;
+  }
+</style>

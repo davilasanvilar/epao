@@ -2,6 +2,7 @@
 import { ClientRouter } from "astro:transitions";
 import Font from "astro/components/Font.astro";
 import Header from "../components/Header.astro";
+const { isNotSection } = Astro.props;
 ---
 
 <!doctype html>
@@ -18,7 +19,15 @@ import Header from "../components/Header.astro";
   </head>
   <body>
     <Header />
-    <slot />
+    {
+      isNotSection ? (
+        <slot />
+      ) : (
+        <main class="section-page-container">
+          <slot />
+        </main>
+      )
+    }
   </body>
 </html>
 
@@ -56,12 +65,8 @@ import Header from "../components/Header.astro";
       box-sizing: border-box;
       font-family: var(--font-manrope);
     }
-    .hero-section {
-      width: 100%;
-      min-height: 90vh;
-    }
 
-    .section {
+    .front-section {
       padding: 5rem 2rem;
       width: 100%;
       display: flex;
@@ -69,7 +74,7 @@ import Header from "../components/Header.astro";
       align-items: center;
     }
 
-    .section-content {
+    .front-section-content {
       display: flex;
       max-width: 1440px;
       margin: 0 auto;
@@ -84,5 +89,9 @@ import Header from "../components/Header.astro";
     height: 100%;
     background-color: var(--white);
     scroll-behavior: smooth;
+  }
+  .section-page-container {
+    padding-top: 6rem;
+    min-height: calc(100vh - 200px);
   }
 </style>
