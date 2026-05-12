@@ -26,6 +26,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 }: ContactFormProps) => {
   const [form, setForm] = useState<IRequestForm>(initialFormState);
   const [loading, setLoading] = useState(false);
+  const [hideTurnstile, setHideTurnstile] = useState(false);
 
   const validateEmail = (email: string) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -111,6 +112,21 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         onChange={(e) => handleChange("message", e.target.value)}
       />
 
+      <div
+        className={
+          styles.turnstileWrapper +
+          (hideTurnstile ? " " + styles.hideTurnstile : "")
+        }
+      >
+        <Turnstile
+          siteKey="0x4AAAAAADMOOW5NVkZ5sokj"
+          onSuccess={(token) => {
+            setHideTurnstile(true);
+            setForm((prev) => ({ ...prev, token }));
+          }}
+        />
+      </div>
+
       <div className={styles.buttonContainer}>
         <button
           type="button"
@@ -120,10 +136,6 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         >
           Cancel
         </button>
-        <Turnstile
-          siteKey="0x4AAAAAADMOOW5NVkZ5sokj"
-          onSuccess={(token) => setForm((prev) => ({ ...prev, token }))}
-        />
         <button
           type="submit"
           className={`${styles.button} ${styles.buttonPrimary}`}

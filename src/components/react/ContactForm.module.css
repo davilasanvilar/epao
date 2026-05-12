@@ -9,7 +9,7 @@
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .button {
@@ -54,6 +54,19 @@
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.turnstileWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hideTurnstile {
+  display: none;
 }
