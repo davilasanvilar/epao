@@ -96,10 +96,7 @@ export const RequestsTable: React.FC = () => {
               requests.map((req) => (
                 <tr key={req.id}>
                   <td className="whitespace-nowrap">
-                    {dayjs
-                      .utc(req.created_at)
-                      .local()
-                      .format("DD/MM/YYYY HH:mm")}
+                    {dayjs.utc(req.created_at).local().format("DD/MM/YYYY HH:mm")}
                   </td>
                   <td>{req.name}</td>
                   <td>{req.email}</td>
@@ -120,12 +117,7 @@ export const RequestsTable: React.FC = () => {
         </table>
       </div>
 
-      <Pagination
-        page={page}
-        totalPages={totalPages}
-        isLoading={isLoading}
-        setPage={setPage}
-      />
+      <Pagination page={page} totalPages={totalPages} isLoading={isLoading} setPage={setPage} />
 
       {isDeleteOpen && selectedRequest && (
         <DeleteConfirmModal

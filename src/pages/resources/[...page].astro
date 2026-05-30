@@ -6,12 +6,11 @@ import ResourcesList from "../../components/ResourcesList.astro";
 import { getTursoClient } from "../../lib/tursoclient";
 import type { GetStaticPaths, Page } from "astro";
 import Layout from "../../layouts/Layout.astro";
+import { env } from "cloudflare:workers";
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
-  const url =
-    import.meta.env.TURSO_CONNECTION_URL || process.env.TURSO_CONNECTION_URL;
-  const token =
-    import.meta.env.TURSO_AUTH_TOKEN || process.env.TURSO_AUTH_TOKEN;
+  const url = env.TURSO_CONNECTION_URL || import.meta.env.TURSO_CONNECTION_URL;
+  const token = env.TURSO_AUTH_TOKEN || import.meta.env.TURSO_AUTH_TOKEN;
 
   if (!url || !token) {
     console.error("Missing Turso configuration for SSG build.");

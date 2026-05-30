@@ -9,11 +9,7 @@ interface Props {
   onSuccess: () => void;
 }
 
-export const ResourceFormModal: React.FC<Props> = ({
-  resource,
-  onClose,
-  onSuccess,
-}) => {
+export const ResourceFormModal: React.FC<Props> = ({ resource, onClose, onSuccess }) => {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -42,9 +38,7 @@ export const ResourceFormModal: React.FC<Props> = ({
     }
   }, [resource]);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const target = e.target;
     if (target instanceof HTMLInputElement && target.type === "checkbox") {
       setFormData({ ...formData, [target.name]: target.checked });
@@ -104,16 +98,12 @@ export const ResourceFormModal: React.FC<Props> = ({
 
       if (!res.ok) {
         const errData = await res.json();
-        throw new Error(
-          (errData as { error: string }).error || "Failed to save resource",
-        );
+        throw new Error((errData as { error: string }).error || "Failed to save resource");
       }
 
       onSuccess();
       showSnackbar(
-        resource
-          ? "Resource updated successfully"
-          : "Resource created successfully",
+        resource ? "Resource updated successfully" : "Resource created successfully",
         "success",
       );
     } catch (err: any) {
@@ -205,11 +195,7 @@ export const ResourceFormModal: React.FC<Props> = ({
             <div className="image-upload-container">
               {previewUrl && !isImageDeleted ? (
                 <div className="image-preview-wrapper">
-                  <img
-                    src={previewUrl}
-                    alt="Preview"
-                    className="image-preview"
-                  />
+                  <img src={previewUrl} alt="Preview" className="image-preview" />
                   <div className="image-actions">
                     <label className="admin-action-btn outline cursor-pointer text-center">
                       Change Image
@@ -244,14 +230,7 @@ export const ResourceFormModal: React.FC<Props> = ({
                       strokeLinejoin="round"
                       style={{ opacity: 0.5, marginBottom: "0.5rem" }}
                     >
-                      <rect
-                        x="3"
-                        y="3"
-                        width="18"
-                        height="18"
-                        rx="2"
-                        ry="2"
-                      ></rect>
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                       <circle cx="8.5" cy="8.5" r="1.5"></circle>
                       <polyline points="21 15 16 10 5 21"></polyline>
                     </svg>
@@ -287,11 +266,7 @@ export const ResourceFormModal: React.FC<Props> = ({
             >
               Cancel
             </button>
-            <button
-              type="submit"
-              className="admin-action-btn"
-              disabled={isSubmitting}
-            >
+            <button type="submit" className="admin-action-btn" disabled={isSubmitting}>
               {isSubmitting ? "Saving..." : "Save Resource"}
             </button>
           </div>

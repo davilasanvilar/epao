@@ -13,22 +13,18 @@ interface Props {
   onSuccess: () => void;
 }
 
-export const EventFormModal: React.FC<Props> = ({
-  event,
-  onClose,
-  onSuccess,
-}) => {
+export const EventFormModal: React.FC<Props> = ({ event, onClose, onSuccess }) => {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
     price: "",
     date: "",
   });
-  
+
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isImageDeleted, setIsImageDeleted] = useState(false);
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
 
@@ -46,9 +42,7 @@ export const EventFormModal: React.FC<Props> = ({
     }
   }, [event]);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -75,21 +69,21 @@ export const EventFormModal: React.FC<Props> = ({
     try {
       const isEdit = !!event;
       const method = isEdit ? "PUT" : "POST";
-      
+
       const payload = new FormData();
       payload.append("name", formData.name);
       payload.append("description", formData.description);
       payload.append("price", formData.price);
       payload.append("date", formData.date);
-      
+
       if (isEdit) {
         payload.append("id", event.id.toString());
       }
-      
+
       if (isImageDeleted) {
         payload.append("deleteImage", "true");
       }
-      
+
       if (selectedFile) {
         payload.append("image", selectedFile);
       }
@@ -101,16 +95,11 @@ export const EventFormModal: React.FC<Props> = ({
 
       if (!res.ok) {
         const errData = await res.json();
-        throw new Error(
-          (errData as { error: string }).error || "Failed to save event",
-        );
+        throw new Error((errData as { error: string }).error || "Failed to save event");
       }
 
       onSuccess();
-      showSnackbar(
-        event ? "Event updated successfully" : "Event created successfully",
-        "success",
-      );
+      showSnackbar(event ? "Event updated successfully" : "Event created successfully", "success");
     } catch (err: any) {
       setError(err.message || "An unexpected error occurred");
       showSnackbar(err.message || "An unexpected error occurred", "error");
@@ -179,10 +168,7 @@ export const EventFormModal: React.FC<Props> = ({
                 type="datetime-local"
                 id="date"
                 name="date"
-                value={dayjs
-                  .utc(formData.date)
-                  .local()
-                  .format("YYYY-MM-DDTHH:mm")}
+                value={dayjs.utc(formData.date).local().format("YYYY-MM-DDTHH:mm")}
                 onChange={handleChange}
                 required
               />
@@ -198,14 +184,18 @@ export const EventFormModal: React.FC<Props> = ({
                   <div className="image-actions">
                     <label className="admin-action-btn outline cursor-pointer text-center">
                       Change Image
-                      <input 
-                        type="file" 
-                        accept="image/jpeg, image/png, image/webp" 
-                        onChange={handleFileChange} 
-                        style={{ display: 'none' }} 
+                      <input
+                        type="file"
+                        accept="image/jpeg, image/png, image/webp"
+                        onChange={handleFileChange}
+                        style={{ display: "none" }}
                       />
                     </label>
-                    <button type="button" className="admin-action-btn delete" onClick={handleDeleteImage}>
+                    <button
+                      type="button"
+                      className="admin-action-btn delete"
+                      onClick={handleDeleteImage}
+                    >
                       Delete Image
                     </button>
                   </div>
@@ -213,15 +203,32 @@ export const EventFormModal: React.FC<Props> = ({
               ) : (
                 <div className="image-placeholder">
                   <div className="placeholder-content">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.5, marginBottom: '0.5rem' }}><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-                    <p style={{ color: 'var(--gray-500)', margin: '0 0 1rem 0' }}>No image selected</p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="48"
+                      height="48"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      style={{ opacity: 0.5, marginBottom: "0.5rem" }}
+                    >
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                      <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                      <polyline points="21 15 16 10 5 21"></polyline>
+                    </svg>
+                    <p style={{ color: "var(--gray-500)", margin: "0 0 1rem 0" }}>
+                      No image selected
+                    </p>
                     <label className="admin-action-btn">
                       Add Image
-                      <input 
-                        type="file" 
-                        accept="image/jpeg, image/png, image/webp" 
-                        onChange={handleFileChange} 
-                        style={{ display: 'none' }} 
+                      <input
+                        type="file"
+                        accept="image/jpeg, image/png, image/webp"
+                        onChange={handleFileChange}
+                        style={{ display: "none" }}
                       />
                     </label>
                   </div>
@@ -239,11 +246,7 @@ export const EventFormModal: React.FC<Props> = ({
             >
               Cancel
             </button>
-            <button
-              type="submit"
-              className="admin-action-btn"
-              disabled={isSubmitting}
-            >
+            <button type="submit" className="admin-action-btn" disabled={isSubmitting}>
               {isSubmitting ? "Saving..." : "Save Event"}
             </button>
           </div>

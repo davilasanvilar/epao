@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.sst/
+
+# Astro
+.astro/
+
+# Generated files
+pnpm-lock.yaml
+
+# Git
+.git/

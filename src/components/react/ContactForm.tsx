@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Input } from "./Input";
-import {
-  type IRequestForm,
-  mapIRequestFormToFormData,
-} from "../../types/contact";
+import { type IRequestForm, mapIRequestFormToFormData } from "../../types/contact";
 import { showSnackbar } from "../../utils/snackbar";
 import styles from "./ContactForm.module.css";
 import { Turnstile } from "@marsidev/react-turnstile";
@@ -112,12 +109,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         onChange={(e) => handleChange("message", e.target.value)}
       />
 
-      <div
-        className={
-          styles.turnstileWrapper +
-          (hideTurnstile ? " " + styles.hideTurnstile : "")
-        }
-      >
+      <div className={styles.turnstileWrapper + (hideTurnstile ? " " + styles.hideTurnstile : "")}>
         <Turnstile
           siteKey="0x4AAAAAADMOOW5NVkZ5sokj"
           onSuccess={(token) => {

@@ -11,13 +11,13 @@ const currentPath = Astro.url.pathname;
   </div>
   <nav>
     <ul>
-      <li class={`nav-item ${currentPath.includes('/admin/requests') ? 'active' : ''}`}>
+      <li class={`nav-item ${currentPath.includes("/admin/requests") ? "active" : ""}`}>
         <a href="/admin/requests">Requests</a>
       </li>
-      <li class={`nav-item ${currentPath.includes('/admin/events') ? 'active' : ''}`}>
+      <li class={`nav-item ${currentPath.includes("/admin/events") ? "active" : ""}`}>
         <a href="/admin/events">Events</a>
       </li>
-      <li class={`nav-item ${currentPath.includes('/admin/resources') ? 'active' : ''}`}>
+      <li class={`nav-item ${currentPath.includes("/admin/resources") ? "active" : ""}`}>
         <a href="/admin/resources">Resources</a>
       </li>
     </ul>
@@ -74,7 +74,7 @@ const currentPath = Astro.url.pathname;
     text-decoration: none;
     color: var(--primary-500);
   }
-  
+
   .placeholder-for-alignment {
     width: 100px; /* To balance the logo on the left */
   }

@@ -26,9 +26,7 @@ export const ResourcesTable: React.FC = () => {
 
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const [selectedResource, setSelectedResource] = useState<IResource | null>(
-    null,
-  );
+  const [selectedResource, setSelectedResource] = useState<IResource | null>(null);
 
   const fetchResources = async (pageNum: number) => {
     setIsLoading(true);
@@ -111,15 +109,9 @@ export const ResourcesTable: React.FC = () => {
                 <tr key={res.id}>
                   <td>
                     {res.imgUrl ? (
-                      <img
-                        src={res.imgUrl}
-                        alt={res.name}
-                        className="admin-table-thumbnail"
-                      />
+                      <img src={res.imgUrl} alt={res.name} className="admin-table-thumbnail" />
                     ) : (
-                      <div className="admin-table-thumbnail-placeholder">
-                        No Img
-                      </div>
+                      <div className="admin-table-thumbnail-placeholder">No Img</div>
                     )}
                   </td>
                   <td>{res.name}</td>
@@ -133,12 +125,8 @@ export const ResourcesTable: React.FC = () => {
                         borderRadius: "9999px",
                         fontSize: "0.8125rem",
                         fontWeight: 600,
-                        background: res.isVideo
-                          ? "hsl(0 72% 95%)"
-                          : "hsl(213 72% 95%)",
-                        color: res.isVideo
-                          ? "hsl(0 72% 40%)"
-                          : "hsl(213 72% 40%)",
+                        background: res.isVideo ? "hsl(0 72% 95%)" : "hsl(213 72% 95%)",
+                        color: res.isVideo ? "hsl(0 72% 40%)" : "hsl(213 72% 40%)",
                       }}
                     >
                       {res.isVideo ? "Video" : "Article"}
@@ -146,11 +134,7 @@ export const ResourcesTable: React.FC = () => {
                   </td>
                   <td>
                     <div className="actions-cell">
-                      <button
-                        className="icon-btn"
-                        onClick={() => handleEdit(res)}
-                        title="Edit"
-                      >
+                      <button className="icon-btn" onClick={() => handleEdit(res)} title="Edit">
                         <PencilIcon width={20} height={20} />
                       </button>
                       <button
@@ -169,12 +153,7 @@ export const ResourcesTable: React.FC = () => {
         </table>
       </div>
 
-      <Pagination
-        page={page}
-        totalPages={totalPages}
-        isLoading={isLoading}
-        setPage={setPage}
-      />
+      <Pagination page={page} totalPages={totalPages} isLoading={isLoading} setPage={setPage} />
 
       {isFormOpen && (
         <ResourceFormModal

@@ -9,12 +9,7 @@ interface Props {
   onSuccess: () => void;
 }
 
-export const DeleteConfirmModal: React.FC<Props> = ({
-  type,
-  id,
-  onClose,
-  onSuccess,
-}) => {
+export const DeleteConfirmModal: React.FC<Props> = ({ type, id, onClose, onSuccess }) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [error, setError] = useState("");
 
@@ -29,9 +24,7 @@ export const DeleteConfirmModal: React.FC<Props> = ({
 
       if (!res.ok) {
         const errData = await res.json();
-        throw new Error(
-          (errData as { error: string }).error || `Failed to delete ${type}`,
-        );
+        throw new Error((errData as { error: string }).error || `Failed to delete ${type}`);
       }
 
       onSuccess();
@@ -46,10 +39,7 @@ export const DeleteConfirmModal: React.FC<Props> = ({
 
   return (
     <div className="admin-modal-overlay" onClick={onClose}>
-      <div
-        className="admin-modal-content small-modal"
-        onClick={handleModalClick}
-      >
+      <div className="admin-modal-content small-modal" onClick={handleModalClick}>
         <div className="admin-modal-header">
           <h3>Delete {type}</h3>
           <button className="admin-modal-close" onClick={onClose}>
@@ -61,9 +51,7 @@ export const DeleteConfirmModal: React.FC<Props> = ({
 
         <div className="admin-modal-body">
           <p>Are you sure you want to delete this {type}?</p>
-          <p className="text-danger mt-2 text-sm">
-            This action cannot be undone.
-          </p>
+          <p className="text-danger mt-2 text-sm">This action cannot be undone.</p>
         </div>
 
         <div className="admin-modal-footer">

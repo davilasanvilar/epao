@@ -1,18 +1,18 @@
-import type { APIRoute } from 'astro';
-import { getB2Client, getPresignedB2Url } from '../../lib/b2client';
+import type { APIRoute } from "astro";
+import { getB2Client, getPresignedB2Url } from "../../lib/b2client";
 
 // Astro Cloudflare adapter will provide the `env` object at runtime.
 // At build time, we fall back to import.meta.env
 // @ts-ignore
-import { env as cfEnv } from 'cloudflare:workers';
+import { env as cfEnv } from "cloudflare:workers";
 
 export const GET: APIRoute = async ({ request }) => {
   try {
     const { searchParams } = new URL(request.url);
-    const key = searchParams.get('key');
+    const key = searchParams.get("key");
 
     if (!key) {
-      return new Response('Missing key', { status: 400 });
+      return new Response("Missing key", { status: 400 });
     }
 
     const endpoint = cfEnv?.B2_ENDPOINT || import.meta.env.B2_ENDPOINT;
@@ -28,6 +28,6 @@ export const GET: APIRoute = async ({ request }) => {
     return Response.redirect(presignedUrl, 302);
   } catch (error) {
     console.error("B2 image fetch error:", error);
-    return new Response('Error fetching image', { status: 500 });
+    return new Response("Error fetching image", { status: 500 });
   }
 };

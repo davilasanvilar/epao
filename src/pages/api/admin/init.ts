@@ -1,11 +1,12 @@
 export const prerender = false;
 
 import { getTursoClient } from "../../../lib/tursoclient";
+import { env } from "cloudflare:workers";
 
 export async function GET() {
   try {
-    const url = import.meta.env.TURSO_CONNECTION_URL || process.env.TURSO_CONNECTION_URL;
-    const token = import.meta.env.TURSO_AUTH_TOKEN || process.env.TURSO_AUTH_TOKEN;
+    const url = env.TURSO_CONNECTION_URL || import.meta.env.TURSO_CONNECTION_URL
+    const token = env.TURSO_AUTH_TOKEN || import.meta.env.TURSO_AUTH_TOKEN;
 
     if (!url || !token) {
       return new Response(JSON.stringify({ error: "Missing Turso config" }), { status: 500 });
@@ -42,7 +43,7 @@ export async function GET() {
       );
     `;
 
-    const statements = schema.split(';').filter(s => s.trim().length > 0);
+    const statements = schema.split(";").filter((s) => s.trim().length > 0);
     for (const s of statements) {
       await turso.execute(s);
     }

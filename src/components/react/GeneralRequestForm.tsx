@@ -19,9 +19,7 @@ export const GeneralRequestForm: React.FC = () => {
 
   const handleClose = () => {
     // Close the modal when cancelled
-    const modal = document.getElementById(
-      "contact-modal",
-    ) as HTMLDialogElement | null;
+    const modal = document.getElementById("contact-modal") as HTMLDialogElement | null;
     if (modal) {
       modal.close();
     }

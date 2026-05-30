@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './Input.module.css';
+import React from "react";
+import styles from "./Input.module.css";
 
 interface InputProps {
   id: string;
@@ -11,15 +11,27 @@ interface InputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
-export const Input: React.FC<InputProps> = ({ id, placeholder, label, textarea, value, error, onChange }) => {
+export const Input: React.FC<InputProps> = ({
+  id,
+  placeholder,
+  label,
+  textarea,
+  value,
+  error,
+  onChange,
+}) => {
   return (
     <div className={styles.inputGroup}>
-      {label && <label htmlFor={id} className={styles.label}>{label}</label>}
+      {label && (
+        <label htmlFor={id} className={styles.label}>
+          {label}
+        </label>
+      )}
       {textarea ? (
         <textarea
           id={id}
           placeholder={placeholder}
-          className={`${styles.textarea} ${error ? styles.error : ''}`}
+          className={`${styles.textarea} ${error ? styles.error : ""}`}
           value={value}
           onChange={onChange}
         />
@@ -28,7 +40,7 @@ export const Input: React.FC<InputProps> = ({ id, placeholder, label, textarea, 
           type="text"
           id={id}
           placeholder={placeholder}
-          className={`${styles.input} ${error ? styles.error : ''}`}
+          className={`${styles.input} ${error ? styles.error : ""}`}
           value={value}
           onChange={onChange}
         />

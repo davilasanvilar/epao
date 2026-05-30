@@ -110,15 +110,9 @@ export const EventsTable: React.FC = () => {
                 <tr key={evt.id}>
                   <td>
                     {evt.imgUrl ? (
-                      <img
-                        src={evt.imgUrl}
-                        alt={evt.name}
-                        className="admin-table-thumbnail"
-                      />
+                      <img src={evt.imgUrl} alt={evt.name} className="admin-table-thumbnail" />
                     ) : (
-                      <div className="admin-table-thumbnail-placeholder">
-                        No Img
-                      </div>
+                      <div className="admin-table-thumbnail-placeholder">No Img</div>
                     )}
                   </td>
                   <td className="whitespace-nowrap">
@@ -128,11 +122,7 @@ export const EventsTable: React.FC = () => {
                   <td>{evt.price === 0 ? "Free" : `${evt.price} €`}</td>
                   <td>
                     <div className="actions-cell">
-                      <button
-                        className="icon-btn"
-                        onClick={() => handleEdit(evt)}
-                        title="Edit"
-                      >
+                      <button className="icon-btn" onClick={() => handleEdit(evt)} title="Edit">
                         <PencilIcon width={20} height={20} />
                       </button>
                       <button
@@ -151,12 +141,7 @@ export const EventsTable: React.FC = () => {
         </table>
       </div>
 
-      <Pagination
-        page={page}
-        totalPages={totalPages}
-        isLoading={isLoading}
-        setPage={setPage}
-      />
+      <Pagination page={page} totalPages={totalPages} isLoading={isLoading} setPage={setPage} />
 
       {isFormOpen && (
         <EventFormModal

@@ -271,12 +271,8 @@ const { page, eventType } = Astro.props;
     if (!destination.startsWith("/events")) return;
 
     const grid = document.querySelector(".events-grid") as HTMLElement;
-    const skeletons = document.querySelector(
-      ".skeleton-container",
-    ) as HTMLElement;
-    const pagination = document.querySelector(
-      ".events-pagination",
-    ) as HTMLElement;
+    const skeletons = document.querySelector(".skeleton-container") as HTMLElement;
+    const pagination = document.querySelector(".events-pagination") as HTMLElement;
 
     if (grid) grid.style.display = "none";
     if (skeletons) skeletons.classList.add("visible");
@@ -285,12 +281,8 @@ const { page, eventType } = Astro.props;
 
   document.addEventListener("astro:page-load", () => {
     const grid = document.querySelector(".events-grid") as HTMLElement;
-    const skeletons = document.querySelector(
-      ".skeleton-container",
-    ) as HTMLElement;
-    const pagination = document.querySelector(
-      ".events-pagination",
-    ) as HTMLElement;
+    const skeletons = document.querySelector(".skeleton-container") as HTMLElement;
+    const pagination = document.querySelector(".events-pagination") as HTMLElement;
 
     if (grid) grid.style.display = "";
     if (skeletons) skeletons.classList.remove("visible");

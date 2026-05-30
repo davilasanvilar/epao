@@ -57,11 +57,7 @@ const { name, role, description, image } = Astro.props;
   .team-card-image-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      to top,
-      hsl(207 35% 20% / 0.4) 0%,
-      transparent 50%
-    );
+    background: linear-gradient(to top, hsl(207 35% 20% / 0.4) 0%, transparent 50%);
     pointer-events: none;
   }
 
@@ -90,22 +86,6 @@ const { name, role, description, image } = Astro.props;
     background: hsl(207 30% 92%);
     padding: 0.25rem 0.75rem;
     border-radius: 100px;
-  }
-
-  .team-card-quote {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    border-top: 1px solid hsl(0 0% 90%);
-    padding-top: 1.25rem;
-  }
-
-  .team-card-quote h4 {
-    margin: 0;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: hsl(207 30% 40%);
-    font-style: italic;
   }
 
   .team-card-quote p {

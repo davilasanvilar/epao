@@ -3,13 +3,8 @@ const path = Astro.url.pathname;
 ---
 
 <div class="events-tabs">
-  <a href="/events" class={`events-tab ${path === "/events" ? "active" : ""}`}>
-    Upcoming Events
-  </a>
-  <a
-    href="/events/past"
-    class={`events-tab ${path === "/events/past" ? "active" : ""}`}
-  >
+  <a href="/events" class={`events-tab ${path === "/events" ? "active" : ""}`}> Upcoming Events </a>
+  <a href="/events/past" class={`events-tab ${path === "/events/past" ? "active" : ""}`}>
     Past Events
   </a>
 </div>

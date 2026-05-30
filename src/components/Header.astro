@@ -30,12 +30,7 @@ const path = Astro.url.pathname;
       </li>
     </ul>
   </nav>
-  <Button
-    variant="primary"
-    text="Contact us"
-    command="show-modal"
-    commandFor="contact-modal"
-  />
+  <Button variant="primary" text="Contact us" command="show-modal" commandFor="contact-modal" />
 
   <Modal id="contact-modal" title="Contact us">
     <GeneralRequestForm client:load />
