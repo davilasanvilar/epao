@@ -2,37 +2,43 @@
 import SectionLayout from "../../layouts/SectionLayout.astro";
 import ResourcesList from "../../components/ResourcesList.astro";
 import { getTursoClient } from "../../lib/tursoclient";
-import type { GetStaticPaths, Page } from "astro";
 import Layout from "../../layouts/Layout.astro";
 import { env } from "cloudflare:workers";
 
-export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
-  const url = env.TURSO_CONNECTION_URL || import.meta.env.TURSO_CONNECTION_URL;
-  const token = env.TURSO_AUTH_TOKEN || import.meta.env.TURSO_AUTH_TOKEN;
+const PAGE_SIZE = 6;
+const rawPage = Astro.params.page;
+const currentPage = rawPage ? parseInt(rawPage, 10) : 1;
 
-  if (!url || !token) {
-    console.error("Missing Turso configuration for SSG build.");
-    return [
-      {
-        params: { page: undefined },
-        props: {
-          page: {
-            data: [],
-            currentPage: 1,
-            lastPage: 1,
-            url: { prev: undefined, next: undefined },
-          },
-        },
-      },
-    ];
-  }
+const url = env.TURSO_CONNECTION_URL || import.meta.env.TURSO_CONNECTION_URL;
+const token = env.TURSO_AUTH_TOKEN || import.meta.env.TURSO_AUTH_TOKEN;
 
-  const turso = getTursoClient(url, token);
+const emptyPage = {
+  data: [],
+  currentPage: 1,
+  lastPage: 1,
+  url: { prev: undefined, next: undefined },
+};
 
-  const sqlData = `SELECT * FROM resources ORDER BY created_at DESC`;
-  const dataResult = await turso.execute(sqlData);
+if (!url || !token) {
+  console.error("Missing Turso configuration.");
+}
 
-  const resources = dataResult.rows.map((row) => ({
+const turso = url && token ? getTursoClient(url, token) : null;
+
+let resources: any[] = [];
+let totalCount = 0;
+
+if (turso) {
+  const countResult = await turso.execute(`SELECT COUNT(*) as count FROM resources`);
+  totalCount = Number(countResult.rows[0]?.count ?? 0);
+
+  const offset = (currentPage - 1) * PAGE_SIZE;
+  const dataResult = await turso.execute({
+    sql: `SELECT * FROM resources ORDER BY created_at DESC LIMIT ? OFFSET ?`,
+    args: [PAGE_SIZE, offset],
+  });
+
+  resources = dataResult.rows.map((row: any) => ({
     id: row.id,
     name: row.name,
     isVideo: row.isVideo,
@@ -41,28 +47,23 @@ export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
     img: row.img,
     created_at: row.created_at,
   }));
+}
 
-  const paths = paginate(resources, { pageSize: 6 });
-  if (paths.length === 0) {
-    return [
-      {
-        params: { page: undefined },
-        props: {
-          page: {
-            data: [],
-            currentPage: 1,
-            lastPage: 1,
-            url: { prev: undefined, next: undefined },
-          },
-        },
-      },
-    ];
-  }
-  return paths;
-};
+const lastPage = Math.max(1, Math.ceil(totalCount / PAGE_SIZE));
 
-const { page } = Astro.props as {
-  page: Page;
+const page = {
+  data: resources,
+  currentPage,
+  lastPage,
+  url: {
+    prev:
+      currentPage > 1
+        ? currentPage === 2
+          ? "/resources"
+          : `/resources/${currentPage - 1}`
+        : undefined,
+    next: currentPage < lastPage ? `/resources/${currentPage + 1}` : undefined,
+  },
 };
 ---
 

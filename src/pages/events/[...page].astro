@@ -3,37 +3,38 @@ import EventsList from "../../components/EventsList.astro";
 import { getTursoClient } from "../../lib/tursoclient";
 import SectionLayout from "../../layouts/SectionLayout.astro";
 import EventTabs from "../../components/EventTabs.astro";
-import type { GetStaticPaths, Page } from "astro";
 import Layout from "../../layouts/Layout.astro";
 import { env } from "cloudflare:workers";
 
-export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
-  const url = env.TURSO_CONNECTION_URL || import.meta.env.TURSO_CONNECTION_URL;
-  const token = env.TURSO_AUTH_TOKEN || import.meta.env.TURSO_AUTH_TOKEN;
+const PAGE_SIZE = 6;
+const rawPage = Astro.params.page;
+const currentPage = rawPage ? parseInt(rawPage, 10) : 1;
 
-  if (!url || !token) {
-    console.error("Missing Turso configuration for SSG build.");
-    return [
-      {
-        params: { page: undefined },
-        props: {
-          page: {
-            data: [],
-            currentPage: 1,
-            lastPage: 1,
-            url: { prev: undefined, next: undefined },
-          },
-        },
-      },
-    ];
-  }
+const url = env.TURSO_CONNECTION_URL || import.meta.env.TURSO_CONNECTION_URL;
+const token = env.TURSO_AUTH_TOKEN || import.meta.env.TURSO_AUTH_TOKEN;
 
-  const turso = getTursoClient(url, token);
+if (!url || !token) {
+  console.error("Missing Turso configuration.");
+}
 
-  const sqlData = `SELECT * FROM events WHERE substr(date, 1, 10) >= date('now', 'localtime') ORDER BY date ASC`;
-  const dataResult = await turso.execute(sqlData);
+const turso = url && token ? getTursoClient(url, token) : null;
 
-  const events = dataResult.rows.map((row) => ({
+let events: any[] = [];
+let totalCount = 0;
+
+if (turso) {
+  const countResult = await turso.execute(
+    `SELECT COUNT(*) as count FROM events WHERE substr(date, 1, 10) >= date('now', 'localtime')`,
+  );
+  totalCount = Number(countResult.rows[0]?.count ?? 0);
+
+  const offset = (currentPage - 1) * PAGE_SIZE;
+  const dataResult = await turso.execute({
+    sql: `SELECT * FROM events WHERE substr(date, 1, 10) >= date('now', 'localtime') ORDER BY date ASC LIMIT ? OFFSET ?`,
+    args: [PAGE_SIZE, offset],
+  });
+
+  events = dataResult.rows.map((row: any) => ({
     id: row.id,
     name: row.name,
     description: row.description,
@@ -41,28 +42,19 @@ export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
     date: row.date,
     img: row.img,
   }));
+}
 
-  const paths = paginate(events, { pageSize: 6 });
-  if (paths.length === 0) {
-    return [
-      {
-        params: { page: undefined },
-        props: {
-          page: {
-            data: [],
-            currentPage: 1,
-            lastPage: 1,
-            url: { prev: undefined, next: undefined },
-          },
-        },
-      },
-    ];
-  }
-  return paths;
-};
+const lastPage = Math.max(1, Math.ceil(totalCount / PAGE_SIZE));
 
-const { page } = Astro.props as {
-  page: Page;
+const page = {
+  data: events,
+  currentPage,
+  lastPage,
+  url: {
+    prev:
+      currentPage > 1 ? (currentPage === 2 ? "/events" : `/events/${currentPage - 1}`) : undefined,
+    next: currentPage < lastPage ? `/events/${currentPage + 1}` : undefined,
+  },
 };
 ---
 
