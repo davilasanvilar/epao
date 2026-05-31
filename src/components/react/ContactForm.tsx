@@ -81,11 +81,9 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     }
   };
 
-  const isFormValid = false;
-
-  // Object.values(form).every(
-  //   (field) => !field.error && field.value.trim() !== "",
-  // );
+  const isFormValid = Object.values(form).every(
+    (field) => !field.error && field.value.trim() !== "",
+  );
 
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
