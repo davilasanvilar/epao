@@ -1,5 +1,5 @@
 ---
-import toys from "../assets/toys2.jpg";
+import toys from "../assets/toys.jpg";
 import EducationIcon from "./icons/EducationIcon.astro";
 import EyeIcon from "./icons/EyeIcon.astro";
 import ScaleIcon from "./icons/ScaleIcon.astro";
@@ -7,7 +7,10 @@ import PillarCard from "./PillarCard.astro";
 ---
 
 <div id="container">
-  <main class="hero-section">
+  <main
+    class="hero-section"
+    style={`background-image: linear-gradient(to bottom, hsl(213 22% 86% / 0.9) 100%, hsl(213 22% 86% / 0) 10%), url('${toys.src}')`}
+  >
     <section id="hero">
       <div id="hero-content">
         <h1>Prevention of Emotional and Psychological Abuse</h1>
@@ -109,9 +112,6 @@ import PillarCard from "./PillarCard.astro";
     top: 0;
     color: "black";
 
-    background-image:
-      linear-gradient(to bottom, hsl(213 22% 86% / 0.9) 100%, hsl(213 22% 86% / 0) 10%),
-      url("../assets/toys.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
