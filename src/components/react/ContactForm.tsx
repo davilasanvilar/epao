@@ -82,7 +82,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   };
 
   const isFormValid = Object.values(form).every(
-    (field) => !field.error && field.value.trim() !== "",
+    (field) => !field.error && field.value && field.value.trim() !== "",
   );
 
   return (
