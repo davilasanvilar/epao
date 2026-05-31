@@ -81,10 +81,6 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     }
   };
 
-  const isFormValid = Object.values(form).every(
-    (field) => !field.error && field.value && field.value.trim() !== "",
-  );
-
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
       <Input
@@ -135,7 +131,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         <button
           type="submit"
           className={`${styles.button} ${styles.buttonPrimary}`}
-          disabled={loading || !isFormValid}
+          disabled={loading || !form.token}
         >
           {loading ? (
             <svg
