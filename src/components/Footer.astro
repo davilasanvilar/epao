@@ -1,0 +1,265 @@
+---
+import logo from "../assets/white-logo.svg";
+---
+
+<footer>
+  <div class="footer-content">
+    <!-- Left column -->
+    <div class="footer-col footer-col--left">
+      <p class="footer-heading">EPAO Organisation</p>
+      <a href="mailto:epao@epao.sk" class="footer-link">epao@epao.sk</a>
+      <a href="tel:+421919043606" class="footer-link">+421 919 043 606</a>
+      <p class="footer-text">Laurinska 11</p>
+      <p class="footer-text">Bratislava, Slovakia</p>
+    </div>
+
+    <!-- Center column -->
+    <div class="footer-col footer-col--center">
+      <div class="footer-logo">
+        <img src={logo.src} alt="EPAO Logo" width="48" height="48" />
+        <span class="footer-brand">EPAO</span>
+      </div>
+      <p class="footer-description">
+        EPAO is a pioneering Slovak non-profit organization focused exclusively on emotional and
+        psychological abuse (EPA) of children.
+      </p>
+    </div>
+
+    <!-- Right column -->
+    <div class="footer-col footer-col--right">
+      <div class="social-icons">
+        <a
+          href="https://www.instagram.com/epaocommunity/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+          class="social-link"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+        <a
+          href="https://www.facebook.com/profile.php?id=61573877407064"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+          class="social-link"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+          </svg>
+        </a>
+        <a
+          href="https://www.linkedin.com/company/skepao/?viewAsMember=true"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+          class="social-link"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+            ></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; {new Date().getFullYear()} EPAO. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  footer {
+    background-color: var(--primary-500);
+    color: var(--white);
+    padding: 3rem 2rem 1.5rem;
+    margin-top: auto;
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1440px;
+    margin: 0 auto;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-col {
+    flex: 1;
+    min-width: 240px;
+  }
+
+  .footer-col--left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .footer-col--center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-col--right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+
+  .footer-heading {
+    color: var(--white);
+
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .footer-link {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.75rem;
+    transition: opacity 0.2s ease;
+  }
+
+  .footer-link:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
+
+  .footer-text {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.75rem;
+    color: var(--white);
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-brand {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: var(--white);
+  }
+
+  .footer-description {
+    max-width: 400px;
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.6rem;
+    color: var(--white);
+    opacity: 0.9;
+    margin: 0;
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+  }
+
+  .social-link {
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .social-link:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .footer-bottom {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .footer-bottom p {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--white);
+    opacity: 0.7;
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .footer-col {
+      align-items: center;
+    }
+
+    .footer-col--right {
+      justify-content: center;
+    }
+
+    .footer-col--left {
+      align-items: center;
+    }
+  }
+</style>
