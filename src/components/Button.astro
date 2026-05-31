@@ -1,11 +1,11 @@
 ---
-const { text, variant, command, commandFor, style } = Astro.props;
+const { text, variant, command, commandFor, style, onclick } = Astro.props;
 const bg = variant == "primary" ? "var(--button-primary)" : "transparent";
 const col = variant == "primary" ? "var(--white)" : "var(--button-primary)";
 const brd = variant == "primary" ? "none" : "1px solid var(--button-primary)";
 ---
 
-<button commandfor={commandFor} command={command} style={style}>
+<button commandfor={commandFor} command={command} style={style} onclick={onclick}>
   <slot name="icon" />
   {text}
 </button>

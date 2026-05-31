@@ -1,66 +1,16 @@
 ---
 import EventsList from "../../components/EventsList.astro";
-import { getTursoClient } from "../../lib/tursoclient";
 import SectionLayout from "../../layouts/SectionLayout.astro";
 import EventTabs from "../../components/EventTabs.astro";
 import Layout from "../../layouts/Layout.astro";
-import { env } from "cloudflare:workers";
 
-const PAGE_SIZE = 6;
 const rawPage = Astro.params.page;
 const currentPage = rawPage ? parseInt(rawPage, 10) : 1;
-
-const url = env.TURSO_CONNECTION_URL || import.meta.env.TURSO_CONNECTION_URL;
-const token = env.TURSO_AUTH_TOKEN || import.meta.env.TURSO_AUTH_TOKEN;
-
-if (!url || !token) {
-  console.error("Missing Turso configuration.");
-}
-
-const turso = url && token ? getTursoClient(url, token) : null;
-
-let events: any[] = [];
-let totalCount = 0;
-
-if (turso) {
-  const countResult = await turso.execute(
-    `SELECT COUNT(*) as count FROM events WHERE substr(date, 1, 10) >= date('now', 'localtime')`,
-  );
-  totalCount = Number(countResult.rows[0]?.count ?? 0);
-
-  const offset = (currentPage - 1) * PAGE_SIZE;
-  const dataResult = await turso.execute({
-    sql: `SELECT * FROM events WHERE substr(date, 1, 10) >= date('now', 'localtime') ORDER BY date ASC LIMIT ? OFFSET ?`,
-    args: [PAGE_SIZE, offset],
-  });
-
-  events = dataResult.rows.map((row: any) => ({
-    id: row.id,
-    name: row.name,
-    description: row.description,
-    price: row.price,
-    date: row.date,
-    img: row.img,
-  }));
-}
-
-const lastPage = Math.max(1, Math.ceil(totalCount / PAGE_SIZE));
-
-const page = {
-  data: events,
-  currentPage,
-  lastPage,
-  url: {
-    prev:
-      currentPage > 1 ? (currentPage === 2 ? "/events" : `/events/${currentPage - 1}`) : undefined,
-    next: currentPage < lastPage ? `/events/${currentPage + 1}` : undefined,
-  },
-};
 ---
 
 <Layout>
   <SectionLayout title="Our Events">
     <EventTabs slot="topComponent" />
-    <EventsList page={page} eventType="future" />
+    <EventsList eventType="future" currentPage={currentPage} />
   </SectionLayout>
 </Layout>

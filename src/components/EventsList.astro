@@ -1,13 +1,67 @@
 ---
-import type { Page } from "astro";
 import EventCard from "./EventCard.astro";
+import { getTursoClient } from "../lib/tursoclient";
+import { env } from "cloudflare:workers";
 
 export interface Props {
-  page: Page;
   eventType: "future" | "past";
+  currentPage: number;
 }
 
-const { page, eventType } = Astro.props;
+const { eventType, currentPage } = Astro.props;
+const PAGE_SIZE = 6;
+
+const url = env.TURSO_CONNECTION_URL || import.meta.env.TURSO_CONNECTION_URL;
+const token = env.TURSO_AUTH_TOKEN || import.meta.env.TURSO_AUTH_TOKEN;
+
+if (!url || !token) {
+  console.error("Missing Turso configuration.");
+}
+
+const turso = url && token ? getTursoClient(url, token) : null;
+
+const isFuture = eventType === "future";
+const dateOperator = isFuture ? ">=" : "<";
+const order = isFuture ? "ASC" : "DESC";
+const urlBase = isFuture ? "/events" : "/events/past";
+
+let events: any[] = [];
+let totalCount = 0;
+
+if (turso) {
+  const countResult = await turso.execute(
+    `SELECT COUNT(*) as count FROM events WHERE substr(date, 1, 10) ${dateOperator} date('now', 'localtime')`,
+  );
+  totalCount = Number(countResult.rows[0]?.count ?? 0);
+
+  const offset = (currentPage - 1) * PAGE_SIZE;
+  const dataResult = await turso.execute({
+    sql: `SELECT * FROM events WHERE substr(date, 1, 10) ${dateOperator} date('now', 'localtime') ORDER BY date ${order} LIMIT ? OFFSET ?`,
+    args: [PAGE_SIZE, offset],
+  });
+
+  events = dataResult.rows.map((row: any) => ({
+    id: row.id,
+    name: row.name,
+    description: row.description,
+    price: row.price,
+    date: row.date,
+    img: row.img,
+  }));
+}
+
+const lastPage = Math.max(1, Math.ceil(totalCount / PAGE_SIZE));
+
+const page = {
+  data: events,
+  currentPage,
+  lastPage,
+  url: {
+    prev:
+      currentPage > 1 ? (currentPage === 2 ? urlBase : `${urlBase}/${currentPage - 1}`) : undefined,
+    next: currentPage < lastPage ? `${urlBase}/${currentPage + 1}` : undefined,
+  },
+};
 ---
 
 <div class="events-grid-wrapper">

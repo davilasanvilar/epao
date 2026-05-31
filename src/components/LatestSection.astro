@@ -3,6 +3,48 @@ import LatestCard from "./LatestCard.astro";
 import lecture from "../assets/lecture.webp";
 import lecture2 from "../assets/lecture2.webp";
 import lecture3 from "../assets/lecture3.jfif";
+import { env } from "cloudflare:workers";
+import { getTursoClient } from "../lib/tursoclient";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+
+const PAGE_SIZE = 3;
+
+const url = env.TURSO_CONNECTION_URL || import.meta.env.TURSO_CONNECTION_URL;
+const token = env.TURSO_AUTH_TOKEN || import.meta.env.TURSO_AUTH_TOKEN;
+
+if (!url || !token) {
+  console.error("Missing Turso configuration.");
+}
+
+const turso = url && token ? getTursoClient(url, token) : null;
+
+let events: any[] = [];
+
+if (turso) {
+  const dataResult = await turso.execute({
+    sql: `SELECT * FROM events WHERE substr(date, 1, 10) < date('now', 'localtime') ORDER BY date DESC LIMIT ? OFFSET ?`,
+    args: [PAGE_SIZE, 0],
+  });
+
+  events = dataResult.rows.map((row: any) => ({
+    id: row.id,
+    name: row.name,
+    description: row.description,
+    price: row.price,
+    date: row.date,
+    img: row.img,
+  }));
+}
+
+const formattedEvents = events.map((event) => ({
+  name: event.name,
+  description: event.description,
+  date: dayjs.utc(event.date).local().format("MMMM DD, YYYY"),
+  img: event.img
+    ? `/api/b2-image?key=${encodeURIComponent(event.img)}`
+    : event.imgUrl || "https://placehold.co/400x300?text=No+Image",
+}));
 ---
 
 <section id="latest-activities" class="front-section">
@@ -14,24 +56,16 @@ import lecture3 from "../assets/lecture3.jfif";
       <a href="/events" id="view-all-activities">View all events</a>
     </div>
     <div id="latest-activities-list">
-      <LatestCard
-        title="Lecture at Comenius University"
-        description="Shared insights on child abuse prevention at Comenius University in Bratislava."
-        date="March 15, 2026"
-        img={lecture.src}
-      />
-      <LatestCard
-        title="Meeting with the Ministry of Education"
-        description="Very insightful meeting with the Ministry of Education"
-        date="March 10, 2026"
-        img={lecture2.src}
-      />
-      <LatestCard
-        title="We participated in the Child Protection Week"
-        description="Joined Child Protection Week in Bratislava, advocating for child safety."
-        date="March 5, 2026"
-        img={lecture3}
-      />
+      {
+        formattedEvents.map((event) => (
+          <LatestCard
+            title={event.name}
+            description={event.description}
+            date={event.date}
+            img={event.img}
+          />
+        ))
+      }
     </div>
   </div>
 </section>
