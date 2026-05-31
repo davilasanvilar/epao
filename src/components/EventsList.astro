@@ -271,20 +271,24 @@ const { page, eventType } = Astro.props;
     if (!destination.startsWith("/events")) return;
 
     const grid = document.querySelector(".events-grid") as HTMLElement;
+    const empty = document.querySelector(".events-empty") as HTMLElement;
     const skeletons = document.querySelector(".skeleton-container") as HTMLElement;
     const pagination = document.querySelector(".events-pagination") as HTMLElement;
 
     if (grid) grid.style.display = "none";
+    if (empty) empty.style.display = "none";
     if (skeletons) skeletons.classList.add("visible");
     if (pagination) pagination.style.display = "none";
   });
 
   document.addEventListener("astro:page-load", () => {
     const grid = document.querySelector(".events-grid") as HTMLElement;
+    const empty = document.querySelector(".events-empty") as HTMLElement;
     const skeletons = document.querySelector(".skeleton-container") as HTMLElement;
     const pagination = document.querySelector(".events-pagination") as HTMLElement;
 
     if (grid) grid.style.display = "";
+    if (empty) empty.style.display = "";
     if (skeletons) skeletons.classList.remove("visible");
     if (pagination) pagination.style.display = "";
   });
