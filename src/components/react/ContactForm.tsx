@@ -81,6 +81,12 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     }
   };
 
+  const isFormValid = false;
+
+  // Object.values(form).every(
+  //   (field) => !field.error && field.value.trim() !== "",
+  // );
+
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
       <Input
@@ -111,6 +117,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
       <div className={styles.turnstileWrapper + (hideTurnstile ? " " + styles.hideTurnstile : "")}>
         <Turnstile
+          style={{ margin: "0 auto", borderRadius: "12px" }}
           siteKey="0x4AAAAAADMOOW5NVkZ5sokj"
           onSuccess={(token) => {
             setHideTurnstile(true);
@@ -124,14 +131,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           type="button"
           className={`${styles.button} ${styles.buttonOutline}`}
           onClick={onClose}
-          disabled={loading}
         >
           Cancel
         </button>
         <button
           type="submit"
           className={`${styles.button} ${styles.buttonPrimary}`}
-          disabled={loading}
+          disabled={loading || !isFormValid}
         >
           {loading ? (
             <svg
