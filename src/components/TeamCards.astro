@@ -25,7 +25,14 @@ import patrikImg from "../assets/patrik.jpg";
 <style>
   .team-cards {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10rem;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: 2rem;
+    justify-content: flex-start;
+  }
+
+  @media (max-width: 1024px) {
+    .team-cards {
+      justify-content: center;
+    }
   }
 </style>

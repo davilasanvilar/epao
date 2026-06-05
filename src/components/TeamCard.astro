@@ -19,12 +19,6 @@ const { name, role, description, image } = Astro.props;
 </div>
 
 <style>
-  .team-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-
   .team-card {
     background: #fff;
     border-radius: 16px;
@@ -37,6 +31,8 @@ const { name, role, description, image } = Astro.props;
       box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
+    max-width: 25rem;
+    justify-self: center;
   }
 
   /* Card Image */

@@ -37,10 +37,10 @@ import SectionLayout from "../../layouts/SectionLayout.astro";
           />
         </div>
       </div>
-      <SectionLayout title="Meet our team">
-        <TeamCards />
-      </SectionLayout>
     </div>
+  </SectionLayout>
+  <SectionLayout title="Meet our team" isSubSection>
+    <TeamCards />
   </SectionLayout>
 </Layout>
 
@@ -65,6 +65,13 @@ import SectionLayout from "../../layouts/SectionLayout.astro";
     flex-direction: row;
     align-items: center;
     gap: 5rem;
+  }
+
+  @media (max-width: 1024px) {
+    .about-top-wrapper {
+      flex-direction: column-reverse;
+      gap: 2rem;
+    }
   }
 
   .about-mission-text {
