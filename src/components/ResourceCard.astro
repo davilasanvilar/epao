@@ -92,7 +92,7 @@ const embedUrl = isVideo ? getYouTubeEmbedUrl(resource.url) : "";
 
 <!-- The Modal -->
 <Modal id={modalId} title={resource.name}>
-  <div class={`modal-layout ${isVideo ? "modal-layout-video" : ""}`}>
+  <div class="modal-layout">
     <div class="modal-left">
       {
         isVideo && embedUrl ? (
@@ -232,18 +232,17 @@ const embedUrl = isVideo ? getYouTubeEmbedUrl(resource.url) : "";
   /* Modal Layout Styles */
   .modal-layout {
     display: flex;
-    flex-direction: column;
     gap: 2rem;
-  }
-
-  .modal-layout-video {
     flex-direction: row;
+    align-items: flex-start;
   }
 
-  @media (min-width: 768px) {
+  @media (max-width: 768px) {
     .modal-layout {
-      flex-direction: row;
-      align-items: flex-start;
+      flex-direction: column;
+    }
+    .modal-left {
+      width: 100%;
     }
   }
 
@@ -257,7 +256,7 @@ const embedUrl = isVideo ? getYouTubeEmbedUrl(resource.url) : "";
   .modal-img {
     width: 100%;
     border-radius: var(--border-radius);
-    object-fit: cover;
+    object-fit: contain;
     aspect-ratio: 16 / 9;
   }
 
