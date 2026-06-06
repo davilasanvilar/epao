@@ -8,6 +8,8 @@ import { getTursoClient } from "../lib/tursoclient";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 
+dayjs.extend(utc);
+
 const PAGE_SIZE = 3;
 
 const url = env.TURSO_CONNECTION_URL || import.meta.env.TURSO_CONNECTION_URL;
