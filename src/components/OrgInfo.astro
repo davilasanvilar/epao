@@ -28,42 +28,35 @@ import orgInfoImg from "../assets/lecture.webp";
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 8rem;
+      gap: 5rem;
     }
 
     #org-info-content-left {
-      flex: 0 0 40%;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      flex-grow: 1;
       gap: 1rem; /* Already in rem */
     }
 
-    .accredited {
-      display: flex;
-      align-items: center;
-      margin-top: 1rem;
-      gap: 1.25rem;
-      color: hsl(147 19% 43% / 1);
-      background-color: hsl(146 39% 87% / 1);
-      padding: 1.5rem;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow-lg);
-    }
-
-    .accredited-content {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      line-height: var(--small-text-ln);
-    }
-
     #org-info-image {
-      flex: 1;
-      min-width: 0;
       width: 100%;
       object-fit: contain;
       border-radius: 12px;
+      min-width: 0;
+    }
+
+    @media (max-width: 1024px) {
+      #org-info-content {
+        flex-direction: column;
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h2 {
+        text-align: center;
+      }
     }
 
     .pillars {

@@ -55,14 +55,14 @@ import Button from "./Button.astro";
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 8rem;
+      gap: 5rem;
     }
 
     #services-content-left {
-      flex: 0 0 40%;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      flex-grow: 1;
       gap: 1rem; /* Already in rem */
     }
 
@@ -84,10 +84,45 @@ import Button from "./Button.astro";
     .services-cards {
       display: grid;
       width: 100%;
-      grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
       gap: 2rem;
       justify-content: center;
       grid-auto-rows: 1fr;
+      min-width: 0;
+    }
+
+    @media (max-width: 1250px) {
+      #services-content {
+        align-items: start;
+      }
+      #services-content-left {
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .services-cards {
+        max-width: none;
+      }
+
+      #services-content {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      #services-content-left {
+        position: static;
+        top: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h2 {
+        text-align: center;
+      }
+      #services-content-left :global(button) {
+        align-self: center;
+      }
     }
 
     .services-cards-bottom {

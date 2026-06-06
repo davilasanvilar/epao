@@ -78,6 +78,18 @@ const { isNotSection } = Astro.props;
       align-items: center;
     }
 
+    @media (max-width: 1024px) {
+      .front-section {
+        padding: 2rem 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .front-section {
+        padding: 2rem 1rem;
+      }
+    }
+
     .front-section-content {
       display: flex;
       max-width: 1440px;

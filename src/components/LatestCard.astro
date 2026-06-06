@@ -113,6 +113,12 @@ const { title, description, date, img } = Astro.props;
   .latest-card__toggle[data-expanded="true"] .latest-card__toggle-icon {
     transform: rotate(180deg);
   }
+
+  @media (max-width: 1024px) {
+    .card-content {
+      padding: 0;
+    }
+  }
 </style>
 
 <script>

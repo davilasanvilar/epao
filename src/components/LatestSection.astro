@@ -116,4 +116,10 @@ const formattedEvents = events.map((event) => ({
     justify-content: center;
     gap: 2rem;
   }
+
+  @media (max-width: 1024px) {
+    #latest-activities-list :global(.latest-card:nth-child(3)) {
+      display: none;
+    }
+  }
 </style>
