@@ -1,24 +1,26 @@
 ---
 import logo from "../assets/logo.svg";
+import { useTranslations } from "../i18n";
 
 const currentPath = Astro.url.pathname;
+const i18n = useTranslations();
 ---
 
 <header>
   <div id="logo-container">
     <img src={logo.src} alt="" width="40" height="40" />
-    <span class="logo">EPAO Admin</span>
+    <span class="logo">{i18n.site.adminTitle}</span>
   </div>
   <nav>
     <ul>
       <li class={`nav-item ${currentPath.includes("/admin/requests") ? "active" : ""}`}>
-        <a href="/admin/requests">Requests</a>
+        <a href="/admin/requests">{i18n.admin.header.requests}</a>
       </li>
       <li class={`nav-item ${currentPath.includes("/admin/events") ? "active" : ""}`}>
-        <a href="/admin/events">Events</a>
+        <a href="/admin/events">{i18n.admin.header.events}</a>
       </li>
       <li class={`nav-item ${currentPath.includes("/admin/resources") ? "active" : ""}`}>
-        <a href="/admin/resources">Resources</a>
+        <a href="/admin/resources">{i18n.admin.header.resources}</a>
       </li>
     </ul>
   </nav>

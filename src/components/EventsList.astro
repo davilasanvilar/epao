@@ -2,6 +2,7 @@
 import EventCard from "./EventCard.astro";
 import { getTursoClient } from "../lib/tursoclient";
 import { env } from "cloudflare:workers";
+import { useTranslations, t } from "../i18n";
 
 export interface Props {
   eventType: "future" | "past";
@@ -9,6 +10,7 @@ export interface Props {
 }
 
 const { eventType, currentPage } = Astro.props;
+const i18n = useTranslations();
 const PAGE_SIZE = 6;
 
 const url = env.TURSO_CONNECTION_URL || import.meta.env.TURSO_CONNECTION_URL;
@@ -67,7 +69,7 @@ const page = {
 <div class="events-grid-wrapper">
   {
     page.data.length === 0 ? (
-      <div class="events-empty">No {eventType} events found.</div>
+      <div class="events-empty">{t(i18n.events.noEvents, { eventType })}</div>
     ) : (
       <div class="events-grid">
         {page.data.map((event) => (
@@ -105,25 +107,25 @@ const page = {
     <div class="events-pagination">
       {page.url.prev ? (
         <a href={page.url.prev} class="pagination-btn">
-          Previous
+          {i18n.events.previous}
         </a>
       ) : (
         <button disabled class="pagination-btn">
-          Previous
+          {i18n.events.previous}
         </button>
       )}
 
       <span class="pagination-info">
-        Page {page.currentPage} of {page.lastPage}
+        {t(i18n.events.pageOf, { current: page.currentPage, total: page.lastPage })}
       </span>
 
       {page.url.next ? (
         <a href={page.url.next} class="pagination-btn">
-          Next
+          {i18n.events.next}
         </a>
       ) : (
         <button disabled class="pagination-btn">
-          Next
+          {i18n.events.next}
         </button>
       )}
     </div>

@@ -4,6 +4,8 @@ import EducationIcon from "./icons/EducationIcon.astro";
 import EyeIcon from "./icons/EyeIcon.astro";
 import ScaleIcon from "./icons/ScaleIcon.astro";
 import PillarCard from "./PillarCard.astro";
+import { useTranslations } from "../i18n";
+const i18n = useTranslations();
 ---
 
 <main
@@ -12,28 +14,27 @@ import PillarCard from "./PillarCard.astro";
 >
   <section id="hero">
     <div id="hero-content">
-      <h1>Prevention of Emotional and Psychological Abuse</h1>
+      <h1>{i18n.hero.title}</h1>
       <p>
-        A professional organization which works for the protection of children through education,
-        support, and systemic change.
+        {i18n.hero.subtitle}
       </p>
     </div>
     <div class="pillars">
       <PillarCard
-        title="Awareness"
-        description="Raising public consciousness about the hidden signs of psychological abuse to ensure every child is seen and heard."
+        title={i18n.pillars.awareness.title}
+        description={i18n.pillars.awareness.description}
       >
         <EyeIcon slot="icon" />
       </PillarCard>
       <PillarCard
-        title="Education"
-        description="Providing specialized training for professionals and caregivers to effectively identify and intervene in coercive environments."
+        title={i18n.pillars.education.title}
+        description={i18n.pillars.education.description}
       >
         <EducationIcon slot="icon" />
       </PillarCard>
       <PillarCard
-        title="Legislative"
-        description="Championing policy reform and legal advocacy to strengthen protections and secure justice for children in the legal system."
+        title={i18n.pillars.legislative.title}
+        description={i18n.pillars.legislative.description}
       >
         <ScaleIcon slot="icon" />
       </PillarCard>

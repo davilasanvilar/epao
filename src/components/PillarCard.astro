@@ -13,7 +13,9 @@ const colorIcon = isDark ? "var(--white)" : "var(--primary-500)";
     </span>
     <h3>{title}</h3>
   </div>
-  <p>{description}</p>
+  <div class="pillar-card-content">
+    {description.map((desc) => <p>{desc}</p>)}
+  </div>
 </div>
 
 <style define:vars={{ color, backgroundColor, boxShadow, colorIcon }}>
@@ -50,6 +52,12 @@ const colorIcon = isDark ? "var(--white)" : "var(--primary-500)";
     font-weight: bold;
     color: var(--color);
   }
+  .pillar-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
   p {
     margin: 0;
     font-size: 1rem;

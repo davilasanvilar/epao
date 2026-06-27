@@ -2,22 +2,25 @@
 import TeamCard from "./TeamCard.astro";
 import samuelImg from "../assets/samuel.jpg";
 import patrikImg from "../assets/patrik.jpg";
+import { useTranslations } from "../i18n";
+
+const i18n = useTranslations();
 ---
 
 <div class="about-team-inner">
   <div class="team-cards">
     <TeamCard
-      name="Samuel Schürer"
-      role="Psychological counselor since 1993"
+      name={i18n.team.samuel.name}
+      role={i18n.team.samuel.role}
       image={samuelImg}
-      description="For more than three decades of practice, I have witnessed over and over how adult clients are still suffering from the emotional and psychological maltreatment they endured as children. As a couple counselor, I have also observed how parent conflicts can numb them to the suffering their children go through. Tragically, parents often repeat the patterns of harm they once endured. To break this cycle, we must protect the most vulnerable: our children."
+      description={i18n.team.samuel.description}
     />
 
     <TeamCard
-      name="Patrik Takáč"
-      role="Administration / Communication Manager"
+      name={i18n.team.patrik.name}
+      role={i18n.team.patrik.role}
       image={patrikImg}
-      description="I believe that communication is one of the most powerful tools we have to shape the world. For me, it is an opportunity to contribute to the protection of children and to the prevention of emotional abuse – an issue still far too often overlooked in our society. I want my work to have meaning beyond itself – to support change that I consider both necessary and right."
+      description={i18n.team.patrik.description}
     />
   </div>
 </div>
@@ -25,7 +28,7 @@ import patrikImg from "../assets/patrik.jpg";
 <style>
   .team-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
     gap: 2rem;
     justify-content: flex-start;
   }

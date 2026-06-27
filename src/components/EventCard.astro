@@ -1,4 +1,6 @@
 ---
+import { useTranslations } from "../i18n";
+
 export interface Props {
   event: {
     id: number;
@@ -12,6 +14,7 @@ export interface Props {
 }
 
 const { event } = Astro.props;
+const i18n = useTranslations();
 
 // Use the image key to build the URL to our dynamic endpoint, fallback to placeholder
 const imageUrl = event.img
@@ -44,7 +47,7 @@ const formattedDate = formatDate(event.date);
     </div>
 
     <div class="event-card__price">
-      {event.price === 0 ? "Free" : `${event.price} €`}
+      {event.price === 0 ? i18n.events.free : `${event.price} €`}
     </div>
 
     <div class="event-card__description-wrapper">
@@ -53,8 +56,13 @@ const formattedDate = formatDate(event.date);
 
     {
       event.description && event.description.length > 0 && (
-        <button class="event-card__toggle" data-expanded="false">
-          Show more
+        <button
+          class="event-card__toggle"
+          data-expanded="false"
+          data-show-more={i18n.eventCard.showMore}
+          data-show-less={i18n.eventCard.showLess}
+        >
+          {i18n.eventCard.showMore}
           <svg
             class="event-card__toggle-icon"
             width="14"
@@ -243,11 +251,11 @@ const formattedDate = formatDate(event.date);
         if (isExpanded) {
           description.classList.remove("expanded");
           btn.setAttribute("data-expanded", "false");
-          btn.childNodes[0].textContent = "Show more";
+          btn.childNodes[0].textContent = btn.getAttribute("data-show-more") || "Show more";
         } else {
           description.classList.add("expanded");
           btn.setAttribute("data-expanded", "true");
-          btn.childNodes[0].textContent = "Show less";
+          btn.childNodes[0].textContent = btn.getAttribute("data-show-less") || "Show less";
         }
       });
 

@@ -1,0 +1,191 @@
+{
+  "site": {
+    "title": "EPAO",
+    "adminTitle": "EPAO Admin"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About us",
+    "services": "Services",
+    "events": "Events",
+    "resources": "Resources",
+    "contact": "Contact us",
+    "menu": "Menu"
+  },
+  "hero": {
+    "title": "Prevention of Emotional and Psychological Abuse",
+    "subtitle": "What you believe is normal might be damaging for your child"
+  },
+  "pillars": {
+    "awareness": {
+      "title": "Raising Awareness",
+      "description": [
+        "Educating society to understand and recognize emotional and psychological abuse",
+        "Empowering people to take action",
+        "Offering resources for intervention and support"
+      ]
+    },
+    "education": {
+      "title": "Professional Education",
+      "description": [
+        "Training professionals such as psychologists, teachers, lawyers, social workers or judges",
+        "Promoting measures and practices to identify and respond to emotional and psychological abuse",
+        "Providing network and support between professional and relevant institutions"
+      ]
+    },
+    "legislative": {
+      "title": "Legislative Advocacy",
+      "description": [
+        "Advocating reforms within the legal system so that children are better protected from emotional and psychological abuse",
+        "Proposing means applied by the court to make parents engage in a constructive process to ensure the safety and well being of their children"
+      ]
+    }
+  },
+  "orgInfo": {
+    "title": "Our Organization",
+    "description": [
+      "The Emotional and Psychological Abuse Organization (EPAO) is a politically and religiously independent specialist and advisory centre for questions relating to emotional and psychological abuse of children",
+      "Unlike sexual and physical abuse, emotional and psychological abuse (EPA) is not well enough known for its devastating impact on children.",
+      "This is mostly evident in custody disputes where children are torn in between damaging behaviour of their parents, while the courts lack the resources to help them.",
+      "However, EPA can also occur in seemingly healthy families where on the surface things appear to be good, while behind closed doors children are exposed to constant criticism, emotional blackmailing, and many other forms of EPA.",
+      "Children who are victims of such harmful behaviours can show significant symptoms which are similar to sexual or physical abuse.",
+      "For some children the damage can be irreversible and later be passed on to their own children.",
+      "Our organization had set itself the goal of breaking this vicious circle."
+    ]
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "We provide education, support, and resources to parents, caregivers, and communities to create safe environments where children can thrive.",
+    "moreInfo": "More info",
+    "openLectures": {
+      "title": "Open Lectures",
+      "shortDescription": "Public talks on healthy parenting and abuse awareness.",
+      "description": "Open lectures for everybody free of charge focusing on various aspects of EPA and its impact on children. The aim is to promote healthy parenting and to help children in need."
+    },
+    "workshops": {
+      "title": "Training courses",
+      "shortDescription": "Professional training on detecting abuse symptoms.",
+      "description": "Intended for various groups of professionals working with children or parents particularly: psychologists, social workers, teachers, mediators and lawyers. The training is tailored to the respective group and their association with the subject of EPA."
+    },
+    "supportGroups": {
+      "title": "Support groups",
+      "shortDescription": "Help for children who suffered from emotional abuse.",
+      "description": "We offer support groups to parents whose partner or ex-partner is abusing or alienating their children from them. Members can share their personal stories and receive emotional and practical support.",
+      "pricing": {
+        "weeklySessions": "Weekly sessions",
+        "intensiveProgram": "Intensive program (8 weeks)"
+      }
+    },
+    "counselling": {
+      "title": "Counselling",
+      "shortDescription": "Private sessions for personalized professional guidance.",
+      "description": "We offer counselling for people who want to help children who are victims of EPA, such as parents, family members, teachers, and social workers.",
+      "pricing": {
+        "initialConsultation": "Initial consultation",
+        "individualSession": "Individual session (60 min)",
+        "package": "Package (5 sessions)"
+      }
+    },
+    "requestInfo": "Request more info",
+    "free": "Free",
+    "onRequest": "* Adjusted to circumstances of institution",
+    "currency": "€",
+    "price50": "50 *",
+    "canBeAdjusted": "* The price can be adjusted to financial situation of the client"
+  },
+  "events": {
+    "title": "Our Events",
+    "latestEvents": "Latest Events",
+    "viewAll": "View all events",
+    "upcoming": "Upcoming Events",
+    "past": "Past Events",
+    "free": "Free",
+    "noEvents": "No {eventType} events found.",
+    "previous": "Previous",
+    "next": "Next",
+    "pageOf": "Page {current} of {total}"
+  },
+  "resources": {
+    "title": "Our Resources",
+    "noResources": "No resources found.",
+    "previous": "Previous",
+    "next": "Next",
+    "pageOf": "Page {current} of {total}",
+    "video": "Video",
+    "article": "Article"
+  },
+  "about": {
+    "title": "What is EPAO",
+    "description": [
+      "This pattern existed in the past, when adults who experienced physical abuse in childhood often came to see it as normal and repeated it with their own children. Today, society largely rejects physical punishment of children, reflecting a deeper awareness of its harm.",
+      "Unfortunately, the situation is different when it comes to emotional and psychological abuse. There is still a great deal of ignorance about what exactly this is and what damage it can cause in children.",
+      "Countries such as Slovakia, where the population suffered drastic abuse under the former Soviet regime, have developed a lack of sensitivity about how harmful behavior in this regard can damage children in the long term.",
+      "We have made it our mission to expose these forms of harmful behavior and to educate the public about them. It is about breaking this vicious circle and reawakening sensitivity to what children need in order to become healthy and happy people."
+    ],
+    "imageAlt": "EPAO team collaborating on child protection initiatives",
+    "meetTeam": "Meet our team"
+  },
+  "team": {
+    "samuel": {
+      "name": "Samuel Schürer",
+      "role": "Psychological counselor since 1993",
+      "description": "For more than three decades of practice, I have witnessed over and over how adult clients are still suffering from the emotional and psychological maltreatment they endured as children. As a couple counselor, I have also observed how parent conflicts can numb them to the suffering their children go through. Tragically, parents often repeat the patterns of harm they once endured. To break this cycle, we must protect the most vulnerable: our children."
+    },
+    "patrik": {
+      "name": "Patrik Takáč",
+      "role": "Administration / Communication Manager",
+      "description": "I believe that communication is one of the most powerful tools we have to shape the world. For me, it is an opportunity to contribute to the protection of children and to the prevention of emotional abuse – an issue still far too often overlooked in our society. I want my work to have meaning beyond itself – to support change that I consider both necessary and right."
+    }
+  },
+  "footer": {
+    "orgName": "EPAO Organisation",
+    "email": "epao@epao.sk",
+    "phone": "+421 919 043 606",
+    "addressLine1": "Laurinska 11",
+    "addressLine2": "Bratislava, Slovakia",
+    "logoAlt": "EPAO Logo",
+    "brand": "EPAO",
+    "description": "EPAO is a pioneering Slovak non-profit organization focused exclusively on emotional and psychological abuse (EPA) of children.",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "linkedin": "LinkedIn",
+    "copyright": "© {year} EPAO. All rights reserved."
+  },
+  "contactForm": {
+    "name": {
+      "label": "Name",
+      "placeholder": "Name",
+      "errorRequired": "Name is required"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "Email",
+      "errorRequired": "Email is required",
+      "errorInvalid": "Invalid email format"
+    },
+    "message": {
+      "label": "Message",
+      "placeholder": "Message",
+      "errorRequired": "Message is required"
+    },
+    "cancel": "Cancel",
+    "send": "Send",
+    "success": "Your request has been received",
+    "error": "We could not send your request, try again"
+  },
+  "latestCard": {
+    "showMore": "Show more",
+    "showLess": "Show less"
+  },
+  "eventCard": {
+    "showMore": "Show more",
+    "showLess": "Show less"
+  },
+  "admin": {
+    "header": {
+      "requests": "Requests",
+      "events": "Events",
+      "resources": "Resources"
+    }
+  }
+}

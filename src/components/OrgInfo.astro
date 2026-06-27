@@ -1,20 +1,15 @@
 ---
 import AccreditedIcon from "./icons/AccreditedIcon.astro";
 import orgInfoImg from "../assets/lecture.webp";
+import { useTranslations } from "../i18n";
+const i18n = useTranslations();
 ---
 
 <section id="org-info" class="front-section">
   <div id="org-info-content" class="front-section-content">
     <div id="org-info-content-left">
-      <h2>Our Organization</h2>
-      <p>
-        The Emotional and Psychological Abuse Prevention Organization (EPAO) is a non-profit
-        organization committed to protecting children from emotional and psychological abuse.
-      </p>
-      <p>
-        We provide education, support, and resources to parents, caregivers, and communities to
-        create safe environments where children can thrive.
-      </p>
+      <h2>{i18n.orgInfo.title}</h2>
+      {i18n.orgInfo.description.map((desc) => <p>{desc}</p>)}
     </div>
     <img src={orgInfoImg.src} alt="" id="org-info-image" />
   </div>

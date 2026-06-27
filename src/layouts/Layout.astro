@@ -4,7 +4,9 @@ import Font from "astro/components/Font.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import toys from "../assets/toys.jpg";
+import { useTranslations } from "../i18n";
 const { isNotSection } = Astro.props;
+const i18n = useTranslations();
 ---
 
 <!doctype html>
@@ -18,7 +20,7 @@ const { isNotSection } = Astro.props;
     <link rel="icon" href="/favicon.ico" />
     <link rel="preload" href={toys.src} as="image" />
     <meta name="generator" content={Astro.generator} />
-    <title>EPAO</title>
+    <title>{i18n.site.title}</title>
   </head>
   <body>
     <Header />

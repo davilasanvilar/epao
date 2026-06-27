@@ -1,5 +1,6 @@
 ---
 import Modal from "./Modal.astro";
+import { useTranslations } from "../i18n";
 
 export interface Props {
   resource: {
@@ -13,6 +14,7 @@ export interface Props {
 }
 
 const { resource } = Astro.props;
+const i18n = useTranslations();
 const isVideo = resource.isVideo === true || resource.isVideo === 1;
 const videoId = resource.url?.split("v=")[1];
 
@@ -81,7 +83,7 @@ const embedUrl = isVideo ? getYouTubeEmbedUrl(resource.url) : "";
           </svg>
         )
       }
-      <span>{isVideo ? "Video" : "Article"}</span>
+      <span>{isVideo ? i18n.resources.video : i18n.resources.article}</span>
     </div>
   </div>
 
@@ -143,7 +145,7 @@ const embedUrl = isVideo ? getYouTubeEmbedUrl(resource.url) : "";
             </svg>
           )
         }
-        <span>{isVideo ? "Video" : "Article"}</span>
+        <span>{isVideo ? i18n.resources.video : i18n.resources.article}</span>
       </div>
       <p class="modal-description">{resource.description}</p>
     </div>

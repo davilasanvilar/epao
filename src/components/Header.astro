@@ -3,7 +3,9 @@ import Button from "./Button.astro";
 import logo from "../assets/logo.svg";
 import Modal from "./Modal.astro";
 import { GeneralRequestForm } from "./react/GeneralRequestForm";
+import { useTranslations } from "../i18n";
 const path = Astro.url.pathname;
+const i18n = useTranslations();
 ---
 
 <header>
@@ -16,25 +18,25 @@ const path = Astro.url.pathname;
   <nav class="desktop-nav">
     <ul>
       <li class={`nav-item ${path === "/" ? "active" : ""}`}>
-        <a href="/">Home</a>
+        <a href="/">{i18n.nav.home}</a>
       </li>
       <li class={`nav-item ${path.startsWith("/about") ? "active" : ""}`}>
-        <a href="/about">About us</a>
+        <a href="/about">{i18n.nav.about}</a>
       </li>
       <li class={`nav-item ${path === "/services" ? "active" : ""}`}>
-        <a href="/services">Services</a>
+        <a href="/services">{i18n.nav.services}</a>
       </li>
       <li class={`nav-item ${path.startsWith("/events") ? "active" : ""}`}>
-        <a href="/events">Events</a>
+        <a href="/events">{i18n.nav.events}</a>
       </li>
       <li class={`nav-item ${path === "/resources" ? "active" : ""}`}>
-        <a href="/resources">Resources</a>
+        <a href="/resources">{i18n.nav.resources}</a>
       </li>
     </ul>
   </nav>
 
   <div class="desktop-cta">
-    <Button variant="primary" text="Contact us" command="show-modal" commandFor="contact-modal" />
+    <Button variant="primary" text={i18n.nav.contact} command="show-modal" commandFor="contact-modal" />
   </div>
 
   <!-- Hamburger button (visible on mobile) -->
@@ -44,7 +46,7 @@ const path = Astro.url.pathname;
     <span class="hamburger-line"></span>
   </button>
 
-  <Modal id="contact-modal" title="Contact us">
+  <Modal id="contact-modal" title={i18n.nav.contact}>
     <GeneralRequestForm client:load />
   </Modal>
 </header>
@@ -55,7 +57,7 @@ const path = Astro.url.pathname;
 <!-- Sidebar menu -->
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
-    <span class="sidebar-title">Menu</span>
+    <span class="sidebar-title">{i18n.nav.menu}</span>
     <button class="sidebar-close" id="sidebar-close" aria-label="Close menu">
       <svg
         width="24"
@@ -73,18 +75,18 @@ const path = Astro.url.pathname;
     </button>
   </div>
   <nav class="sidebar-nav">
-    <a href="/" class={`sidebar-link ${path === "/" ? "active" : ""}`}>Home</a>
-    <a href="/about" class={`sidebar-link ${path.startsWith("/about") ? "active" : ""}`}>About us</a
+    <a href="/" class={`sidebar-link ${path === "/" ? "active" : ""}`}>{i18n.nav.home}</a>
+    <a href="/about" class={`sidebar-link ${path.startsWith("/about") ? "active" : ""}`}>{i18n.nav.about}</a
     >
-    <a href="/services" class={`sidebar-link ${path === "/services" ? "active" : ""}`}>Services</a>
-    <a href="/events" class={`sidebar-link ${path.startsWith("/events") ? "active" : ""}`}>Events</a
+    <a href="/services" class={`sidebar-link ${path === "/services" ? "active" : ""}`}>{i18n.nav.services}</a>
+    <a href="/events" class={`sidebar-link ${path.startsWith("/events") ? "active" : ""}`}>{i18n.nav.events}</a
     >
     <a href="/resources" class={`sidebar-link ${path === "/resources" ? "active" : ""}`}
-      >Resources</a
+      >{i18n.nav.resources}</a
     >
   </nav>
   <div class="sidebar-cta">
-    <Button variant="primary" text="Contact us" command="show-modal" commandFor="contact-modal" />
+    <Button variant="primary" text={i18n.nav.contact} command="show-modal" commandFor="contact-modal" />
   </div>
 </aside>
 

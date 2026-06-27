@@ -1,45 +1,51 @@
 ---
+import { useTranslations } from "../i18n";
 import ServiceCard from "./ServiceCard.astro";
 import MegaphoneIcon from "./icons/MegaphoneIcon.astro";
 import PencilRulerIcon from "./icons/PencilRulerIcon.astro";
 import CompassIcon from "./icons/CompassIcon.astro";
 import HandHeartIcon from "./icons/HandHeart.astro";
 import Button from "./Button.astro";
+
+const i18n = useTranslations();
 ---
 
 <section id="services" class="front-section">
   <div id="services-content" class="front-section-content">
     <div id="services-content-left">
-      <h2>Our Services</h2>
+      <h2>{i18n.services.title}</h2>
       <p>
-        We provide education, support, and resources to parents, caregivers, and communities to
-        create safe environments where children can thrive.
+        {i18n.services.subtitle}
       </p>
       <!-- this button goes like a link to the services page -->
-      <Button variant="outline" text="More info" onclick="window.location.href = 'services'" />
+      <Button
+        variant="outline"
+        text={i18n.services.moreInfo}
+        onclick="window.location.href = 'services'"
+      />
     </div>
     <div class="services-cards">
       <ServiceCard
-        title="Open Lectures"
-        description="Everybody is welcome to learn about the significance of EPA. We include talks about healthy parenting, recognizing damaging patterns that may impact children."
+        title={i18n.services.openLectures.title}
+        description={i18n.services.openLectures.shortDescription}
       >
         <MegaphoneIcon slot="icon" />
       </ServiceCard>
       <ServiceCard
-        title="Workshops"
-        description="Targeted to social, educational and health sectors professionals, to learn how to detect abuse symptoms and the right measures to take."
+        title={i18n.services.workshops.title}
+        description={i18n.services.workshops.shortDescription}
       >
         <PencilRulerIcon slot="icon" />
       </ServiceCard>
       <ServiceCard
-        title="Support groups"
-        description="We offer help to children who suffered from emotional abuse."
+        title={i18n.services.supportGroups.title}
+        description={i18n.services.supportGroups.shortDescription}
       >
         <HandHeartIcon slot="icon" />
       </ServiceCard>
       <ServiceCard
-        title="Counseling"
-        description="Parents and professionals who require personalized attention when dealing with a child abusive situation can book a private session with us."
+        title={i18n.services.counselling.title}
+        description={i18n.services.counselling.shortDescription}
       >
         <CompassIcon slot="icon" />
       </ServiceCard>

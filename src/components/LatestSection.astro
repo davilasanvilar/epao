@@ -1,4 +1,5 @@
 ---
+import { useTranslations } from "../i18n";
 import LatestCard from "./LatestCard.astro";
 import lecture from "../assets/lecture.webp";
 import lecture2 from "../assets/lecture2.webp";
@@ -9,6 +10,8 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 
 dayjs.extend(utc);
+
+const i18n = useTranslations();
 
 const PAGE_SIZE = 3;
 
@@ -53,9 +56,9 @@ const formattedEvents = events.map((event) => ({
   <div id="latest-activities-content" class="front-section-content">
     <div id="latest-activities-header">
       <div id="latest-activities-title">
-        <h2>Latest Events</h2>
+        <h2>{i18n.events.latestEvents}</h2>
       </div>
-      <a href="/events" id="view-all-activities">View all events</a>
+      <a href="/events" id="view-all-activities">{i18n.events.viewAll}</a>
     </div>
     <div id="latest-activities-list">
       {

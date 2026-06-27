@@ -1,11 +1,13 @@
 ---
+import { useTranslations } from "../i18n";
 const path = Astro.url.pathname;
+const i18n = useTranslations();
 ---
 
 <div class="events-tabs">
-  <a href="/events" class={`events-tab ${path === "/events" ? "active" : ""}`}> Upcoming Events </a>
+  <a href="/events" class={`events-tab ${path === "/events" ? "active" : ""}`}> {i18n.events.upcoming} </a>
   <a href="/events/past" class={`events-tab ${path === "/events/past" ? "active" : ""}`}>
-    Past Events
+    {i18n.events.past}
   </a>
 </div>
 

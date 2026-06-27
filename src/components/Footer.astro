@@ -1,27 +1,29 @@
 ---
 import logo from "../assets/white-logo.svg";
+import { useTranslations, t } from "../i18n";
+const i18n = useTranslations();
+const currentYear = new Date().getFullYear();
 ---
 
 <footer>
   <div class="footer-content">
     <!-- Left column -->
     <div class="footer-col footer-col--left">
-      <p class="footer-heading">EPAO Organisation</p>
-      <a href="mailto:epao@epao.sk" class="footer-link">epao@epao.sk</a>
-      <a href="tel:+421919043606" class="footer-link">+421 919 043 606</a>
-      <p class="footer-text">Laurinska 11</p>
-      <p class="footer-text">Bratislava, Slovakia</p>
+      <p class="footer-heading">{i18n.footer.orgName}</p>
+      <a href="mailto:epao@epao.sk" class="footer-link">{i18n.footer.email}</a>
+      <a href="tel:+421919043606" class="footer-link">{i18n.footer.phone}</a>
+      <p class="footer-text">{i18n.footer.addressLine1}</p>
+      <p class="footer-text">{i18n.footer.addressLine2}</p>
     </div>
 
     <!-- Center column -->
     <div class="footer-col footer-col--center">
       <div class="footer-logo">
-        <img src={logo.src} alt="EPAO Logo" width="48" height="48" />
-        <span class="footer-brand">EPAO</span>
+        <img src={logo.src} alt={i18n.footer.logoAlt} width="48" height="48" />
+        <span class="footer-brand">{i18n.footer.brand}</span>
       </div>
       <p class="footer-description">
-        EPAO is a pioneering Slovak non-profit organization focused exclusively on emotional and
-        psychological abuse (EPA) of children.
+        {i18n.footer.description}
       </p>
     </div>
 
@@ -32,7 +34,7 @@ import logo from "../assets/white-logo.svg";
           href="https://www.instagram.com/epaocommunity/"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Instagram"
+          aria-label={i18n.footer.instagram}
           class="social-link"
         >
           <svg
@@ -55,7 +57,7 @@ import logo from "../assets/white-logo.svg";
           href="https://www.facebook.com/profile.php?id=61573877407064"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Facebook"
+          aria-label={i18n.footer.facebook}
           class="social-link"
         >
           <svg
@@ -76,7 +78,7 @@ import logo from "../assets/white-logo.svg";
           href="https://www.linkedin.com/company/skepao/?viewAsMember=true"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="LinkedIn"
+          aria-label={i18n.footer.linkedin}
           class="social-link"
         >
           <svg
@@ -101,7 +103,7 @@ import logo from "../assets/white-logo.svg";
   </div>
 
   <div class="footer-bottom">
-    <p>&copy; {new Date().getFullYear()} EPAO. All rights reserved.</p>
+    <p>{t(i18n.footer.copyright, { year: currentYear })}</p>
   </div>
 </footer>
 

@@ -1,5 +1,8 @@
 ---
+import { useTranslations } from "../i18n";
+
 const { title, description, date, img } = Astro.props;
+const i18n = useTranslations();
 ---
 
 <div class="latest-card">
@@ -10,8 +13,13 @@ const { title, description, date, img } = Astro.props;
     <p class="latest-card__description">{description}</p>
     {
       description && description.length > 0 && (
-        <button class="latest-card__toggle" data-expanded="false">
-          Show more
+        <button
+          class="latest-card__toggle"
+          data-expanded="false"
+          data-show-more={i18n.latestCard.showMore}
+          data-show-less={i18n.latestCard.showLess}
+        >
+          {i18n.latestCard.showMore}
           <svg
             class="latest-card__toggle-icon"
             width="14"
@@ -150,11 +158,11 @@ const { title, description, date, img } = Astro.props;
         if (isExpanded) {
           description.classList.remove("expanded");
           btn.setAttribute("data-expanded", "false");
-          btn.childNodes[0].textContent = "Show more";
+          btn.childNodes[0].textContent = btn.getAttribute("data-show-more") || "Show more";
         } else {
           description.classList.add("expanded");
           btn.setAttribute("data-expanded", "true");
-          btn.childNodes[0].textContent = "Show less";
+          btn.childNodes[0].textContent = btn.getAttribute("data-show-less") || "Show less";
         }
       });
 

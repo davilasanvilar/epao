@@ -1,12 +1,15 @@
 ---
 import Modal from "../../components/Modal.astro";
 import { GeneralRequestForm } from "../../components/react/GeneralRequestForm";
+import { useTranslations } from "../../i18n";
 import Layout from "../../layouts/Layout.astro";
 import SectionLayout from "../../layouts/SectionLayout.astro";
+
+const i18n = useTranslations();
 ---
 
 <Layout>
-  <SectionLayout title="Our Services">
+  <SectionLayout title={i18n.services.title}>
     <div class="services-container">
       <!-- Left sidebar: service list -->
       <div class="services-list" id="services-list">
@@ -33,8 +36,8 @@ import SectionLayout from "../../layouts/SectionLayout.astro";
             >
           </div>
           <div class="service-item-text">
-            <h3>Open Lectures</h3>
-            <p>Public talks on healthy parenting and abuse awareness.</p>
+            <h3>{i18n.services.openLectures.title}</h3>
+            <p>{i18n.services.openLectures.shortDescription}</p>
           </div>
         </button>
 
@@ -59,8 +62,8 @@ import SectionLayout from "../../layouts/SectionLayout.astro";
             >
           </div>
           <div class="service-item-text">
-            <h3>Workshops</h3>
-            <p>Professional training on detecting abuse symptoms.</p>
+            <h3>{i18n.services.workshops.title}</h3>
+            <p>{i18n.services.workshops.shortDescription}</p>
           </div>
         </button>
 
@@ -84,12 +87,12 @@ import SectionLayout from "../../layouts/SectionLayout.astro";
             >
           </div>
           <div class="service-item-text">
-            <h3>Support Groups</h3>
-            <p>Help for children who suffered from emotional abuse.</p>
+            <h3>{i18n.services.supportGroups.title}</h3>
+            <p>{i18n.services.supportGroups.shortDescription}</p>
           </div>
         </button>
 
-        <button class="service-item" data-service="counseling" id="service-btn-counseling">
+        <button class="service-item" data-service="counselling" id="service-btn-counselling">
           <div class="service-item-icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -107,8 +110,8 @@ import SectionLayout from "../../layouts/SectionLayout.astro";
             >
           </div>
           <div class="service-item-text">
-            <h3>Counseling</h3>
-            <p>Private sessions for personalized professional guidance.</p>
+            <h3>{i18n.services.counselling.title}</h3>
+            <p>{i18n.services.counselling.shortDescription}</p>
           </div>
         </button>
       </div>
@@ -125,35 +128,25 @@ import SectionLayout from "../../layouts/SectionLayout.astro";
             />
           </div>
           <div class="detail-content">
-            <h2>Open Lectures</h2>
+            <h2>{i18n.services.openLectures.title}</h2>
             <p class="detail-description">
-              Everybody is welcome to learn about the significance of Emotional and Psychological
-              Abuse prevention. Our open lectures include talks about healthy parenting, recognizing
-              damaging patterns that may impact children, and understanding the long-term effects of
-              emotional neglect.
+              {i18n.services.openLectures.description}
             </p>
-            <p class="detail-description">
-              Led by experienced professionals in child psychology and social work, these sessions
-              provide valuable insights for anyone who wants to be part of the solution — parents,
-              teachers, neighbours, and community leaders alike.
-            </p>
-            <div class="detail-pricing">
-              <div class="price-card">
-                <span class="price-label">Individual session</span>
-                <span class="price-value">Free</span>
+            <div class="pricing">
+              <div class="detail-pricing">
+                <div class="price-card">
+                  <span class="price-curr">{i18n.services.currency}</span>
+                  <span class="price-value">{i18n.services.free}</span>
+                </div>
               </div>
-              <div class="price-card">
-                <span class="price-label">Series pass (4 sessions)</span>
-                <span class="price-value">€20</span>
-              </div>
+              <button class="request-btn" command="show-modal" commandfor="contact-modal">
+                {i18n.services.requestInfo}
+              </button>
             </div>
-            <button class="request-btn" command="show-modal" commandfor="contact-modal">
-              Request more info
-            </button>
           </div>
         </div>
 
-        <!-- Workshops -->
+        <!-- Training courses -->
         <div class="detail-panel" data-panel="workshops" id="panel-workshops">
           <div class="detail-image">
             <img
@@ -163,35 +156,24 @@ import SectionLayout from "../../layouts/SectionLayout.astro";
             />
           </div>
           <div class="detail-content">
-            <h2>Workshops</h2>
+            <h2>{i18n.services.workshops.title}</h2>
             <p class="detail-description">
-              Targeted to social, educational and health sector professionals, our workshops teach
-              participants how to detect abuse symptoms and understand the right measures to take.
-              Each session combines theoretical knowledge with practical case studies and
-              role-playing exercises.
+              {i18n.services.workshops.description}
             </p>
-            <p class="detail-description">
-              Participants receive a certificate of completion, recognized by leading child
-              protection organizations across Europe. Workshops are available in both in-person and
-              hybrid formats.
-            </p>
-            <div class="detail-pricing">
-              <div class="price-card">
-                <span class="price-label">Half-day workshop</span>
-                <span class="price-value">€75</span>
+            <div class="pricing">
+              <div class="detail-pricing">
+                <div class="price-card">
+                  <span class="price-curr">{i18n.services.currency}</span>
+                  <span class="price-value">{"*"}</span>
+                </div>
+                <span class="price-aclaration">
+                  {i18n.services.onRequest}
+                </span>
               </div>
-              <div class="price-card">
-                <span class="price-label">Full-day workshop</span>
-                <span class="price-value">€130</span>
-              </div>
-              <div class="price-card">
-                <span class="price-label">Organization package</span>
-                <span class="price-value">On request</span>
-              </div>
+              <button class="request-btn" command="show-modal" commandfor="contact-modal">
+                {i18n.services.requestInfo}
+              </button>
             </div>
-            <button class="request-btn" command="show-modal" commandfor="contact-modal">
-              Request more info
-            </button>
           </div>
         </div>
 
@@ -205,399 +187,415 @@ import SectionLayout from "../../layouts/SectionLayout.astro";
             />
           </div>
           <div class="detail-content">
-            <h2>Support Groups</h2>
+            <h2>{i18n.services.supportGroups.title}</h2>
             <p class="detail-description">
-              We offer safe, structured environments for children who have experienced emotional
-              abuse. Our support groups are facilitated by trained therapists who specialize in
-              childhood trauma recovery and emotional resilience building.
+              {i18n.services.supportGroups.description}
             </p>
-            <p class="detail-description">
-              Groups are organized by age range and meet weekly. Each session incorporates art
-              therapy, guided discussion, and coping skills development to help participants heal
-              and grow in a supportive community.
-            </p>
-            <div class="detail-pricing">
-              <div class="price-card">
-                <span class="price-label">Weekly sessions</span>
-                <span class="price-value">Free</span>
+            <div class="pricing">
+              <div class="detail-pricing">
+                <div class="price-card">
+                  <span class="price-curr">{i18n.services.currency}</span>
+                  <span class="price-value">{i18n.services.free}</span>
+                </div>
               </div>
-              <div class="price-card">
-                <span class="price-label">Intensive program (8 weeks)</span>
-                <span class="price-value">€50</span>
-              </div>
+              <button class="request-btn" command="show-modal" commandfor="contact-modal">
+                {i18n.services.requestInfo}
+              </button>
             </div>
-            <button class="request-btn" command="show-modal" commandfor="contact-modal">
-              Request more info
-            </button>
           </div>
         </div>
 
-        <!-- Counseling -->
-        <div class="detail-panel" data-panel="counseling" id="panel-counseling">
+        <!-- Counselling -->
+        <div class="detail-panel" data-panel="counselling" id="panel-counselling">
           <div class="detail-image">
             <img
               src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=400&fit=crop"
-              alt="Counseling session"
+              alt="Counselling session"
               loading="lazy"
             />
           </div>
           <div class="detail-content">
-            <h2>Counseling</h2>
+            <h2>{i18n.services.counselling.title}</h2>
             <p class="detail-description">
-              Parents and professionals who require personalized attention when dealing with a child
-              abuse situation can book a private session with our expert counselors. Each session is
-              confidential and tailored to the specific needs of the individual case.
+              {i18n.services.counselling.description}
             </p>
-            <p class="detail-description">
-              Our counselors hold advanced credentials in child psychology, family therapy, and
-              trauma-informed care. Sessions can be conducted in person or via secure video call for
-              maximum accessibility.
-            </p>
-            <div class="detail-pricing">
-              <div class="price-card">
-                <span class="price-label">Initial consultation</span>
-                <span class="price-value">Free</span>
+            <div class="pricing">
+              <div class="detail-pricing">
+                <div class="price-card">
+                  <span class="price-curr">{i18n.services.currency}</span>
+                  <span class="price-value">{i18n.services.price50}</span>
+                </div>
+                <span class="price-aclaration">
+                  {i18n.services.canBeAdjusted}
+                </span>
               </div>
-              <div class="price-card">
-                <span class="price-label">Individual session (60 min)</span>
-                <span class="price-value">€90</span>
-              </div>
-              <div class="price-card">
-                <span class="price-label">Package (5 sessions)</span>
-                <span class="price-value">€380</span>
-              </div>
+              <button class="request-btn" command="show-modal" commandfor="contact-modal">
+                {i18n.services.requestInfo}
+              </button>
             </div>
-            <button class="request-btn" command="show-modal" commandfor="contact-modal">
-              Request more info
-            </button>
           </div>
         </div>
+        <Modal id="contact-modal" title={i18n.services.requestInfo}>
+          <GeneralRequestForm client:load />
+        </Modal>
       </div>
-      <Modal id="contact-modal" title="Request more info">
-        <GeneralRequestForm client:load />
-      </Modal>
     </div>
   </SectionLayout>
-</Layout>
 
-<style>
-  .services-page {
-    padding-top: 5rem;
-  }
-
-  /* ── Hero ── */
-  .services-hero {
-    background: linear-gradient(
-      135deg,
-      hsl(213 22% 86% / 1) 0%,
-      hsl(204 29% 90% / 1) 50%,
-      hsl(213 22% 86% / 1) 100%
-    );
-    padding: 5rem 2rem 4rem;
-    text-align: center;
-  }
-
-  .services-hero-content {
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
-  .services-hero-content h1 {
-    font-size: 2.75rem;
-    font-weight: 900;
-    color: var(--black);
-    margin: 0 0 1rem;
-    letter-spacing: -0.02em;
-  }
-
-  .services-hero-content p {
-    font-size: 1.125rem;
-    line-height: 1.8;
-    color: var(--primary-500);
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  /* ── Main Section ── */
-  .services-section {
-    padding: 3rem 2rem 5rem;
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-
-  .services-container {
-    display: flex;
-    gap: 2.5rem;
-    align-items: flex-start;
-  }
-
-  /* ── Left Sidebar ── */
-  .services-list {
-    flex: 0 0 320px;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    position: sticky;
-    top: 7rem;
-  }
-
-  .service-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.25rem 1.5rem;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    border: 2px solid transparent;
-    background: transparent;
-    text-align: left;
-    font-family: inherit;
-  }
-
-  .service-item.active {
-    background: white;
-    border-color: var(--primary-500);
-    box-shadow:
-      0 4px 20px hsl(203 18% 40% / 0.1),
-      0 1px 4px hsl(203 18% 40% / 0.08);
-  }
-
-  .service-item.active .service-item-icon {
-    color: white;
-    background: var(--primary-500);
-  }
-
-  .service-item-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 2.75rem;
-    height: 2.75rem;
-    min-width: 2.75rem;
-    border-radius: 10px;
-    color: var(--primary-500);
-    background: hsl(213 22% 86% / 0.7);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .service-item-icon svg {
-    width: 1.375rem;
-    height: 1.375rem;
-  }
-
-  .service-item-text h3 {
-    margin: 0;
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--black);
-    line-height: 1.3;
-  }
-
-  .service-item-text p {
-    margin: 0.25rem 0 0;
-    font-size: 0.8rem;
-    color: hsl(0 0% 45%);
-    line-height: 1.4;
-    font-weight: 400;
-  }
-
-  /* ── Right Detail Panel ── */
-  .service-detail {
-    flex: 1;
-    position: relative;
-    min-height: 600px;
-  }
-
-  .detail-panel {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    opacity: 0;
-    transform: translateY(12px);
-    pointer-events: none;
-    transition:
-      opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-      transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .detail-panel.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-    position: relative;
-  }
-
-  .detail-image {
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    margin-bottom: 2rem;
-    box-shadow:
-      0 8px 30px hsl(203 18% 40% / 0.12),
-      0 2px 8px hsl(203 18% 40% / 0.06);
-  }
-
-  .detail-image img {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-    display: block;
-  }
-
-  .detail-content {
-    padding: 0 0.5rem;
-  }
-
-  .detail-content h2 {
-    font-size: 2rem;
-    font-weight: 800;
-    margin: 0 0 1.25rem;
-    color: var(--black);
-    letter-spacing: -0.01em;
-  }
-
-  .detail-description {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: hsl(0 0% 30%);
-    margin: 0 0 1rem;
-    font-weight: 300;
-  }
-
-  /* ── Pricing Cards ── */
-  .detail-pricing {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin: 2rem 0;
-  }
-
-  .price-card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.375rem;
-    padding: 1.25rem 1.5rem;
-    border-radius: var(--border-radius);
-    background: linear-gradient(135deg, hsl(213 22% 94%) 0%, hsl(204 29% 92%) 100%);
-    border: 1px solid hsl(213 22% 86% / 0.8);
-    min-width: 160px;
-    flex: 1;
-    transition: all 0.25s ease;
-  }
-
-  .price-label {
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: hsl(0 0% 40%);
-    line-height: 1.3;
-  }
-
-  .price-value {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--primary-500);
-    letter-spacing: -0.02em;
-  }
-
-  /* ── CTA Button ── */
-  .request-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.875rem 2rem;
-    background: var(--primary-500);
-    color: white;
-    border: none;
-    border-radius: var(--border-radius);
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    font-family: inherit;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 2px 8px hsl(203 18% 40% / 0.2);
-  }
-
-  @media (max-width: 450px) {
-    .request-btn {
-      width: 100%;
-      justify-content: center;
+  <style>
+    .services-page {
+      padding-top: 5rem;
     }
-  }
 
-  .request-btn:hover {
-    background: hsl(207 28% 35%);
-    box-shadow: 0 4px 16px hsl(203 18% 40% / 0.3);
-    transform: translateY(-1px);
-  }
+    /* ── Hero ── */
+    .services-hero {
+      background: linear-gradient(
+        135deg,
+        hsl(213 22% 86% / 1) 0%,
+        hsl(204 29% 90% / 1) 50%,
+        hsl(213 22% 86% / 1) 100%
+      );
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
 
-  .request-btn:active {
-    transform: translateY(0);
-  }
+    .services-hero-content {
+      max-width: 700px;
+      margin: 0 auto;
+    }
 
-  /* ── Responsive ── */
-  @media (max-width: 860px) {
+    .services-hero-content h1 {
+      font-size: 2.75rem;
+      font-weight: 900;
+      color: var(--black);
+      margin: 0 0 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .services-hero-content p {
+      font-size: 1.125rem;
+      line-height: 1.8;
+      color: var(--primary-500);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ── Main Section ── */
+    .services-section {
+      padding: 3rem 2rem 5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
     .services-container {
-      flex-direction: column;
+      display: flex;
+      gap: 2.5rem;
+      align-items: flex-start;
     }
 
+    /* ── Left Sidebar ── */
     .services-list {
-      flex: none;
-      width: 100%;
-      position: static;
-      flex-direction: row;
-      overflow-x: auto;
-      gap: 0.75rem;
-      padding-bottom: 0.5rem;
-      flex-wrap: wrap;
+      flex: 0 0 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      position: sticky;
+      top: 7rem;
     }
 
     .service-item {
-      flex: 0 0 auto;
-      padding: 1rem 0.75rem;
-      width: calc(50% - 0.375rem);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      border: 2px solid transparent;
+      background: transparent;
+      text-align: left;
+      font-family: inherit;
+    }
+
+    .service-item.active {
+      background: white;
+      border-color: var(--primary-500);
+      box-shadow:
+        0 4px 20px hsl(203 18% 40% / 0.1),
+        0 1px 4px hsl(203 18% 40% / 0.08);
+    }
+
+    .service-item.active .service-item-icon {
+      color: white;
+      background: var(--primary-500);
+    }
+
+    .service-item-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      min-width: 2.75rem;
+      border-radius: 10px;
+      color: var(--primary-500);
+      background: hsl(213 22% 86% / 0.7);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .service-item-icon svg {
+      width: 1.375rem;
+      height: 1.375rem;
+    }
+
+    .service-item-text h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.3;
     }
 
     .service-item-text p {
-      display: none;
+      margin: 0.25rem 0 0;
+      font-size: 0.8rem;
+      color: hsl(0 0% 45%);
+      line-height: 1.4;
+      font-weight: 400;
     }
 
+    /* ── Right Detail Panel ── */
     .service-detail {
-      min-height: auto;
+      flex: 1;
+      position: relative;
+      min-height: 600px;
     }
 
     .detail-panel {
-      position: relative;
-      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition:
+        opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .detail-panel.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+      position: relative;
+    }
+
+    .detail-image {
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      margin-bottom: 2rem;
+      box-shadow:
+        0 8px 30px hsl(203 18% 40% / 0.12),
+        0 2px 8px hsl(203 18% 40% / 0.06);
+    }
+
+    .detail-image img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
       display: block;
     }
-  }
-</style>
 
-<script>
-  document.addEventListener("astro:page-load", () => {
-    const serviceItems = document.querySelectorAll(".service-item");
-    const detailPanels = document.querySelectorAll(".detail-panel");
+    .detail-content {
+      padding: 0 0.5rem;
+    }
 
-    serviceItems.forEach((item) => {
-      item.addEventListener("click", () => {
-        const serviceId = item.getAttribute("data-service");
+    .detail-content h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 0 0 1.25rem;
+      color: var(--black);
+      letter-spacing: -0.01em;
+    }
 
-        // Update active states on sidebar items
-        serviceItems.forEach((si) => si.classList.remove("active"));
-        item.classList.add("active");
+    .detail-description {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: hsl(0 0% 30%);
+      margin: 0 0 1rem;
+      font-weight: 300;
+    }
 
-        // Transition panels
-        detailPanels.forEach((panel) => {
-          if (panel.getAttribute("data-panel") === serviceId) {
-            panel.classList.add("active");
-          } else {
-            panel.classList.remove("active");
-          }
+    /* ── Pricing Cards ── */
+    .pricing {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .detail-pricing {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .price-card {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 1.25rem 1.5rem;
+      border-radius: var(--border-radius);
+      background: linear-gradient(135deg, hsl(213 22% 94%) 0%, hsl(204 29% 92%) 100%);
+      border: 1px solid hsl(213 22% 86% / 0.8);
+      min-width: 160px;
+      flex: 1;
+      transition: all 0.25s ease;
+      max-width: 250px;
+    }
+
+    @media (max-width: 450px) {
+      .price-card {
+        width: 100%;
+        max-width: none;
+      }
+      .detail-pricing {
+        width: 100%;
+      }
+    }
+
+    .price-curr {
+      font-size: 1.75rem;
+      font-weight: 500;
+      color: hsl(207 28% 65%);
+      line-height: 1.3;
+    }
+
+    .price-value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary-500);
+      letter-spacing: -0.02em;
+    }
+    .price-value-small {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--primary-500);
+      letter-spacing: -0.02em;
+    }
+
+    .price-aclaration {
+      font-size: 1rem;
+      color: hsl(207 28% 45%);
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      display: block;
+      margin: 0;
+      margin-top: 0.5rem;
+    }
+
+    /* ── CTA Button ── */
+    .request-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      background: var(--primary-500);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      font-weight: 700;
+      height: 4rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 8px hsl(203 18% 40% / 0.2);
+    }
+
+    @media (max-width: 450px) {
+      .request-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    .request-btn:hover {
+      background: hsl(207 28% 35%);
+      box-shadow: 0 4px 16px hsl(203 18% 40% / 0.3);
+      transform: translateY(-1px);
+    }
+
+    .request-btn:active {
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 860px) {
+      .services-container {
+        flex-direction: column;
+      }
+
+      .services-list {
+        flex: none;
+        width: 100%;
+        position: static;
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 0.75rem;
+        padding-bottom: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .service-item {
+        flex: 0 0 auto;
+        padding: 1rem 0.75rem;
+        width: calc(50% - 0.375rem);
+      }
+
+      .service-item-text p {
+        display: none;
+      }
+
+      .service-detail {
+        min-height: auto;
+      }
+
+      .detail-panel {
+        position: relative;
+        display: none;
+      }
+
+      .detail-panel.active {
+        display: block;
+      }
+    }
+  </style>
+
+  <script>
+    document.addEventListener("astro:page-load", () => {
+      const serviceItems = document.querySelectorAll(".service-item");
+      const detailPanels = document.querySelectorAll(".detail-panel");
+
+      serviceItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          const serviceId = item.getAttribute("data-service");
+
+          // Update active states on sidebar items
+          serviceItems.forEach((si) => si.classList.remove("active"));
+          item.classList.add("active");
+
+          // Transition panels
+          detailPanels.forEach((panel) => {
+            if (panel.getAttribute("data-panel") === serviceId) {
+              panel.classList.add("active");
+            } else {
+              panel.classList.remove("active");
+            }
+          });
         });
       });
     });
-  });
-</script>
+  </script>
+</Layout>
