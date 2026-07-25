@@ -4,7 +4,7 @@ import samuelImg from "../assets/samuel.jpg";
 import patrikImg from "../assets/patrik.jpg";
 import { useTranslations } from "../i18n";
 
-const i18n = useTranslations();
+const i18n = useTranslations(Astro.cookies);
 ---
 
 <div class="about-team-inner">

@@ -15,7 +15,7 @@ export interface Props {
 }
 
 const { page } = Astro.props;
-const i18n = useTranslations();
+const i18n = useTranslations(Astro.cookies);
 ---
 
 <div class="resources-grid-wrapper">

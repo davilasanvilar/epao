@@ -1,7 +1,7 @@
 ---
 import logo from "../assets/white-logo.svg";
 import { useTranslations, t } from "../i18n";
-const i18n = useTranslations();
+const i18n = useTranslations(Astro.cookies);
 const currentYear = new Date().getFullYear();
 ---
 

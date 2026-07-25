@@ -5,7 +5,7 @@ import TeamCards from "../../components/TeamCards.astro";
 import Layout from "../../layouts/Layout.astro";
 import SectionLayout from "../../layouts/SectionLayout.astro";
 
-const i18n = useTranslations();
+const i18n = useTranslations(Astro.cookies);
 ---
 
 <Layout>

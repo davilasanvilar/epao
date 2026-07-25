@@ -6,7 +6,7 @@ import PillarCard from "./PillarCard.astro";
 import EyeIcon from "./icons/EyeIcon.astro";
 import EducationIcon from "./icons/EducationIcon.astro";
 import ScaleIcon from "./icons/ScaleIcon.astro";
-const i18n = useTranslations();
+const i18n = useTranslations(Astro.cookies);
 ---
 
 <section id="provide-info" class="front-section">

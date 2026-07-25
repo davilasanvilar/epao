@@ -7,7 +7,7 @@ import CompassIcon from "./icons/CompassIcon.astro";
 import HandHeartIcon from "./icons/HandHeart.astro";
 import Button from "./Button.astro";
 
-const i18n = useTranslations();
+const i18n = useTranslations(Astro.cookies);
 ---
 
 <section id="services" class="front-section">

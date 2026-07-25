@@ -1,0 +1,76 @@
+---
+import { type Locale } from "../i18n";
+
+interface Props {
+  id?: string;
+}
+
+const { id = "" } = Astro.props;
+const currentLocale: Locale = (Astro.cookies.get("lang")?.value as Locale) || "en";
+const suffix = id ? `-${id}` : "";
+---
+
+<div class="lang-switcher">
+  <button
+    class={`lang-btn ${currentLocale === "en" ? "active" : ""}`}
+    data-lang="en"
+    aria-label="Switch to English"
+  >EN</button>
+  <span class="lang-divider">/</span>
+  <button
+    class={`lang-btn ${currentLocale === "sk" ? "active" : ""}`}
+    data-lang="sk"
+    aria-label="Prepnúť do slovenčiny"
+  >SK</button>
+</div>
+
+<style>
+  .lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    user-select: none;
+  }
+
+  .lang-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px 4px;
+    font-size: inherit;
+    font-weight: inherit;
+    color: var(--primary-500);
+    border-radius: 4px;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .lang-btn:hover {
+    background: rgba(74, 105, 130, 0.08);
+  }
+
+  .lang-btn.active {
+    color: var(--button-primary);
+    font-weight: 700;
+  }
+
+  .lang-divider {
+    color: var(--primary-500);
+    opacity: 0.5;
+  }
+</style>
+
+<script>
+  function setLang(locale: "en" | "sk") {
+    document.cookie = `lang=${locale};path=/;max-age=${60 * 60 * 24 * 365};SameSite=Lax`;
+    window.location.reload();
+  }
+
+  document.querySelectorAll('.lang-btn[data-lang="en"]').forEach((btn) => {
+    btn.addEventListener("click", () => setLang("en"));
+  });
+  document.querySelectorAll('.lang-btn[data-lang="sk"]').forEach((btn) => {
+    btn.addEventListener("click", () => setLang("sk"));
+  });
+</script>

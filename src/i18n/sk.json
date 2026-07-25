@@ -1,0 +1,184 @@
+{
+    "site": {
+        "title": "EPAO",
+        "adminTitle": "EPAO Admin"
+    },
+    "nav": {
+        "home": "Domov",
+        "about": "O nás",
+        "services": "Služby",
+        "events": "Podujatia",
+        "resources": "Zdroje",
+        "contact": "Kontakt",
+        "menu": "Menu"
+    },
+    "hero": {
+        "title": "Prevencia emocionálneho a psychického zneužívania",
+        "subtitle": "To, čo považujete za normálne, môže vášmu dieťaťu škodiť",
+        "description": "Na rozdiel od sexuálneho a fyzického zneužívania, emocionálne a psychické zneužívanie (EPA) nie je dostatočne známe pre svoj devastačný dopad na deti. Obete takéhoto škodlivého správania môžu vykazovať vážne príznaky podobné tým, ktoré spôsobuje sexuálne alebo fyzické zneužívanie. Pre niektorých môže byť poškodenie nezvratné a neskôr sa môže preniesť na ich vlastné deti. Naša organizácia si dala za cieľ prelomiť tento začarovaný kruh."
+    },
+    "pillars": {
+        "awareness": {
+            "title": "Zvyšovanie povedomia",
+            "description": [
+                "Vzdelávanie spoločnosti s cieľom pochopiť a rozpoznať emocionálne a psychické zneužívanie",
+                "Podpora ľudí, aby začali konať",
+                "Ponuka zdrojov pre intervenciu a podporu"
+            ]
+        },
+        "education": {
+            "title": "Profesionálne vzdelávanie",
+            "description": [
+                "Školenie odborníkov, ako sú psychológovia, učitelia, právnici, sociálni pracovníci alebo sudcovia",
+                "Presadzovanie opatrení a postupov na identifikáciu a reakciu na emocionálne a psychické zneužívanie",
+                "Poskytovanie siete a podpory medzi odborníkmi a príslušnými inštitúciami"
+            ]
+        },
+        "legislative": {
+            "title": "Presadzovanie legislatívnych zmien",
+            "description": [
+                "Presadzovanie reforiem v právnom systéme, aby boli deti lepšie chránené pred emocionálnym a psychickým zneužívaním",
+                "Navrhovanie prostriedkov uplatňovaných súdmi s cieľom prinútiť rodičov zapojiť sa do konštruktívneho procesu na zabezpečenie bezpečnosti a blaha ich detí"
+            ]
+        }
+    },
+    "provideInfo": {
+        "title": "Poskytujeme"
+    },
+    "services": {
+        "title": "Naše služby",
+        "subtitle": "Poskytujeme vzdelávanie, podporu a zdroje rodičom, opatrovateľom a komunitám s cieľom vytvoriť bezpečné prostredie, v ktorom môžu deti prosperovať.",
+        "moreInfo": "Viac informácií",
+        "openLectures": {
+            "title": "Otvorené prednášky",
+            "shortDescription": "Verejné prednášky o zdravom rodičovstve a povedomí o zneužívaní.",
+            "description": "Bezplatné otvorené prednášky pre každého zamerané na rôzne aspekty EPA a jeho dopad na deti. Cieľom je propagovať zdravé rodičovstvo a pomôcť deťom v núdzi."
+        },
+        "workshops": {
+            "title": "Školenia",
+            "shortDescription": "Odborné školenia o odhaľovaní príznakov zneužívania.",
+            "description": "Určené pre rôzne skupiny odborníkov pracujúcich s deťmi alebo rodičmi, najmä: psychológov, sociálnych pracovníkov, učiteľov, mediátorov a právnikov. Školenie je prispôsobené príslušnej skupine a jej prepojeniu s témou EPA."
+        },
+        "supportGroups": {
+            "title": "Podporné skupiny",
+            "shortDescription": "Pomoc pre deti, ktoré trpeli emocionálnym zneužívaním.",
+            "description": "Ponúkame podporné skupiny rodičom, ktorých partner alebo bývalý partner zneužíva alebo im odcudzuje ich deti. Členovia môžu zdieľať svoje osobné príbehy a získať emocionálnu a praktickú podporu.",
+            "pricing": {
+                "weeklySessions": "Týždenné stretnutia",
+                "intensiveProgram": "Intenzívny program (8 týždňov)"
+            }
+        },
+        "counselling": {
+            "title": "Poradenstvo",
+            "shortDescription": "Súkromné stretnutia pre personalizované odborné vedenie.",
+            "description": "Ponúkame poradenstvo pre ľudí, ktorí chcú pomôcť deťom, ktoré sú obeťami EPA, ako sú rodičia, rodinní príslušníci, učitelia a sociálni pracovníci.",
+            "pricing": {
+                "initialConsultation": "Úvodná konzultácia",
+                "individualSession": "Individuálne stretnutie (60 min)",
+                "package": "Balíček (5 stretnutí)"
+            }
+        },
+        "requestInfo": "Vyžiadať viac informácií",
+        "free": "Bezplatne",
+        "onRequest": "* Prispôsobené okolnostiam inštitúcie",
+        "currency": "€",
+        "price50": "50 *",
+        "canBeAdjusted": "* Cena môže byť prispôsobená finančnej situácii klienta"
+    },
+    "events": {
+        "title": "Naše podujatia",
+        "latestEvents": "Najnovšie podujatia",
+        "viewAll": "Zobraziť všetky podujatia",
+        "upcoming": "Nadchádzajúce podujatia",
+        "past": "Minulé podujatia",
+        "free": "Bezplatne",
+        "noEvents": "Nenašli sa žiadne podujatia typu {eventType}.",
+        "previous": "Predchádzajúce",
+        "next": "Nasledujúce",
+        "pageOf": "Strana {current} z {total}"
+    },
+    "resources": {
+        "title": "Naše zdroje",
+        "noResources": "Nenašli sa žiadne zdroje.",
+        "previous": "Predchádzajúce",
+        "next": "Nasledujúce",
+        "pageOf": "Strana {current} z {total}",
+        "video": "Video",
+        "article": "Článok"
+    },
+    "about": {
+        "title": "Čo je EPAO",
+        "description": [
+            "Organizácia pre prevenciu emocionálneho a psychického zneužívania (EPAO) je politicky a nábožensky nezávislé odborné a poradenské centrum pre otázky týkajúce sa emocionálneho a psychického zneužívania detí. To sa prejavuje najmä v sporoch o opatrovníctvo, kde sú deti rozpoltené medzi škodlivým správaním svojich rodičov, zatiaľ čo súdom chýbajú prostriedky na to, aby im pomohli. EPA sa však môže vyskytnúť aj v zdanlivo zdravých rodinách, kde sa navonok zdá, že je všetko v poriadku, zatiaľ čo za zatvorenými dverami sú deti vystavené neustálej kritike, citovému vydieraniu a mnohým ďalším formám EPA.",
+            "Tento vzorec existoval v minulosti, keď dospelí, ktorí v detstve zažili fyzické týranie, ho často začali vnímať ako normálne a opakovali ho na svojich vlastných deťoch. Dnes spoločnosť z veľkej časti odmieta fyzické tresty detí, čo odráža hlbšie uvedomenie si ich škodlivosti.",
+            "Bohužiaľ, situácia je iná, pokiaľ ide o emocionálne a psychické zneužívanie. Stále existuje veľká neznalosť o tom, čo to presne je a aké škody to môže na deťoch spôsobiť.",
+            "Krajiny ako Slovensko, kde obyvateľstvo trpelo drastickým zneužívaním za bývalého sovietskeho režimu, si vytvorili nedostatok citlivosti voči tomu, ako môže škodlivé správanie v tomto smere dlhodobo poškodiť deti.",
+            "Dali sme si za poslanie odhaľovať tieto formy škodlivého správania a vzdelávať o nich verejnosť. Ide o prelomenie tohto začarovaného kruhu a znovuprebudenie citlivosti na to, čo deti potrebujú, aby z nich vyrástli zdraví a šťastní ľudia."
+        ],
+        "imageAlt": "Tím EPAO spolupracujúci na iniciatívach na ochranu detí",
+        "meetTeam": "Spoznajte náš tím"
+    },
+    "team": {
+        "samuel": {
+            "name": "Samuel Schürer",
+            "role": "Psychologický poradca od roku 1993",
+            "description": "Počas viac ako troch desaťročí praxe som bol znova a znova svedkom toho, ako dospelí klienti stále trpia emocionálnym a psychickým zlým zaobchádzaním, ktoré znášali ako deti. Ako párový poradca som tiež pozoroval, ako ich môžu konflikty rodičov znecitlivieť voči utrpeniu, ktorým prechádzajú ich deti. Je tragické, že rodičia často opakujú vzorce ubližovania, ktoré sami kedysi prežili. Aby sme prelomili tento cyklus, musíme chrániť tých najzraniteľnejších: naše deti."
+        },
+        "patrik": {
+            "name": "Patrik Takáč",
+            "role": "Manažér administratívy a komunikácie",
+            "description": "Verím, že komunikácia je jedným z najmocnejších nástrojov, ktoré máme na formovanie sveta. Pre mňa je to príležitosť prispieť k ochrane detí a k prevencii emocionálneho zneužívania – problému, ktorý je v našej spoločnosti stále príliš často prehliadaný. Chcem, aby moja práca mala zmysel presahujúci ju samotnú – aby podporovala zmenu, ktorú považujem za nevyhnutnú a správnu."
+        }
+    },
+    "footer": {
+        "orgName": "Organizácia EPAO",
+        "email": "epao@epao.sk",
+        "phone": "+421 919 043 606",
+        "addressLine1": "Laurinská 11",
+        "addressLine2": "Bratislava, Slovensko",
+        "logoAlt": "Logo EPAO",
+        "brand": "EPAO",
+        "description": "EPAO je priekopnícka slovenská nezisková organizácia zameraná výlučne na emocionálne a psychické zneužívanie (EPA) detí.",
+        "instagram": "Instagram",
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn",
+        "copyright": "© {year} EPAO. Všetky práva vyhradené."
+    },
+    "contactForm": {
+        "name": {
+            "label": "Meno",
+            "placeholder": "Meno",
+            "errorRequired": "Meno je povinné"
+        },
+        "email": {
+            "label": "Email",
+            "placeholder": "Email",
+            "errorRequired": "Email je povinný",
+            "errorInvalid": "Neplatný formát emailu"
+        },
+        "message": {
+            "label": "Správa",
+            "placeholder": "Správa",
+            "errorRequired": "Správa je povinná"
+        },
+        "cancel": "Zrušiť",
+        "send": "Odoslať",
+        "success": "Vaša žiadosť bola prijatá",
+        "error": "Nepodarilo sa nám odoslať vašu žiadosť, skúste to znova"
+    },
+    "latestCard": {
+        "showMore": "Zobraziť viac",
+        "showLess": "Zobraziť menej"
+    },
+    "eventCard": {
+        "showMore": "Zobraziť viac",
+        "showLess": "Zobraziť menej"
+    },
+    "admin": {
+        "header": {
+            "requests": "Žiadosti",
+            "events": "Podujatia",
+            "resources": "Zdroje"
+        }
+    }
+}

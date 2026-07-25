@@ -11,7 +11,7 @@ import utc from "dayjs/plugin/utc";
 
 dayjs.extend(utc);
 
-const i18n = useTranslations();
+const i18n = useTranslations(Astro.cookies);
 
 const PAGE_SIZE = 3;
 

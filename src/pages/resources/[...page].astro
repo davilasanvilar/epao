@@ -9,7 +9,7 @@ import { useTranslations } from "../../i18n";
 const PAGE_SIZE = 6;
 const rawPage = Astro.params.page;
 const currentPage = rawPage ? parseInt(rawPage, 10) : 1;
-const i18n = useTranslations();
+const i18n = useTranslations(Astro.cookies);
 
 const url = env.TURSO_CONNECTION_URL || import.meta.env.TURSO_CONNECTION_URL;
 const token = env.TURSO_AUTH_TOKEN || import.meta.env.TURSO_AUTH_TOKEN;

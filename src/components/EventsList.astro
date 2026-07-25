@@ -10,7 +10,7 @@ export interface Props {
 }
 
 const { eventType, currentPage } = Astro.props;
-const i18n = useTranslations();
+const i18n = useTranslations(Astro.cookies);
 const PAGE_SIZE = 6;
 
 const url = env.TURSO_CONNECTION_URL || import.meta.env.TURSO_CONNECTION_URL;

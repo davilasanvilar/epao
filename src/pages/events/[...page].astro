@@ -7,7 +7,7 @@ import { useTranslations } from "../../i18n";
 
 const rawPage = Astro.params.page;
 const currentPage = rawPage ? parseInt(rawPage, 10) : 1;
-const i18n = useTranslations();
+const i18n = useTranslations(Astro.cookies);
 ---
 
 <Layout>

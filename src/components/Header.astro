@@ -3,9 +3,11 @@ import Button from "./Button.astro";
 import logo from "../assets/logo.svg";
 import Modal from "./Modal.astro";
 import { GeneralRequestForm } from "./react/GeneralRequestForm";
-import { useTranslations } from "../i18n";
+import { useTranslations, type Locale } from "../i18n";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
 const path = Astro.url.pathname;
-const i18n = useTranslations();
+const locale: Locale = (Astro.cookies.get("lang")?.value as Locale) || "en";
+const i18n = useTranslations(locale);
 ---
 
 <header>
@@ -35,8 +37,11 @@ const i18n = useTranslations();
     </ul>
   </nav>
 
-  <div class="desktop-cta">
-    <Button variant="primary" text={i18n.nav.contact} command="show-modal" commandFor="contact-modal" />
+  <div class="desktop-actions">
+    <LanguageSwitcher />
+    <div class="desktop-cta">
+      <Button variant="primary" text={i18n.nav.contact} command="show-modal" commandFor="contact-modal" />
+    </div>
   </div>
 
   <!-- Hamburger button (visible on mobile) -->
@@ -85,6 +90,9 @@ const i18n = useTranslations();
       >{i18n.nav.resources}</a
     >
   </nav>
+  <div class="sidebar-lang">
+    <LanguageSwitcher id="sidebar" />
+  </div>
   <div class="sidebar-cta">
     <Button variant="primary" text={i18n.nav.contact} command="show-modal" commandFor="contact-modal" />
   </div>
@@ -127,6 +135,12 @@ const i18n = useTranslations();
   .desktop-nav ul {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .desktop-actions {
+    display: flex;
     align-items: center;
     gap: 1rem;
   }
@@ -281,6 +295,15 @@ const i18n = useTranslations();
     background: rgba(74, 105, 130, 0.08);
   }
 
+  .sidebar-lang {
+    display: flex;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    margin-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
   .sidebar-cta {
     margin-top: 1.5rem;
   }
@@ -293,7 +316,7 @@ const i18n = useTranslations();
   /* ---- Responsive ---- */
   @media (max-width: 1023px) {
     .desktop-nav,
-    .desktop-cta {
+    .desktop-actions {
       display: none;
     }
 

@@ -14,7 +14,7 @@ export interface Props {
 }
 
 const { resource } = Astro.props;
-const i18n = useTranslations();
+const i18n = useTranslations(Astro.cookies);
 const isVideo = resource.isVideo === true || resource.isVideo === 1;
 const videoId = resource.url?.split("v=")[1];
 
