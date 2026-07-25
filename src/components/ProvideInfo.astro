@@ -1,0 +1,80 @@
+---
+import AccreditedIcon from "./icons/AccreditedIcon.astro";
+import orgInfoImg from "../assets/lecture.webp";
+import { useTranslations } from "../i18n";
+import PillarCard from "./PillarCard.astro";
+import EyeIcon from "./icons/EyeIcon.astro";
+import EducationIcon from "./icons/EducationIcon.astro";
+import ScaleIcon from "./icons/ScaleIcon.astro";
+const i18n = useTranslations();
+---
+
+<section id="provide-info" class="front-section">
+  <div id="provide-info-content" class="front-section-content">
+    <h2>{i18n.provideInfo.title}</h2>
+    <div class="pillars">
+      <PillarCard
+        title={i18n.pillars.awareness.title}
+        description={i18n.pillars.awareness.description}
+      >
+        <EyeIcon slot="icon" />
+      </PillarCard>
+      <PillarCard
+        title={i18n.pillars.education.title}
+        description={i18n.pillars.education.description}
+      >
+        <EducationIcon slot="icon" />
+      </PillarCard>
+      <PillarCard
+        title={i18n.pillars.legislative.title}
+        description={i18n.pillars.legislative.description}
+      >
+        <ScaleIcon slot="icon" />
+      </PillarCard>
+    </div>
+  </div>
+
+  <style>
+    #provide-info {
+      background: linear-gradient(180deg, hsl(213 22% 86% / 1) 10%, transparent 100%);
+    }
+
+    #org-info-image {
+      width: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+      min-width: 0;
+    }
+
+    #provide-info-content {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .pillars {
+      display: flex;
+      gap: 2rem;
+      margin: auto;
+      max-width: 90rem;
+    }
+
+    .pillars-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    @media (max-width: 1024px) {
+      .pillars {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h2 {
+        text-align: center;
+      }
+    }
+  </style>
+</section>

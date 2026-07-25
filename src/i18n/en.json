@@ -14,7 +14,8 @@
   },
   "hero": {
     "title": "Prevention of Emotional and Psychological Abuse",
-    "subtitle": "What you believe is normal might be damaging for your child"
+    "subtitle": "What you believe is normal might be damaging for your child",
+    "description": "Unlike sexual and physical abuse, emotional and psychological abuse (EPA) is not well enough known for its devastating impact on children. Those who are victims of such harmful behaviours can show significant symptoms similar to those caused by sexual or physical abuse. For some, the damage can be irreversible and may later be passed on to their own children. Our organization has set itself the goal of breaking this vicious cycle."
   },
   "pillars": {
     "awareness": {
@@ -41,17 +42,8 @@
       ]
     }
   },
-  "orgInfo": {
-    "title": "Our Organization",
-    "description": [
-      "The Emotional and Psychological Abuse Organization (EPAO) is a politically and religiously independent specialist and advisory centre for questions relating to emotional and psychological abuse of children",
-      "Unlike sexual and physical abuse, emotional and psychological abuse (EPA) is not well enough known for its devastating impact on children.",
-      "This is mostly evident in custody disputes where children are torn in between damaging behaviour of their parents, while the courts lack the resources to help them.",
-      "However, EPA can also occur in seemingly healthy families where on the surface things appear to be good, while behind closed doors children are exposed to constant criticism, emotional blackmailing, and many other forms of EPA.",
-      "Children who are victims of such harmful behaviours can show significant symptoms which are similar to sexual or physical abuse.",
-      "For some children the damage can be irreversible and later be passed on to their own children.",
-      "Our organization had set itself the goal of breaking this vicious circle."
-    ]
+  "provideInfo": {
+    "title": "We provide"
   },
   "services": {
     "title": "Our Services",
@@ -117,6 +109,7 @@
   "about": {
     "title": "What is EPAO",
     "description": [
+      "The Emotional and Psychological Abuse Organization (EPAO) is a politically and religiously independent specialist and advisory centre for questions relating to emotional and psychological abuse of children.This is mostly evident in custody disputes where children are torn in between damaging behaviour of their parents, while the courts lack the resources to help them. However, EPA can also occur in seemingly healthy families where on the surface things appear to be good, while behind closed doors children are exposed to constant criticism, emotional blackmailing, and many other forms of EPA.",
       "This pattern existed in the past, when adults who experienced physical abuse in childhood often came to see it as normal and repeated it with their own children. Today, society largely rejects physical punishment of children, reflecting a deeper awareness of its harm.",
       "Unfortunately, the situation is different when it comes to emotional and psychological abuse. There is still a great deal of ignorance about what exactly this is and what damage it can cause in children.",
       "Countries such as Slovakia, where the population suffered drastic abuse under the former Soviet regime, have developed a lack of sensitivity about how harmful behavior in this regard can damage children in the long term.",

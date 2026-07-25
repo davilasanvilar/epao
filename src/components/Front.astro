@@ -1,9 +1,5 @@
 ---
 import toys from "../assets/toys.jpg";
-import EducationIcon from "./icons/EducationIcon.astro";
-import EyeIcon from "./icons/EyeIcon.astro";
-import ScaleIcon from "./icons/ScaleIcon.astro";
-import PillarCard from "./PillarCard.astro";
 import { useTranslations } from "../i18n";
 const i18n = useTranslations();
 ---
@@ -15,29 +11,12 @@ const i18n = useTranslations();
   <section id="hero">
     <div id="hero-content">
       <h1>{i18n.hero.title}</h1>
-      <p>
+      <p class="hero-subtitle">
         {i18n.hero.subtitle}
       </p>
-    </div>
-    <div class="pillars">
-      <PillarCard
-        title={i18n.pillars.awareness.title}
-        description={i18n.pillars.awareness.description}
-      >
-        <EyeIcon slot="icon" />
-      </PillarCard>
-      <PillarCard
-        title={i18n.pillars.education.title}
-        description={i18n.pillars.education.description}
-      >
-        <EducationIcon slot="icon" />
-      </PillarCard>
-      <PillarCard
-        title={i18n.pillars.legislative.title}
-        description={i18n.pillars.legislative.description}
-      >
-        <ScaleIcon slot="icon" />
-      </PillarCard>
+      <p class="hero-description">
+        {i18n.hero.description}
+      </p>
     </div>
   </section>
 </main>
@@ -76,9 +55,18 @@ const i18n = useTranslations();
     color: var(--black);
     margin: 0;
   }
+  .hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 200;
+  }
 
   p {
     text-align: center;
+  }
+
+  .hero-description {
+    max-width: 1200px;
+    line-height: 2rem;
   }
 
   main {
@@ -120,20 +108,6 @@ const i18n = useTranslations();
     font-weight: 300;
   }
 
-  .pillars {
-    display: flex;
-    gap: 2rem;
-    margin: auto;
-    max-width: 90rem;
-  }
-
-  .pillars-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
-  }
-
   @media (max-width: 1024px) {
     main {
       height: auto;
@@ -155,9 +129,6 @@ const i18n = useTranslations();
     #hero-content p {
       text-align: center;
       font-size: 1rem;
-    }
-    .pillars {
-      flex-direction: column;
     }
   }
 </style>
