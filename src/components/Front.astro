@@ -1,6 +1,10 @@
 ---
 import toys from "../assets/toys.jpg";
 import { useTranslations } from "../i18n";
+import EducationIcon from "./icons/EducationIcon.astro";
+import EyeIcon from "./icons/EyeIcon.astro";
+import ScaleIcon from "./icons/ScaleIcon.astro";
+import PillarCard from "./PillarCard.astro";
 const i18n = useTranslations(Astro.cookies);
 ---
 
@@ -18,99 +22,119 @@ const i18n = useTranslations(Astro.cookies);
         {i18n.hero.description}
       </p>
     </div>
+    <div class="pillars">
+      <PillarCard
+        title={i18n.pillars.awareness.title}
+        description={i18n.pillars.awareness.description}
+      >
+        <EyeIcon slot="icon" />
+      </PillarCard>
+      <PillarCard
+        title={i18n.pillars.education.title}
+        description={i18n.pillars.education.description}
+      >
+        <EducationIcon slot="icon" />
+      </PillarCard>
+      <PillarCard
+        title={i18n.pillars.legislative.title}
+        description={i18n.pillars.legislative.description}
+      >
+        <ScaleIcon slot="icon" />
+      </PillarCard>
+    </div>
   </section>
-</main>
 
-<style>
-  .hero-section {
-    width: 100%;
-    min-height: 90vh;
-  }
+  <style>
+    .hero-section {
+      width: 100%;
+      min-height: 90vh;
+    }
 
-  .section-page-container {
-    padding-top: 6rem;
-    min-height: calc(100vh - 200px);
-  }
+    .section-page-container {
+      padding-top: 6rem;
+      min-height: calc(100vh - 200px);
+    }
 
-  .section {
-    padding: 5rem 2rem;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    .section {
+      padding: 5rem 2rem;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-  .section-content {
-    display: flex;
-    max-width: 1440px;
-    margin: 0 auto;
-    width: 100%;
-  }
+    .section-content {
+      display: flex;
+      max-width: 1440px;
+      margin: 0 auto;
+      width: 100%;
+    }
 
-  h1 {
-    font-weight: 900;
-    line-height: 4rem;
-    font-size: 3rem;
-    text-align: center;
-    color: var(--black);
-    margin: 0;
-  }
-  .hero-subtitle {
-    font-size: 1.5rem;
-    font-weight: 200;
-  }
+    h1 {
+      font-weight: 900;
+      line-height: 4rem;
+      font-size: 3rem;
+      text-align: center;
+      color: var(--black);
+      margin: 0;
+    }
+    .hero-subtitle {
+      font-size: 1.5rem;
+      font-weight: 200;
+    }
 
-  p {
-    text-align: center;
-  }
+    p {
+      text-align: center;
+    }
 
-  .hero-description {
-    max-width: 1200px;
-    line-height: 2rem;
-  }
+    .hero-description {
+      line-height: 2rem;
+    }
 
-  main {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100vh;
-    top: 0;
-    color: "black";
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    padding-top: 6rem;
-    padding-bottom: 2rem;
-  }
-
-  #hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10vh;
-    padding: 0 3.5rem;
-  }
-  #hero-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2rem;
-    padding: 2rem;
-    border-radius: 12px;
-    color: white;
-  }
-
-  #hero-content p {
-    font-size: 1.25rem;
-    margin: 0;
-    font-weight: 300;
-  }
-
-  @media (max-width: 1024px) {
     main {
-      height: auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100vh;
+      top: 0;
+      color: "black";
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      padding-top: 6rem;
+      padding-bottom: 2rem;
+    }
+
+    #hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10vh;
+      padding: 0 3.5rem;
+    }
+    #hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem;
+      border-radius: 12px;
+      color: white;
+      max-width: 1200px;
+    }
+
+    #hero-content p {
+      font-size: 1.25rem;
+      margin: 0;
+      font-weight: 300;
+    }
+
+    @media (max-width: 1024px) {
+      main {
+        height: auto;
+      }
     }
 
     #hero {
@@ -130,5 +154,25 @@ const i18n = useTranslations(Astro.cookies);
       text-align: center;
       font-size: 1rem;
     }
-  }
-</style>
+
+    .pillars {
+      display: flex;
+      gap: 2rem;
+      margin: auto;
+      max-width: 90rem;
+    }
+
+    .pillars-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    @media (max-width: 1024px) {
+      .pillars {
+        flex-direction: column;
+      }
+    }
+  </style>
+</main>
